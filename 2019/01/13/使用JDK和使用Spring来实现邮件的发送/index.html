@@ -5,11 +5,10 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Hexo">
-    <meta name="description" content="##使用Spring实现邮件的发送##
-一、邮件发送相关的协议SMTP： 简单邮件传输协议（Simple Mail Transfer Protocol），该协议定义了邮件发送的机制。
+    <meta name="keywords" content="邮件的发送实现, 江火似流萤的个人博客">
+    <meta name="description" content="一、邮件发送相关的协议SMTP： 简单邮件传输协议（Simple Mail Transfer Protocol），该协议定义了邮件发送的机制。
 
-POP3：邮局协议（Post Office Proto">
+POP3：邮局协议（Post Office Protocol），目前用的是版本3，也称POP3">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +16,7 @@ POP3：邮局协议（Post Office Proto">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Hexo</title>
+    <title>邮件的发送实现 | 江火似流萤的个人博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -29,7 +28,7 @@ POP3：邮局协议（Post Office Proto">
     <link rel="stylesheet" type="text/css" href="/css/my.css">
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-</head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 </head>
 
@@ -44,7 +43,7 @@ POP3：邮局协议（Post Office Proto">
                         
                         <img src="/medias/logo.png" class="logo-img hide-on-small-only">
                         
-                        <span class="logo-span">Hexo</span>
+                        <span class="logo-span">江火似流萤的个人博客</span>
                     </a>
                 </div>
                 
@@ -120,10 +119,10 @@ POP3：邮局协议（Post Office Proto">
         
         <img src="/medias/logo.png" class="logo-img circle responsive-img">
         
-        <div class="logo-name">Hexo</div>
+        <div class="logo-name">江火似流萤的个人博客</div>
         <div class="logo-desc">
             
-            Never really desperate, only the lost of the soul.
+            胜，不妄喜;败，不惶妥;胸有激雷而面如平湖者，可拜上将军!
             
         </div>
     </div>
@@ -196,14 +195,18 @@ POP3：邮局协议（Post Office Proto">
         
     </ul>
 
-    <div class="social-link"><a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+    <div class="social-link"><a href="https://github.com/carleviets" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
     <i class="fa fa-github"></i>
 </a>
-<a href="mailto:chenjiayin1990@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+<a href="mailto:carleviets0420@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
     <i class="fa fa-envelope-open"></i>
 </a>
-<a href="#!" class="tooltipped" data-tooltip="QQ联系我: 1181062873" data-position="top" data-delay="50">
+<a href="#!" class="tooltipped" data-tooltip="QQ联系我: 892324283" data-position="top" data-delay="50">
     <i class="fa fa-qq"></i>
+</a>
+
+<a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+    <i class="fa fa-rss"></i>
 </a>
 </div>
 </div>
@@ -272,13 +275,13 @@ POP3：邮局协议（Post Office Proto">
 
 
 
-<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        
+                        邮件的发送实现
                     </div>
                 </div>
             </div>
@@ -296,7 +299,25 @@ POP3：邮局协议（Post Office Proto">
     <div class="card">
         <div class="card-content article-info">
             
+            <div class="article-tag">
+                
+                <a href="/tags/邮件发送/" target="_blank">
+                    <span class="chip bg-color">邮件发送</span>
+                </a>
+                
+            </div>
+            
             <div class="post-info">
+                
+                <span class="post-cate">
+                <!--<span class="post-cate" style="margin-right: 0px">-->
+                    <i class="fa fa-bookmark fa-fw icon-category"></i>
+                    
+                    <a href="/categories/JAVA-Spring/" class="post-category" target="_blank">
+                        JAVA Spring
+                    </a>
+                    
+                </span>
                 
 
                 <span class="post-date">
@@ -312,8 +333,7 @@ POP3：邮局协议（Post Office Proto">
         <hr>
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>##使用Spring实现邮件的发送##</p>
-<h3 id="一、邮件发送相关的协议"><a href="#一、邮件发送相关的协议" class="headerlink" title="一、邮件发送相关的协议"></a>一、邮件发送相关的协议</h3><pre><code>SMTP： 简单邮件传输协议（Simple Mail Transfer Protocol），该协议定义了邮件发送的机制。
+                <h3 id="一、邮件发送相关的协议"><a href="#一、邮件发送相关的协议" class="headerlink" title="一、邮件发送相关的协议"></a>一、邮件发送相关的协议</h3><pre><code>SMTP： 简单邮件传输协议（Simple Mail Transfer Protocol），该协议定义了邮件发送的机制。
 
 POP3：邮局协议（Post Office Protocol），目前用的是版本3，也称POP3。POP3协议定义了接收电子邮件的标准。
 
@@ -321,8 +341,7 @@ IMAP： 互联网消息协议(Internet Message Access Protocol)，是更高级�
 
 MIME： 代表多用途因特网邮件扩展标准（Multipurpose Internet Mail Extensions） 。 它不是邮件传输协议。 但对传输内容的消息、
        附件及其它的内容定义了格式。
-</code></pre><p>###二、JavaMail中的关键属性###</p>
-<pre><code>属性名                                   属性类型                             说明
+</code></pre><h3 id="二、JavaMail中的关键属性"><a href="#二、JavaMail中的关键属性" class="headerlink" title="二、JavaMail中的关键属性"></a>二、JavaMail中的关键属性</h3><pre><code>属性名                                   属性类型                             说明
 mail.smtp.host                              String                 SMTP服务器地址， 如smtp.sina.com.cn
 mail.smtp.port                           int                     SMTP服务器端口号，默认为 25
 mail.smtp.auth                              boolean                 SMTP服务器是否需要用户认证，默认为 false
@@ -334,17 +353,15 @@ mail.smtp.socketFactory.port              int                       指定 socke
 mail.smtp.socketFactory.fallback          boolean                 设置为 true时，当使用指定的socket类创建socket失败后，将使用
                                                                 Java.net.Socket 创建 socket， 默认为 true
 mail.smtp.timeout                          int                     I/O连接超时时间， 单位为毫秒，默认为永不超时
-</code></pre><p>###三、JavaMail中的关键对象###</p>
-<p>####3.1 Session对象####<br>创建 Session 对象时，并没有对应的物理连接， 它只不过是一对配置信息的集合。 Session 的主要作用包括两个方面：</p>
+</code></pre><h3 id="三、JavaMail中的关键对象"><a href="#三、JavaMail中的关键对象" class="headerlink" title="三、JavaMail中的关键对象"></a>三、JavaMail中的关键对象</h3><h4 id="3-1-Session对象"><a href="#3-1-Session对象" class="headerlink" title="3.1 Session对象"></a>3.1 Session对象</h4><p>创建 Session 对象时，并没有对应的物理连接， 它只不过是一对配置信息的集合。 Session 的主要作用包括两个方面：</p>
 <pre><code>1） 接收各种配置属性信息：通过 Properties 对象设置的属性信息；
 2） 初始化JavaMail环境：根据JavaMail的配置文件，初始化JavaMail环境，以便通过Session对象创建其他重要类的实例。
-</code></pre><p>####3.2 Transport对象和Store对象####<br>Transport对象对应着邮件的发送，而Store对象对应着邮件的接收。</p>
-<p>####3.3 Message对象####<br>Message对象即为用户发送的邮件，由于Messa类是一个抽象类，多数情况下使用其子类为javax.mail.internet.MimeMessage。MimeMessage是个能理解MIME类型和头的电子邮件消息。</p>
-<p>####3.4 Address对象####<br>Address对象是邮件发送的地址，和Message一样，Address也是个抽象类。您用的是javax.mail.internet.InternetAddress类。</p>
-<p>####3.5 Authenticator对象####<br>JavaMail API利用Authenticator通过用户名和密码访问受保护的资源。对于JavaMail API来说，这些资源就是邮件服务器。</p>
+</code></pre><h4 id="3-2-Transport对象和Store对象"><a href="#3-2-Transport对象和Store对象" class="headerlink" title="3.2 Transport对象和Store对象"></a>3.2 Transport对象和Store对象</h4><p>Transport对象对应着邮件的发送，而Store对象对应着邮件的接收。</p>
+<h4 id="3-3-Message对象"><a href="#3-3-Message对象" class="headerlink" title="3.3 Message对象"></a>3.3 Message对象</h4><p>Message对象即为用户发送的邮件，由于Messa类是一个抽象类，多数情况下使用其子类为javax.mail.internet.MimeMessage。MimeMessage是个能理解MIME类型和头的电子邮件消息。</p>
+<h4 id="3-4-Address对象"><a href="#3-4-Address对象" class="headerlink" title="3.4 Address对象"></a>3.4 Address对象</h4><p>Address对象是邮件发送的地址，和Message一样，Address也是个抽象类。您用的是javax.mail.internet.InternetAddress类。</p>
+<h4 id="3-5-Authenticator对象"><a href="#3-5-Authenticator对象" class="headerlink" title="3.5 Authenticator对象"></a>3.5 Authenticator对象</h4><p>JavaMail API利用Authenticator通过用户名和密码访问受保护的资源。对于JavaMail API来说，这些资源就是邮件服务器。</p>
 <p>要使用 Authenticator，先创建一个抽象类的子类，并从getPasswordAuthentication()方法中返回PasswordAuthentication实例。 创建完<br>成后，您必需向session注册Authenticator。然后，在需要认证的时候，就会通知Authenticator。</p>
-<p>###三、使用JDK实现邮件的发送功能###</p>
-<p>下面是通过JDK的方式实现邮件发送功能的代码：</p>
+<h3 id="三、使用JDK实现邮件的发送功能"><a href="#三、使用JDK实现邮件的发送功能" class="headerlink" title="三、使用JDK实现邮件的发送功能"></a>三、使用JDK实现邮件的发送功能</h3><p>下面是通过JDK的方式实现邮件发送功能的代码：</p>
 <pre><code>package com.carleviets.jdk;
 
 import com.carleviets.auth.MyAuthenticator;
@@ -399,7 +416,7 @@ public class SendMail {
         //发送html邮件
         BodyPart bodyPart1=new MimeBodyPart();
         StringBuilder stringBuilder=new StringBuilder();
-        stringBuilder.append(&quot;&lt;html&gt;&lt;body&gt;&lt;a href=&apos;http://www.baidu.com&apos;&gt;狗日的百度&lt;/a&gt;&lt;/body&gt;&lt;/html&gt;&quot;);
+        stringBuilder.append(&quot;&lt;html&gt;&lt;body&gt;&lt;a href=&#39;http://www.baidu.com&#39;&gt;狗日的百度&lt;/a&gt;&lt;/body&gt;&lt;/html&gt;&quot;);
         bodyPart1.setContent(stringBuilder.toString(), &quot;text/html;charset=UTF-8&quot;);
         multipart.addBodyPart(bodyPart1);
 
@@ -439,8 +456,7 @@ public class MyAuthenticator extends Authenticator {
         return new PasswordAuthentication(username, password);
     }
 }
-</code></pre><p>###四、JDK邮件发送代码的封装###</p>
-<p>如下是一个邮件发送信息类的简单封装，可以看出该类是一个简单的JavaBean：</p>
+</code></pre><h3 id="四、JDK邮件发送代码的封装"><a href="#四、JDK邮件发送代码的封装" class="headerlink" title="四、JDK邮件发送代码的封装"></a>四、JDK邮件发送代码的封装</h3><p>如下是一个邮件发送信息类的简单封装，可以看出该类是一个简单的JavaBean：</p>
 <pre><code>package com.carleviets.po.vo;
 
 import java.util.List;
@@ -552,9 +568,7 @@ public class MailSender {
 
 }
 </code></pre><p>测试代码很简单，这里略去。</p>
-<p>###五、使用spring来实现邮件的发送###</p>
-<p>####5.1 maven坐标依赖####</p>
-<pre><code>&lt;!--junit测试依赖--&gt;
+<h3 id="五、使用spring来实现邮件的发送"><a href="#五、使用spring来实现邮件的发送" class="headerlink" title="五、使用spring来实现邮件的发送"></a>五、使用spring来实现邮件的发送</h3><h4 id="5-1-maven坐标依赖"><a href="#5-1-maven坐标依赖" class="headerlink" title="5.1 maven坐标依赖"></a>5.1 maven坐标依赖</h4><pre><code>&lt;!--junit测试依赖--&gt;
 &lt;dependency&gt;
   &lt;groupId&gt;junit&lt;/groupId&gt;
   &lt;artifactId&gt;junit&lt;/artifactId&gt;
@@ -589,8 +603,7 @@ public class MailSender {
   &lt;artifactId&gt;mail&lt;/artifactId&gt;
   &lt;version&gt;1.4&lt;/version&gt;
 &lt;/dependency&gt;
-</code></pre><p>####5.2 spring.xml具体配置####</p>
-<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+</code></pre><h4 id="5-2-spring-xml具体配置"><a href="#5-2-spring-xml具体配置" class="headerlink" title="5.2 spring.xml具体配置"></a>5.2 spring.xml具体配置</h4><pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
        xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
        xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans
@@ -624,8 +637,7 @@ public class MailSender {
     &lt;/bean&gt;
 
 &lt;/beans&gt;
-</code></pre><p>####5.3定义邮件发送接口####</p>
-<pre><code>package com.carleviets.springInterface;
+</code></pre><h4 id="5-3定义邮件发送接口"><a href="#5-3定义邮件发送接口" class="headerlink" title="5.3定义邮件发送接口"></a>5.3定义邮件发送接口</h4><pre><code>package com.carleviets.springInterface;
 
 /**
  *  发送邮件接口的定义
@@ -633,8 +645,7 @@ public class MailSender {
 public interface MailManager {
     void placeMail();
 }
-</code></pre><p>####5.4定义邮件发送接口####</p>
-<pre><code>package com.carleviets.springimpl;
+</code></pre><h4 id="5-4定义邮件发送接口"><a href="#5-4定义邮件发送接口" class="headerlink" title="5.4定义邮件发送接口"></a>5.4定义邮件发送接口</h4><pre><code>package com.carleviets.springimpl;
 
 import com.carleviets.springInterface.MailManager;
 import org.springframework.mail.MailException;
@@ -669,8 +680,7 @@ public class SimpleMailManager implements MailManager {
 public void test(){
     mailManager.placeMail();
 }
-</code></pre><p>####5.5使用spring发送带附件的邮件####</p>
-<p>使用spring发送带附件的邮件步骤和普通邮件一样，只是需要借助MimeMessageHelper辅助类来设置消息的属性。具体测试代码如下：</p>
+</code></pre><h4 id="5-5使用spring发送带附件的邮件"><a href="#5-5使用spring发送带附件的邮件" class="headerlink" title="5.5使用spring发送带附件的邮件"></a>5.5使用spring发送带附件的邮件</h4><p>使用spring发送带附件的邮件步骤和普通邮件一样，只是需要借助MimeMessageHelper辅助类来设置消息的属性。具体测试代码如下：</p>
 <pre><code>/**
  * 测试通过spring发送带有附件的邮件
  * @throws MessagingException
@@ -827,9 +837,9 @@ public void test() throws MessagingException {
             <div class="reprint">
                 <p>
                     <span class="reprint-tip">转载请注明: </span>
-                    <a href="http://yoursite.com" class="b-link-green">Hexo</a>
+                    <a href="http://www.carleviets.club" class="b-link-green">江火似流萤的个人博客</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2019/01/13/使用JDK和使用Spring来实现邮件的发送/" class="b-link-green"></a>
+                    <a href="/2019/01/13/使用JDK和使用Spring来实现邮件的发送/" class="b-link-green">邮件的发送实现</a>
                 </p>
             </div>
         </div>
@@ -857,29 +867,40 @@ public void test() throws MessagingException {
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="邮件的发送实现">
                         
-                        <span class="card-title"></span>
+                        <span class="card-title">邮件的发送实现</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">##使用Spring实现邮件的发送##
-一、邮件发送相关的协议SMTP： 简单邮件传输协议（Simple Mail Transfer Protocol），该协议定义了邮件发送的机制。
+                    <div class="summary">一、邮件发送相关的协议SMTP： 简单邮件传输协议（Simple Mail Transfer Protocol），该协议定义了邮件发送的机制。
 
-POP3：邮局协议（Post Office Proto</div>
+POP3：邮局协议（Post Office Protocol），目前用的是版本3，也称POP3</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-13
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fa fa-user fa-fw"></i>
-                            John Doe
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/JAVA-Spring/" class="post-category" target="_blank">
+                                    JAVA Spring
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
 
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/邮件发送/" target="_blank">
+                        <span class="chip bg-color">邮件发送</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
@@ -892,25 +913,36 @@ POP3：邮局协议（Post Office Proto</div>
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="实用工具类总结">
                         
-                        <span class="card-title"></span>
+                        <span class="card-title">实用工具类总结</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">实用工具类总结###1.1 AssertUtil ###
-该实用工具类主要通过断言的思想，在相应的条件成立下，通过抛出异常的方式来阻止代码的继续执行，可以在很多情况下将需要好几行的代码浓缩为只有一行代码，并且可以配合全局异常处理器的使用来将</div>
+                    <div class="summary">1.1、AssertUtil该实用工具类主要通过断言的思想，在相应的条件成立下，通过抛出异常的方式来阻止代码的继续执行，可以在很多情况下将需要好几行的代码浓缩为只有一行代码，并且可以配合全局异常处理器的使用来将异常处理集中到处理器中。具体如</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-13
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fa fa-user fa-fw"></i>
-                            John Doe
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/JAVA/" class="post-category" target="_blank">
+                                    JAVA
+                                </a>
+                            
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/常用工具类/" target="_blank">
+                        <span class="chip bg-color">常用工具类</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -929,9 +961,11 @@ POP3：邮局协议（Post Office Proto</div>
 <footer class="page-footer bg-color">
     <div class="container row center-align">
         <div class="col s12 m8 l8 copy-right">
+			<!--
             本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
             <a href="https://hexo.io/" target="_blank">Hexo</a> 的
             <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+			-->
 
             
 			
@@ -944,14 +978,18 @@ POP3：邮局协议（Post Office Proto</div>
                 </span>
 			
         </div>
-        <div class="col s12 m4 l4 social-link social-statis"><a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <div class="col s12 m4 l4 social-link social-statis"><a href="https://github.com/carleviets" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
     <i class="fa fa-github"></i>
 </a>
-<a href="mailto:chenjiayin1990@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+<a href="mailto:carleviets0420@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
     <i class="fa fa-envelope-open"></i>
 </a>
-<a href="#!" class="tooltipped" data-tooltip="QQ联系我: 1181062873" data-position="top" data-delay="50">
+<a href="#!" class="tooltipped" data-tooltip="QQ联系我: 892324283" data-position="top" data-delay="50">
     <i class="fa fa-qq"></i>
+</a>
+
+<a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+    <i class="fa fa-rss"></i>
 </a>
 </div>
     </div>

@@ -5,12 +5,11 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Hexo">
-    <meta name="description" content="SSM整合总结
-一、所需引入的maven依赖1.1测试依赖&amp;lt;!--junit测试依赖--&amp;gt;
+    <meta name="keywords" content="SSM整合依赖及配置总结, 江火似流萤的个人博客">
+    <meta name="description" content="一、所需引入的maven依赖1.1测试依赖&amp;lt;!--junit测试依赖--&amp;gt;
 &amp;lt;dependency&amp;gt;
   &amp;lt;groupId&amp;gt;junit&amp;lt;/groupId&amp;gt;
-  &amp;lt;arti">
+  &amp;lt;artifactId&amp;g">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +17,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Hexo</title>
+    <title>SSM整合依赖及配置总结 | 江火似流萤的个人博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -30,7 +29,7 @@
     <link rel="stylesheet" type="text/css" href="/css/my.css">
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-</head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 </head>
 
@@ -45,7 +44,7 @@
                         
                         <img src="/medias/logo.png" class="logo-img hide-on-small-only">
                         
-                        <span class="logo-span">Hexo</span>
+                        <span class="logo-span">江火似流萤的个人博客</span>
                     </a>
                 </div>
                 
@@ -121,10 +120,10 @@
         
         <img src="/medias/logo.png" class="logo-img circle responsive-img">
         
-        <div class="logo-name">Hexo</div>
+        <div class="logo-name">江火似流萤的个人博客</div>
         <div class="logo-desc">
             
-            Never really desperate, only the lost of the soul.
+            胜，不妄喜;败，不惶妥;胸有激雷而面如平湖者，可拜上将军!
             
         </div>
     </div>
@@ -197,14 +196,18 @@
         
     </ul>
 
-    <div class="social-link"><a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+    <div class="social-link"><a href="https://github.com/carleviets" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
     <i class="fa fa-github"></i>
 </a>
-<a href="mailto:chenjiayin1990@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+<a href="mailto:carleviets0420@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
     <i class="fa fa-envelope-open"></i>
 </a>
-<a href="#!" class="tooltipped" data-tooltip="QQ联系我: 1181062873" data-position="top" data-delay="50">
+<a href="#!" class="tooltipped" data-tooltip="QQ联系我: 892324283" data-position="top" data-delay="50">
     <i class="fa fa-qq"></i>
+</a>
+
+<a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+    <i class="fa fa-rss"></i>
 </a>
 </div>
 </div>
@@ -273,13 +276,13 @@
 
 
 
-<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        
+                        SSM整合依赖及配置总结
                     </div>
                 </div>
             </div>
@@ -297,7 +300,29 @@
     <div class="card">
         <div class="card-content article-info">
             
+            <div class="article-tag">
+                
+                <a href="/tags/SSM整合/" target="_blank">
+                    <span class="chip bg-color">SSM整合</span>
+                </a>
+                
+                <a href="/tags/Maven依赖/" target="_blank">
+                    <span class="chip bg-color">Maven依赖</span>
+                </a>
+                
+            </div>
+            
             <div class="post-info">
+                
+                <span class="post-cate">
+                <!--<span class="post-cate" style="margin-right: 0px">-->
+                    <i class="fa fa-bookmark fa-fw icon-category"></i>
+                    
+                    <a href="/categories/SSM整合/" class="post-category" target="_blank">
+                        SSM整合
+                    </a>
+                    
+                </span>
                 
 
                 <span class="post-date">
@@ -313,8 +338,7 @@
         <hr>
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="SSM整合总结"><a href="#SSM整合总结" class="headerlink" title="SSM整合总结"></a>SSM整合总结</h1><hr>
-<h2 id="一、所需引入的maven依赖"><a href="#一、所需引入的maven依赖" class="headerlink" title="一、所需引入的maven依赖"></a>一、所需引入的maven依赖</h2><h3 id="1-1测试依赖"><a href="#1-1测试依赖" class="headerlink" title="1.1测试依赖"></a>1.1测试依赖</h3><pre><code>&lt;!--junit测试依赖--&gt;
+                <h2 id="一、所需引入的maven依赖"><a href="#一、所需引入的maven依赖" class="headerlink" title="一、所需引入的maven依赖"></a>一、所需引入的maven依赖</h2><h3 id="1-1测试依赖"><a href="#1-1测试依赖" class="headerlink" title="1.1测试依赖"></a>1.1测试依赖</h3><pre><code>&lt;!--junit测试依赖--&gt;
 &lt;dependency&gt;
   &lt;groupId&gt;junit&lt;/groupId&gt;
   &lt;artifactId&gt;junit&lt;/artifactId&gt;
@@ -1005,9 +1029,9 @@ log4j.logger.java.sql.PreparedStatement=DEBUG
             <div class="reprint">
                 <p>
                     <span class="reprint-tip">转载请注明: </span>
-                    <a href="http://yoursite.com" class="b-link-green">Hexo</a>
+                    <a href="http://www.carleviets.club" class="b-link-green">江火似流萤的个人博客</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2019/01/13/SSM整合总结/" class="b-link-green"></a>
+                    <a href="/2019/01/13/SSM整合总结/" class="b-link-green">SSM整合依赖及配置总结</a>
                 </p>
             </div>
         </div>
@@ -1035,25 +1059,36 @@ log4j.logger.java.sql.PreparedStatement=DEBUG
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="实用工具类总结">
                         
-                        <span class="card-title"></span>
+                        <span class="card-title">实用工具类总结</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">实用工具类总结###1.1 AssertUtil ###
-该实用工具类主要通过断言的思想，在相应的条件成立下，通过抛出异常的方式来阻止代码的继续执行，可以在很多情况下将需要好几行的代码浓缩为只有一行代码，并且可以配合全局异常处理器的使用来将</div>
+                    <div class="summary">1.1、AssertUtil该实用工具类主要通过断言的思想，在相应的条件成立下，通过抛出异常的方式来阻止代码的继续执行，可以在很多情况下将需要好几行的代码浓缩为只有一行代码，并且可以配合全局异常处理器的使用来将异常处理集中到处理器中。具体如</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-13
                         </span>
                         <span class="publish-author">
                             
-                            <i class="fa fa-user fa-fw"></i>
-                            John Doe
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/JAVA/" class="post-category" target="_blank">
+                                    JAVA
+                                </a>
+                            
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/常用工具类/" target="_blank">
+                        <span class="chip bg-color">常用工具类</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -1067,24 +1102,41 @@ log4j.logger.java.sql.PreparedStatement=DEBUG
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="SSM整合时高可用代码总结">
                         
-                        <span class="card-title"></span>
+                        <span class="card-title">SSM整合时高可用代码总结</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">SSM整合时高可用代码总结1、BaseDAObaseDAO是一个高可用的接口，里面集成了添加、查询、修改、删除等方法，在ssm集成的时候，任何继承了该接口的mapper接口就拥有了对应的操作响应数据的方法，可以在很大程度上减少代码的重复，其</div>
+                    <div class="summary">1、BaseDAObaseDAO是一个高可用的接口，里面集成了添加、查询、修改、删除等方法，在ssm集成的时候，任何继承了该接口的mapper接口就拥有了对应的操作响应数据的方法，可以在很大程度上减少代码的重复，其具体如下：
+package</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-13
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fa fa-user fa-fw"></i>
-                            John Doe
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/SSM整合/" class="post-category" target="_blank">
+                                    SSM整合
+                                </a>
+                            
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/常用工具类/" target="_blank">
+                        <span class="chip bg-color">常用工具类</span>
+                    </a>
+                    
+                    <a href="/tags/SSM整合/" target="_blank">
+                        <span class="chip bg-color">SSM整合</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -1103,9 +1155,11 @@ log4j.logger.java.sql.PreparedStatement=DEBUG
 <footer class="page-footer bg-color">
     <div class="container row center-align">
         <div class="col s12 m8 l8 copy-right">
+			<!--
             本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
             <a href="https://hexo.io/" target="_blank">Hexo</a> 的
             <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+			-->
 
             
 			
@@ -1118,14 +1172,18 @@ log4j.logger.java.sql.PreparedStatement=DEBUG
                 </span>
 			
         </div>
-        <div class="col s12 m4 l4 social-link social-statis"><a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <div class="col s12 m4 l4 social-link social-statis"><a href="https://github.com/carleviets" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
     <i class="fa fa-github"></i>
 </a>
-<a href="mailto:chenjiayin1990@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+<a href="mailto:carleviets0420@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
     <i class="fa fa-envelope-open"></i>
 </a>
-<a href="#!" class="tooltipped" data-tooltip="QQ联系我: 1181062873" data-position="top" data-delay="50">
+<a href="#!" class="tooltipped" data-tooltip="QQ联系我: 892324283" data-position="top" data-delay="50">
     <i class="fa fa-qq"></i>
+</a>
+
+<a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+    <i class="fa fa-rss"></i>
 </a>
 </div>
     </div>

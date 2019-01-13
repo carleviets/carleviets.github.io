@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>江火似流萤的个人博客</title>
+  
+  <subtitle>滚滚红尘中一只迷途的小羊羔</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://www.carleviets.club/"/>
+  <updated>2019-01-13T12:59:50.681Z</updated>
+  <id>http://www.carleviets.club/</id>
+  
+  <author>
+    <name>CarleViets</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>邮件的发送实现</title>
+    <link href="http://www.carleviets.club/2019/01/13/%E4%BD%BF%E7%94%A8JDK%E5%92%8C%E4%BD%BF%E7%94%A8Spring%E6%9D%A5%E5%AE%9E%E7%8E%B0%E9%82%AE%E4%BB%B6%E7%9A%84%E5%8F%91%E9%80%81/"/>
+    <id>http://www.carleviets.club/2019/01/13/使用JDK和使用Spring来实现邮件的发送/</id>
+    <published>2019-01-13T12:47:00.000Z</published>
+    <updated>2019-01-13T12:59:50.681Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;一、邮件发送相关的协议&quot;&gt;&lt;a href=&quot;#一、邮件发送相关的协议&quot; class=&quot;headerlink&quot; title=&quot;一、邮件发送相关的协议&quot;&gt;&lt;/a&gt;一、邮件发送相关的协议&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;SMTP： 简单邮件传输协议（Simple
+        
+      
+    
+    </summary>
+    
+      <category term="JAVA Spring" scheme="http://www.carleviets.club/categories/JAVA-Spring/"/>
+    
+    
+      <category term="邮件发送" scheme="http://www.carleviets.club/tags/%E9%82%AE%E4%BB%B6%E5%8F%91%E9%80%81/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>实用工具类总结</title>
+    <link href="http://www.carleviets.club/2019/01/13/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7%E7%B1%BB%E6%80%BB%E7%BB%93/"/>
+    <id>http://www.carleviets.club/2019/01/13/实用工具类总结/</id>
+    <published>2019-01-13T12:40:00.000Z</published>
+    <updated>2019-01-13T12:58:52.859Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;1-1、AssertUtil&quot;&gt;&lt;a href=&quot;#1-1、AssertUtil&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="JAVA" scheme="http://www.carleviets.club/categories/JAVA/"/>
+    
+    
+      <category term="常用工具类" scheme="http://www.carleviets.club/tags/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7%E7%B1%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SSM整合依赖及配置总结</title>
+    <link href="http://www.carleviets.club/2019/01/13/SSM%E6%95%B4%E5%90%88%E6%80%BB%E7%BB%93/"/>
+    <id>http://www.carleviets.club/2019/01/13/SSM整合总结/</id>
+    <published>2019-01-13T12:38:00.000Z</published>
+    <updated>2019-01-13T12:52:27.294Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;一、所需引入的maven依赖&quot;&gt;&lt;a href=&quot;#一、所需引入的maven依赖&quot; class=&quot;headerlink&quot; title=&quot;一、所需引入的maven依赖&quot;&gt;&lt;/a&gt;一、所需引入的maven依赖&lt;/h2&gt;&lt;h3 id=&quot;1-1测试依赖&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="SSM整合" scheme="http://www.carleviets.club/categories/SSM%E6%95%B4%E5%90%88/"/>
+    
+    
+      <category term="SSM整合" scheme="http://www.carleviets.club/tags/SSM%E6%95%B4%E5%90%88/"/>
+    
+      <category term="Maven依赖" scheme="http://www.carleviets.club/tags/Maven%E4%BE%9D%E8%B5%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SSM整合时高可用代码总结</title>
+    <link href="http://www.carleviets.club/2019/01/13/SSM%E6%95%B4%E5%90%88%E6%97%B6%E9%AB%98%E5%8F%AF%E7%94%A8%E4%BB%A3%E7%A0%81%E6%80%BB%E7%BB%93/"/>
+    <id>http://www.carleviets.club/2019/01/13/SSM整合时高可用代码总结/</id>
+    <published>2019-01-13T12:36:00.000Z</published>
+    <updated>2019-01-13T12:57:54.332Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;1、BaseDAO&quot;&gt;&lt;a href=&quot;#1、BaseDAO&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="SSM整合" scheme="http://www.carleviets.club/categories/SSM%E6%95%B4%E5%90%88/"/>
+    
+    
+      <category term="常用工具类" scheme="http://www.carleviets.club/tags/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7%E7%B1%BB/"/>
+    
+      <category term="SSM整合" scheme="http://www.carleviets.club/tags/SSM%E6%95%B4%E5%90%88/"/>
+    
+  </entry>
+  
+</feed>
