@@ -5,8 +5,9 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Hello World, Hexo">
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex">
+    <meta name="keywords" content="Hexo">
+    <meta name="description" content="实用工具类总结###1.1 AssertUtil ###
+该实用工具类主要通过断言的思想，在相应的条件成立下，通过抛出异常的方式来阻止代码的继续执行，可以在很多情况下将需要好几行的代码浓缩为只有一行代码，并且可以配合全局异常处理器的使用来将">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -14,7 +15,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Hello World | Hexo</title>
+    <title>Hexo</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -269,13 +270,13 @@
 
 
 
-<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        Hello World
+                        
                     </div>
                 </div>
             </div>
@@ -297,7 +298,7 @@
                 
 
                 <span class="post-date">
-                    <i class="fa fa-clock-o fa-fw"></i>2019-01-09
+                    <i class="fa fa-clock-o fa-fw"></i>2019-01-13
                 </span>
 				
 				
@@ -309,16 +310,94 @@
         <hr>
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+                <h1 id="实用工具类总结"><a href="#实用工具类总结" class="headerlink" title="实用工具类总结"></a>实用工具类总结</h1><p>###1.1 AssertUtil ###</p>
+<p>该实用工具类主要通过断言的思想，在相应的条件成立下，通过抛出异常的方式来阻止代码的继续执行，可以在很多情况下将需要好几行的代码浓缩为只有一行代码，并且可以配合全局异常处理器的使用来将异常处理集中到处理器中。具体如下:</p>
+<pre><code>package com.carleviets.crm.utils;
 
+import com.carleviets.crm.exceptions.LoginException;
+import com.carleviets.crm.exceptions.ParamsException;
+
+public class AssertUtil {
+    public static void isTrue(Boolean flag, String msg){
+        if(flag){
+            throw new ParamsException(msg);
+        }
+    }
+
+    public static void isTrue(Boolean flag, Integer code, String msg){
+        if(flag){
+            throw new ParamsException(code, msg);
+        }
+    }
+
+    public static void isNotLogin(Boolean flag, String msg) {
+        if(flag){
+            throw new LoginException(msg);
+        }
+    }
+}
+</code></pre><p>###1.2 JsonUtil ###</p>
+<p>该实用工具类主要用于将java对象以JSON字符串的形式响应给客户端，具体代码如下：</p>
+<pre><code>package com.carleviets.crm.utils;
+
+import com.alibaba.fastjson.JSON;
+
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+
+public class JsonUtil {
+    /**
+     * 将对象转换为json字符串并发送到前台
+     * @param object
+     * @param response
+     */
+    public static void toJson(Object object, HttpServletResponse response){
+        try {
+            //将对象转换为json字符串
+            String jsonStr= JSON.toJSONString(object);
+            //设置响应类型及编码
+            response.setContentType(&quot;application/json;charset=utf-8&quot;);
+            //得到输出流
+            PrintWriter out=response.getWriter();
+            out.write(jsonStr);
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+</code></pre><p>###1.3 MD5Util ###</p>
+<p>该实用工具类主要用于对字符串进行MD5加密，具体代码如下:</p>
+<pre><code>package com.carleviets.crm.utils;
+
+import org.apache.commons.codec.binary.Base64;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
+public class MD5Util {
+
+    public static String encode(String str){
+        String value=&quot;&quot;;
+        try {
+            //得到MD5加密的算法程序
+            MessageDigest messageDigest=MessageDigest.getInstance(&quot;MD5&quot;);
+            //对字符串进行MD5加密，返回byte数组
+            byte[] bytes=messageDigest.digest(str.getBytes());
+            //使用Base64对byte数组进行编码
+            value=Base64.encodeBase64String(bytes);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return value;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(encode(&quot;12345&quot;));
+    }
+}
+</code></pre>
             </div>
             <hr>
 
@@ -456,7 +535,7 @@
                     <span class="reprint-tip">Reprint please specify: </span>
                     <a href="http://yoursite.com" class="b-link-green">Hexo</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2019/01/09/hello-world/" class="b-link-green">Hello World</a>
+                    <a href="/2019/01/13/实用工具类总结/" class="b-link-green"></a>
                 </p>
             </div>
         </div>
@@ -480,7 +559,7 @@
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">Previous</div>
             <div class="card">
-                <a href="/2019/01/13/SSM整合时高可用代码总结/">
+                <a href="/2019/01/13/使用JDK和使用Spring来实现邮件的发送/">
                     <div class="card-image">
                         
                         
@@ -490,7 +569,10 @@
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">SSM整合时高可用代码总结1、BaseDAObaseDAO是一个高可用的接口，里面集成了添加、查询、修改、删除等方法，在ssm集成的时候，任何继承了该接口的mapper接口就拥有了对应的操作响应数据的方法，可以在很大程度上减少代码的重复，其</div>
+                    <div class="summary">##使用Spring实现邮件的发送##
+一、邮件发送相关的协议SMTP： 简单邮件传输协议（Simple Mail Transfer Protocol），该协议定义了邮件发送的机制。
+
+POP3：邮局协议（Post Office Proto</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-13
@@ -509,22 +591,26 @@
         
         
         <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">Current</div>
+            <div class="article-badge right-badge text-color">Next</div>
             <div class="card">
-                <a href="/2019/01/09/hello-world/">
+                <a href="/2019/01/13/SSM整合总结/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
                         
-                        <span class="card-title">Hello World</span>
+                        <span class="card-title"></span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex</div>
+                    <div class="summary">SSM整合总结
+一、所需引入的maven依赖1.1测试依赖&lt;!--junit测试依赖--&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;junit&lt;/groupId&gt;
+  &lt;arti</div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-09
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-13
                             </span>
                         <span class="publish-author">
                             
@@ -534,7 +620,6 @@
                         </span>
                     </div>
                 </div>
-
                 
             </div>
         </div>
