@@ -273,10 +273,101 @@ POP3：邮局协议（Post Office Protocol），目前用的是版本3，也称P
 
 
 
-<main class="container content">
+<main class="post-container content">
 
     
-    <!-- 文章内容详情 -->
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1,
+    #articleContent h2,
+    #articleContent h3,
+    #articleContent h4,
+    #articleContent h5,
+    #articleContent h6 {
+        padding-top: 76px;
+        margin-top: -76px;
+    }
+
+    #articleContent h1 {
+        line-height: 3.5rem;
+    }
+
+    #articleContent h2 {
+        line-height: 3.2rem;
+    }
+
+    #articleContent h3 {
+        line-height: 2.8rem;
+    }
+
+    #articleContent h4 {
+        line-height: 2.5rem;
+    }
+
+    #articleContent h5 {
+        line-height: 2.2rem;
+    }
+
+    #articleContent h6 {
+        line-height: 1.9rem;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+</style>
+<div class="row">
+    <div class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
 <div id="artDetail">
     <div class="card">
         <div class="card-content article-info">
@@ -711,341 +802,13 @@ public void test() throws MessagingException {
     </div>
 
     
-        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
-<link rel="stylesheet" href="/css/my-gitalk.css">
 
-<div class="card gitalk-card" data-aos="fade-up">
-    <div id="gitalk-container" class="card-content"></div>
-</div>
-
-<script src="/libs/gitalk/gitalk.min.js"></script>
-<script>
-    let gitalk = new Gitalk({
-        clientID: '',
-        clientSecret: '',
-        repo: '',
-        owner: 'carleviets',
-        admin: null,
-        id: '2019-01-13T20-47-00',
-        distractionFreeMode: false  // Facebook-like distraction free mode
-    });
-
-    gitalk.render('gitalk-container');
-</script>
-    
-
-    
-        <link rel="stylesheet" href="/libs/gitment/gitment-default.css">
-<link rel="stylesheet" href="/css/gitment.css">
-
-<div class="gitment-card card" data-aos="fade-up">
-    <div id="gitment-content" class="card-content"></div>
-</div>
-
-<script src="/libs/gitment/gitment.js"></script>
-<script>
-var gitment = new Gitment({
-    id: 'Sun Jan 13 2019 20:47:00 GMT+0800',
-    owner: 'carleviets',
-    repo: '',
-    oauth: {
-        client_id: '',
-        client_secret: ''
-    }
-});
-
-gitment.render('gitment-content');
-</script>
-    
-
-    
-        <div class="disqus-card card" data-aos="fade-up">
-    <div id="disqus_thread" class="card-content">
-        <noscript>Please enable JavaScript to view the
-            <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
-    </div>
-</div>
-
-<script type="text/javascript">
-    disqus_config = function () {
-        this.page.url = 'http://www.carleviets.club/2019/01/13/使用JDK和使用Spring来实现邮件的发送/';
-        this.page.identifier = '/2019/01/13/使用JDK和使用Spring来实现邮件的发送/';
-        this.page.title = '邮件的发送实现';
-    };
-    let disqus_shortname = '';
-
-    (function () { // DON'T EDIT BELOW THIS LINE
-        let d = document, s = d.createElement('script');
-        // 如：s.src = 'https://blinkfox.disqus.com/embed.js';
-        s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
     
 
     
 
     
-        <style>
-    .valine-card {
-        margin: 1.5rem auto;
-    }
 
-    .valine-card .card-content {
-        padding: 20px 20px 5px 20px;
-    }
-
-    #vcomments input[type=text],
-    #vcomments input[type=email],
-    #vcomments input[type=url],
-    #vcomments textarea {
-        box-sizing: border-box;
-    }
-
-    #vcomments p {
-        margin: 2px 2px 10px;
-        font-size: 1.05rem;
-        line-height: 1.78rem;
-    }
-
-    #vcomments blockquote p {
-        text-indent: 0.2rem;
-    }
-
-    #vcomments a {
-        padding: 0 2px;
-        color: #42b983;
-        font-weight: 500;
-        text-decoration: underline;
-    }
-
-    #vcomments img {
-        max-width: 100%;
-        height: auto;
-        cursor: pointer;
-    }
-
-    #vcomments ol li {
-        list-style-type: decimal;
-    }
-
-    #vcomments ol,
-    ul {
-        display: block;
-        padding-left: 2em;
-        word-spacing: 0.05rem;
-    }
-
-    #vcomments ul li,
-    ol li {
-        display: list-item;
-        line-height: 1.8rem;
-        font-size: 1rem;
-    }
-
-    #vcomments ul li {
-        list-style-type: disc;
-    }
-
-    #vcomments ul ul li {
-        list-style-type: circle;
-    }
-
-    #vcomments table, th, td {
-        padding: 12px 13px;
-        border: 1px solid #dfe2e5;
-    }
-
-    #vcomments table, th, td {
-        border: 0;
-    }
-
-    table tr:nth-child(2n), thead {
-        background-color: #fafafa;
-    }
-
-    #vcomments table th {
-        background-color: #f2f2f2;
-        min-width: 80px;
-    }
-
-    #vcomments table td {
-        min-width: 80px;
-    }
-
-    #vcomments h1 {
-        font-size: 1.85rem;
-        font-weight: bold;
-        line-height: 2.2rem;
-    }
-
-    #vcomments h2 {
-        font-size: 1.65rem;
-        font-weight: bold;
-        line-height: 1.9rem;
-    }
-
-    #vcomments h3 {
-        font-size: 1.45rem;
-        font-weight: bold;
-        line-height: 1.7rem;
-    }
-
-    #vcomments h4 {
-        font-size: 1.25rem;
-        font-weight: bold;
-        line-height: 1.5rem;
-    }
-
-    #vcomments h5 {
-        font-size: 1.1rem;
-        font-weight: bold;
-        line-height: 1.4rem;
-    }
-
-    #vcomments h6 {
-        font-size: 1rem;
-        line-height: 1.3rem;
-    }
-
-    #vcomments p {
-        font-size: 1rem;
-        line-height: 1.5rem;
-    }
-
-    #vcomments hr {
-        margin: 12px 0;
-        border: 0;
-        border-top: 1px solid #ccc;
-    }
-
-    #vcomments blockquote {
-        margin: 15px 0;
-        border-left: 5px solid #42b983;
-        padding: 1rem 0.8rem 0.3rem 0.8rem;
-        color: #666;
-        background-color: rgba(66, 185, 131, .1);
-    }
-
-    #vcomments pre {
-        font-family: monospace, monospace;
-        padding: 1.2em;
-        margin: .5em 0;
-        background: #272822;
-        overflow: auto;
-        border-radius: 0.3em;
-        tab-size: 4;
-    }
-
-    #vcomments code {
-        font-family: monospace, monospace;
-        padding: 1px 3px;
-        font-size: 0.92rem;
-        color: #e96900;
-        background-color: #f8f8f8;
-        border-radius: 2px;
-    }
-
-    #vcomments pre code {
-        font-family: monospace, monospace;
-        padding: 0;
-        color: #e8eaf6;
-        background-color: #272822;
-    }
-
-    #vcomments pre[class*="language-"] {
-        padding: 1.2em;
-        margin: .5em 0;
-    }
-
-    #vcomments code[class*="language-"],
-    pre[class*="language-"] {
-        color: #e8eaf6;
-    }
-
-    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
-        position: inherit;
-        margin-left: -1.3rem;
-        margin-right: 0.4rem;
-        margin-top: -1px;
-        vertical-align: middle;
-        left: unset;
-        visibility: visible;
-    }
-
-    #vcomments b,
-    strong {
-        font-weight: bold;
-    }
-
-    #vcomments dfn {
-        font-style: italic;
-    }
-
-    #vcomments small {
-        font-size: 85%;
-    }
-
-    #vcomments cite {
-        font-style: normal;
-    }
-
-    #vcomments mark {
-        background-color: #fcf8e3;
-        padding: .2em;
-    }
-
-    #vcomments table, th, td {
-        padding: 12px 13px;
-        border: 1px solid #dfe2e5;
-    }
-
-    table tr:nth-child(2n), thead {
-        background-color: #fafafa;
-    }
-
-    #vcomments table th {
-        background-color: #f2f2f2;
-        min-width: 80px;
-    }
-
-    #vcomments table td {
-        min-width: 80px;
-    }
-
-    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
-        position: inherit;
-        margin-left: -1.3rem;
-        margin-right: 0.4rem;
-        margin-top: -1px;
-        vertical-align: middle;
-        left: unset;
-        visibility: visible;
-    }
-</style>
-
-<div class="card valine-card" data-aos="fade-up">
-    <div id="vcomments" class="card-content"></div>
-</div>
-
-<script src="/libs/valine/av-min.js"></script>
-<script src="/libs/valine/Valine.min.js"></script>
-<script>
-    new Valine({
-        el: '#vcomments',
-        appId: '',
-        appKey: '',
-        notify: 'false' === 'true',
-        verify: 'false' === 'true',
-        visitor: 'true' === 'true',
-        avatar: 'mm',
-        pageSize: '10',
-        lang: 'zh-cn',
-        placeholder: 'just go go'
-    });
-</script>
     
 
     
@@ -1054,45 +817,31 @@ gitment.render('gitment-content');
     <div class="row article-row">
         
         <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge left-badge text-color">本篇</div>
+            <div class="article-badge left-badge text-color">上一篇</div>
             <div class="card">
-                <a href="/2019/01/13/使用JDK和使用Spring来实现邮件的发送/">
+                <a href="/2019/01/14/Spring定时任务/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="邮件的发送实现">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
                         
-                        <span class="card-title">邮件的发送实现</span>
+                        <span class="card-title"></span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">一、邮件发送相关的协议SMTP： 简单邮件传输协议（Simple Mail Transfer Protocol），该协议定义了邮件发送的机制。
-
-POP3：邮局协议（Post Office Protocol），目前用的是版本3，也称POP3</div>
+                    <div class="summary">Spring定时任务的实现一、通过xml的方式配置定时任务以下是通过XML实现定时任务的具体Java代码:    package com.carleviets;
+import org.springframework.stereotype.C</div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-13
-                            </span>
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-14
+                        </span>
                         <span class="publish-author">
                             
-                            <i class="fa fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/JAVA-Spring/" class="post-category" target="_blank">
-                                    JAVA Spring
-                                </a>
-                            
+                            <i class="fa fa-user fa-fw"></i>
+                            CarleViets
                             
                         </span>
                     </div>
-                </div>
-
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/邮件发送/" target="_blank">
-                        <span class="chip bg-color">邮件发送</span>
-                    </a>
-                    
                 </div>
                 
             </div>
@@ -1146,6 +895,53 @@ POP3：邮局协议（Post Office Protocol），目前用的是版本3，也称P
 </div>
 
 
+    </div>
+    <div class="col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title">目录</div>
+            <div id="toc-content">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+    });
+</script>
     
 
 </main>

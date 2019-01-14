@@ -5,8 +5,9 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="实用工具类总结, 江火似流萤的个人博客">
-    <meta name="description" content="1.1、AssertUtil该实用工具类主要通过断言的思想，在相应的条件成立下，通过抛出异常的方式来阻止代码的继续执行，可以在很多情况下将需要好几行的代码浓缩为只有一行代码，并且可以配合全局异常处理器的使用来将异常处理集中到处理器中。具体如">
+    <meta name="keywords" content="江火似流萤的个人博客">
+    <meta name="description" content="Spring定时任务的实现一、通过xml的方式配置定时任务以下是通过XML实现定时任务的具体Java代码:    package com.carleviets;
+import org.springframework.stereotype.C">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -14,7 +15,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>实用工具类总结 | 江火似流萤的个人博客</title>
+    <title>江火似流萤的个人博客</title>
     <link rel="icon" type="image/png" href="/medias/favicon.ico">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -255,13 +256,13 @@
 
 
 
-<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
+<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        实用工具类总结
+                        
                     </div>
                 </div>
             </div>
@@ -370,29 +371,11 @@
     <div class="card">
         <div class="card-content article-info">
             
-            <div class="article-tag">
-                
-                <a href="/tags/常用工具类/" target="_blank">
-                    <span class="chip bg-color">常用工具类</span>
-                </a>
-                
-            </div>
-            
             <div class="post-info">
-                
-                <span class="post-cate">
-                <!--<span class="post-cate" style="margin-right: 0px">-->
-                    <i class="fa fa-bookmark fa-fw icon-category"></i>
-                    
-                    <a href="/categories/JAVA/" class="post-category" target="_blank">
-                        JAVA
-                    </a>
-                    
-                </span>
                 
 
                 <span class="post-date">
-                    <i class="fa fa-clock-o fa-fw"></i>2019-01-13
+                    <i class="fa fa-clock-o fa-fw"></i>2019-01-14
                 </span>
 				
 				
@@ -404,91 +387,88 @@
         <hr>
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="1-1、AssertUtil"><a href="#1-1、AssertUtil" class="headerlink" title="1.1、AssertUtil"></a>1.1、AssertUtil</h3><p>该实用工具类主要通过断言的思想，在相应的条件成立下，通过抛出异常的方式来阻止代码的继续执行，可以在很多情况下将需要好几行的代码浓缩为只有一行代码，并且可以配合全局异常处理器的使用来将异常处理集中到处理器中。具体如下:</p>
-<pre><code>package com.carleviets.crm.utils;
+                <h1 id="Spring定时任务的实现"><a href="#Spring定时任务的实现" class="headerlink" title="Spring定时任务的实现"></a>Spring定时任务的实现</h1><h2 id="一、通过xml的方式配置定时任务"><a href="#一、通过xml的方式配置定时任务" class="headerlink" title="一、通过xml的方式配置定时任务"></a>一、通过xml的方式配置定时任务</h2><p>以下是通过XML实现定时任务的具体Java代码:<br>    package com.carleviets;</p>
+<pre><code>import org.springframework.stereotype.Component;
 
-import com.carleviets.crm.exceptions.LoginException;
-import com.carleviets.crm.exceptions.ParamsException;
+@Component
+public class TaskJob {
 
-public class AssertUtil {
-    public static void isTrue(Boolean flag, String msg){
-        if(flag){
-            throw new ParamsException(msg);
-        }
+    public void job01(){
+        System.out.println(&quot;job01...&quot;);
     }
 
-    public static void isTrue(Boolean flag, Integer code, String msg){
-        if(flag){
-            throw new ParamsException(code, msg);
-        }
-    }
-
-    public static void isNotLogin(Boolean flag, String msg) {
-        if(flag){
-            throw new LoginException(msg);
-        }
+    public void job02(){
+        System.out.println(&quot;job02...&quot;);
     }
 }
-</code></pre><h3 id="1-2、JsonUtil"><a href="#1-2、JsonUtil" class="headerlink" title="1.2、JsonUtil"></a>1.2、JsonUtil</h3><p>该实用工具类主要用于将java对象以JSON字符串的形式响应给客户端，具体代码如下：</p>
-<pre><code>package com.carleviets.crm.utils;
+</code></pre><p>以下是使用XML配置定时任务时spring.xml的具体配置:</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+   xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+   xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
+   xmlns:task=&quot;http://www.springframework.org/schema/task&quot;
+   xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans.xsd
+   http://www.springframework.org/schema/context
+   http://www.springframework.org/schema/context/spring-context.xsd
+   http://www.springframework.org/schema/task
+   http://www.springframework.org/schema/task/spring-task.xsd&quot;&gt;
 
-import com.alibaba.fastjson.JSON;
+    &lt;!--启动Spring组件扫描--&gt;
+    &lt;context:component-scan base-package=&quot;com.carleviets&quot;/&gt;
 
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
+    &lt;!--XML的方式配置定时任务--&gt;
+    &lt;task:scheduled-tasks&gt;
+        &lt;task:scheduled ref=&quot;taskJob&quot; method=&quot;job01&quot; cron=&quot;0/5 * * * * ? &quot;/&gt;
+        &lt;task:scheduled ref=&quot;taskJob&quot; method=&quot;job02&quot; cron=&quot;0/2 * * * * ? &quot; /&gt;
+    &lt;/task:scheduled-tasks&gt;
 
-public class JsonUtil {
-    /**
-     * 将对象转换为json字符串并发送到前台
-     * @param object
-     * @param response
-     */
-    public static void toJson(Object object, HttpServletResponse response){
-        try {
-            //将对象转换为json字符串
-            String jsonStr= JSON.toJSONString(object);
-            //设置响应类型及编码
-            response.setContentType(&quot;application/json;charset=utf-8&quot;);
-            //得到输出流
-            PrintWriter out=response.getWriter();
-            out.write(jsonStr);
-            out.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+&lt;/beans&gt;
+</code></pre><h2 id="二、通过注解的方式配置定时任务"><a href="#二、通过注解的方式配置定时任务" class="headerlink" title="二、通过注解的方式配置定时任务"></a>二、通过注解的方式配置定时任务</h2><p>以下是通过注解的方式实现定时任务的具体Java代码：</p>
+<pre><code>package com.carleviets;
+
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
+
+@Component
+public class TaskJob {
+
+    @Scheduled(cron = &quot;0/5 * * * * ? &quot;)
+    public void job01(){
+        System.out.println(&quot;job03...&quot;);
+    }
+
+    @Scheduled(cron = &quot;0/2 * * * * ? &quot;)
+    public void job02(){
+        System.out.println(&quot;job04...&quot;);
     }
 }
-</code></pre><h3 id="1-3、MD5Util"><a href="#1-3、MD5Util" class="headerlink" title="1.3、MD5Util"></a>1.3、MD5Util</h3><p>该实用工具类主要用于对字符串进行MD5加密，具体代码如下:</p>
-<pre><code>package com.carleviets.crm.utils;
+</code></pre><p>以下是使用注解配置定时任务时spring.xml的具体配置:</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+   xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+   xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
+   xmlns:task=&quot;http://www.springframework.org/schema/task&quot;
+   xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans.xsd
+   http://www.springframework.org/schema/context
+   http://www.springframework.org/schema/context/spring-context.xsd
+   http://www.springframework.org/schema/task
+   http://www.springframework.org/schema/task/spring-task.xsd&quot;&gt;
 
-import org.apache.commons.codec.binary.Base64;
+    &lt;!--启动Spring组件扫描--&gt;
+    &lt;context:component-scan base-package=&quot;com.carleviets&quot;/&gt;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+      &lt;!--引入定时任务的注解驱动--&gt;
+       &lt;task:annotation-driven/&gt;
 
-public class MD5Util {
+&lt;/beans&gt;
+</code></pre><h2 id="三、分析总结"><a href="#三、分析总结" class="headerlink" title="三、分析总结"></a>三、分析总结</h2><p>不管是用过XML的方式还是通过注解的方式配置定时任务，都应该先引入spring-task的命名空间:</p>
+<pre><code>xmlns:task=&quot;http://www.springframework.org/schema/task
+http://www.springframework.org/schema/task
+http://www.springframework.org/schema/task/spring-task.xsd
+</code></pre><p>其次，根据不同的情况来给定时任务的代码使用Cron表达式，具体Cron表达式的生成可参照: <a href="http://cron.qqe2.com/" target="_blank" rel="noopener">http://cron.qqe2.com/</a></p>
 
-    public static String encode(String str){
-        String value=&quot;&quot;;
-        try {
-            //得到MD5加密的算法程序
-            MessageDigest messageDigest=MessageDigest.getInstance(&quot;MD5&quot;);
-            //对字符串进行MD5加密，返回byte数组
-            byte[] bytes=messageDigest.digest(str.getBytes());
-            //使用Base64对byte数组进行编码
-            value=Base64.encodeBase64String(bytes);
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-        return value;
-    }
-
-    public static void main(String[] args) {
-        System.out.println(encode(&quot;12345&quot;));
-    }
-}
-</code></pre>
             </div>
             <hr>
 
@@ -509,7 +489,7 @@ public class MD5Util {
                     <span class="reprint-tip">转载请注明: </span>
                     <a href="http://www.carleviets.club" class="b-link-green">江火似流萤的个人博客</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2019/01/13/实用工具类总结/" class="b-link-green">实用工具类总结</a>
+                    <a href="/2019/01/14/Spring定时任务/" class="b-link-green"></a>
                 </p>
             </div>
         </div>
@@ -531,7 +511,40 @@ public class MD5Util {
     <div class="row article-row">
         
         <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge left-badge text-color">上一篇</div>
+            <div class="article-badge left-badge text-color">本篇</div>
+            <div class="card">
+                <a href="/2019/01/14/Spring定时任务/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
+                        
+                        <span class="card-title"></span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">Spring定时任务的实现一、通过xml的方式配置定时任务以下是通过XML实现定时任务的具体Java代码:    package com.carleviets;
+import org.springframework.stereotype.C</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-14
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-user fa-fw"></i>
+                            CarleViets
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">下一篇</div>
             <div class="card">
                 <a href="/2019/01/13/使用JDK和使用Spring来实现邮件的发送/">
                     <div class="card-image">
@@ -547,9 +560,9 @@ public class MD5Util {
 
 POP3：邮局协议（Post Office Protocol），目前用的是版本3，也称POP3</div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-13
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-13
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -567,56 +580,6 @@ POP3：邮局协议（Post Office Protocol），目前用的是版本3，也称P
                     
                     <a href="/tags/邮件发送/" target="_blank">
                         <span class="chip bg-color">邮件发送</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">下一篇</div>
-            <div class="card">
-                <a href="/2019/01/13/SSM整合总结/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="SSM整合依赖及配置总结">
-                        
-                        <span class="card-title">SSM整合依赖及配置总结</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary">一、所需引入的maven依赖1.1测试依赖&lt;!--junit测试依赖--&gt;
-&lt;dependency&gt;
-  &lt;groupId&gt;junit&lt;/groupId&gt;
-  &lt;artifactId&g</div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-13
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fa fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/SSM整合/" class="post-category" target="_blank">
-                                    SSM整合
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/SSM整合/" target="_blank">
-                        <span class="chip bg-color">SSM整合</span>
-                    </a>
-                    
-                    <a href="/tags/Maven依赖/" target="_blank">
-                        <span class="chip bg-color">Maven依赖</span>
                     </a>
                     
                 </div>
