@@ -5,13 +5,10 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Spring定时任务的实现, 江火似流萤的个人博客">
-    <meta name="description" content="一、通过xml的方式配置定时任务以下是通过XML实现定时任务的具体Java代码:
-package com.carleviets;
-
-import org.springframework.stereotype.Component;
-
-@Com">
+    <meta name="keywords" content="关于Spring中的作用域问题, 江火似流萤的个人博客">
+    <meta name="description" content="一、bean的四种作用域Spring定义了多种作用域，可以基于这些作用域创建bean，包括:
+单例（Singleton）：在整个应用中，只创建bean的一个实例。
+原型（Prototype）：每次注入或者通过Spring应用上下文获取的时候">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +16,7 @@ import org.springframework.stereotype.Component;
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Spring定时任务的实现 | 江火似流萤的个人博客</title>
+    <title>关于Spring中的作用域问题 | 江火似流萤的个人博客</title>
     <link rel="icon" type="image/png" href="/medias/favicon.ico">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -260,13 +257,13 @@ import org.springframework.stereotype.Component;
 
 
 
-<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
+<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        Spring定时任务的实现
+                        关于Spring中的作用域问题
                     </div>
                 </div>
             </div>
@@ -377,8 +374,8 @@ import org.springframework.stereotype.Component;
             
             <div class="article-tag">
                 
-                <a href="/tags/Spring定时任务/" target="_blank">
-                    <span class="chip bg-color">Spring定时任务</span>
+                <a href="/tags/Spring/" target="_blank">
+                    <span class="chip bg-color">Spring</span>
                 </a>
                 
             </div>
@@ -397,7 +394,7 @@ import org.springframework.stereotype.Component;
                 
 
                 <span class="post-date">
-                    <i class="fa fa-clock-o fa-fw"></i>2019-01-14
+                    <i class="fa fa-clock-o fa-fw"></i>2019-01-13
                 </span>
 				
 				
@@ -409,89 +406,45 @@ import org.springframework.stereotype.Component;
         <hr>
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="一、通过xml的方式配置定时任务"><a href="#一、通过xml的方式配置定时任务" class="headerlink" title="一、通过xml的方式配置定时任务"></a>一、通过xml的方式配置定时任务</h2><p>以下是通过XML实现定时任务的具体Java代码:</p>
-<pre><code>package com.carleviets;
-
-import org.springframework.stereotype.Component;
-
-@Component
-public class TaskJob {
-
-    public void job01(){
-        System.out.println(&quot;job01...&quot;);
-    }
-
-    public void job02(){
-        System.out.println(&quot;job02...&quot;);
-    }
+                <h2 id="一、bean的四种作用域"><a href="#一、bean的四种作用域" class="headerlink" title="一、bean的四种作用域"></a>一、bean的四种作用域</h2><p>Spring定义了多种作用域，可以基于这些作用域创建bean，包括:</p>
+<pre><code>单例（Singleton）：在整个应用中，只创建bean的一个实例。
+原型（Prototype）：每次注入或者通过Spring应用上下文获取的时候，都会创建一个新的bean实例。
+会话（Session）：在Web应用中，为每个会话创建一个bean实例。
+请求（Rquest）：在Web应用中，为每个请求创建一个bean实例 
+</code></pre><p>在默认情况下， Spring应用上下文中所有bean都是作为以单例（singleton）的形式创建的。也就是说，不管给定的一个bean被注入到其他bean多少次，每次所注入的都是同一个实例。在大多数情况下，单例bean是很理想的方案。但是在某些情况下，你所使用的类是易变的（mutable），它们会保持一些状态，因此重用是不安全的。在这种情况下，将class声明为单例的bean就不是什么好主意了。</p>
+<h2 id="二、使用其他作用域的bean"><a href="#二、使用其他作用域的bean" class="headerlink" title="二、使用其他作用域的bean"></a>二、使用其他作用域的bean</h2><p>要声明bean为其他作用域，可以使用@Scope注解，以下是用过@Scope注解和@Component注解一起使用，声明了一个原型作用域的bean：</p>
+<pre><code>@Component
+@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+public class Notepad{...}
+</code></pre><p>这里，使用ConfigurableBeanFactory类的<code>SCOPE_PROTOTYPE</code>常量设置了原型作用域。你当然也可以使用@Scope(“prototype”)，但是使用<code>SCOPE_PROTOTYPE</code>常量更加安全并且不易出错。</p>
+<p>同样，@Scope注解也可以和@Bean注解一起使用:</p>
+<pre><code>@Bean
+@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+public Notepad notepad(){
+    return new Notepad();
 }
-</code></pre><p>以下是使用XML配置定时任务时spring.xml的具体配置:</p>
-<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
-   xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
-   xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
-   xmlns:task=&quot;http://www.springframework.org/schema/task&quot;
-   xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans
-   http://www.springframework.org/schema/beans/spring-beans.xsd
-   http://www.springframework.org/schema/context
-   http://www.springframework.org/schema/context/spring-context.xsd
-   http://www.springframework.org/schema/task
-   http://www.springframework.org/schema/task/spring-task.xsd&quot;&gt;
+</code></pre><p>同样，可以使用scope属性通过XML的方式配置其他作用域的bean:</p>
+<pre><code>&lt;bean id=&quot;notepad&quot; class=&quot;com.carleviets.Notepad&quot; scope=&quot;prototype&quot;/&gt;
+</code></pre><h2 id="三、使用会话和请求作用域"><a href="#三、使用会话和请求作用域" class="headerlink" title="三、使用会话和请求作用域"></a>三、使用会话和请求作用域</h2><p>在典型的电子商务应用中，可能会有一个bean代表用户的购物车。如果购物车是单例的话，那么将会导致所有的用户都会向同一个购物车中添加商品。另一方面，如果购物车是原型作用域的，那么在应用中某一个地方往购物车中添加商品，在应用的另外一个地方可能就不可用了。就购物车bean来说，会话作用域是最为合适的，因为它与给定的用户关联性最大。</p>
+<pre><code>@Component
+@Scope(value=WebApplicationContext.SCOPE_SESSION, proxyMode=ScopedProxyMode.INTERFACES)
+public class ShoppingCart{...}
+</code></pre><p>注意,@Scope同时还有一个proxyMode属性，它被设置成了ScopedProxyMode.INTERFACES。这个属性解决了将会话或请求作用域的bean注入到单例bean中所遇到的问题。例如，如下的StoreService bean表示在线商店提供的服务:</p>
+<pre><code>@Component
+public class StoreService{
+    private ShoppingCart shoppingCart;
 
-    &lt;!--启动Spring组件扫描--&gt;
-    &lt;context:component-scan base-package=&quot;com.carleviets&quot;/&gt;
-
-    &lt;!--XML的方式配置定时任务--&gt;
-    &lt;task:scheduled-tasks&gt;
-        &lt;task:scheduled ref=&quot;taskJob&quot; method=&quot;job01&quot; cron=&quot;0/5 * * * * ? &quot;/&gt;
-        &lt;task:scheduled ref=&quot;taskJob&quot; method=&quot;job02&quot; cron=&quot;0/2 * * * * ? &quot; /&gt;
-    &lt;/task:scheduled-tasks&gt;
-
-&lt;/beans&gt;
-</code></pre><h2 id="二、通过注解的方式配置定时任务"><a href="#二、通过注解的方式配置定时任务" class="headerlink" title="二、通过注解的方式配置定时任务"></a>二、通过注解的方式配置定时任务</h2><p>以下是通过注解的方式实现定时任务的具体Java代码：</p>
-<pre><code>package com.carleviets;
-
-import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
-
-@Component
-public class TaskJob {
-
-    @Scheduled(cron = &quot;0/5 * * * * ? &quot;)
-    public void job01(){
-        System.out.println(&quot;job03...&quot;);
+    @Autowired
+    public void setShoppingCart(ShoppingCart shoppingCart){
+        this.shoppingCart=shoppingCart;
     }
-
-    @Scheduled(cron = &quot;0/2 * * * * ? &quot;)
-    public void job02(){
-        System.out.println(&quot;job04...&quot;);
-    }
+    ...
 }
-</code></pre><p>以下是使用注解配置定时任务时spring.xml的具体配置:</p>
-<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
-   xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
-   xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
-   xmlns:task=&quot;http://www.springframework.org/schema/task&quot;
-   xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans
-   http://www.springframework.org/schema/beans/spring-beans.xsd
-   http://www.springframework.org/schema/context
-   http://www.springframework.org/schema/context/spring-context.xsd
-   http://www.springframework.org/schema/task
-   http://www.springframework.org/schema/task/spring-task.xsd&quot;&gt;
-
-    &lt;!--启动Spring组件扫描--&gt;
-    &lt;context:component-scan base-package=&quot;com.carleviets&quot;/&gt;
-
-      &lt;!--引入定时任务的注解驱动--&gt;
-       &lt;task:annotation-driven/&gt;
-
-&lt;/beans&gt;
-</code></pre><h2 id="三、分析总结"><a href="#三、分析总结" class="headerlink" title="三、分析总结"></a>三、分析总结</h2><p>不管是用过XML的方式还是通过注解的方式配置定时任务，都应该先引入spring-task的命名空间:</p>
-<pre><code>xmlns:task=&quot;http://www.springframework.org/schema/task
-http://www.springframework.org/schema/task
-http://www.springframework.org/schema/task/spring-task.xsd
-</code></pre><p>其次，根据不同的情况来给定时任务的代码使用Cron表达式，具体Cron表达式的生成可参照: <a href="http://cron.qqe2.com/" target="_blank" rel="noopener">http://cron.qqe2.com/</a></p>
+</code></pre><p>因为StoreService是一个单例的bean，会在Spring应用上下文加载的时候创建。当它创建的时候， Spring会试图将ShoppingCart bean注入到setShoppingCart()方法中。但是ShoppingCart bean是会话作用域的，此时并不存在。直到某个用户进入系统，创建了会话之后，才会出现ShoppingCart实例。</p>
+<p>如果使用了proxyMode=ScopedProxyMode.INTERFACES的话，Spring并不会将实际的ShoppingCart bean注入到StoreService中，而是会注入一个到ShoppingCart bean的代理，如图所示。这个代理会暴露与ShoppingCart相同的方法，所以StoreService会认为它就是一个购物车。但是，当StoreService调用ShoppingCart的方法时，代理会对其进行懒解析并将调用委托给会话作用域内真正的ShoppingCart bean。</p>
+<p><img src="http://wx1.sinaimg.cn/mw690/0060lm7Tly1fz6igknkjlj30r00dy78f.jpg" alt="avatar"></p>
+<p>这是使用的是Spring基于接口的代理，但如果ShoppingCart是一个具体的类的话，Spring就没有办法创建基于接口的代理了。此时，它必须使用CGLib来生成基于类的代理。所以，如果bean类型是具体类的话，我们必须要将proxyMode属性设置为ScopedProxyMode.TARGET_CLASS，以此来表明要以生成目标类扩展的方式创建代理。</p>
+<p>尽管这里主要关注了会话作用域，但是请求作用域的bean会面临相同的装配问题。因此，请求作用域的bean应该也以作用域代理的方式进行注入。</p>
 
             </div>
             <hr>
@@ -513,7 +466,7 @@ http://www.springframework.org/schema/task/spring-task.xsd
                     <span class="reprint-tip">转载请注明: </span>
                     <a href="http://www.carleviets.club" class="b-link-green">江火似流萤的个人博客</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2019/01/14/Spring定时任务/" class="b-link-green">Spring定时任务的实现</a>
+                    <a href="/2019/01/13/关于Spring中bean的作用域问题/" class="b-link-green">关于Spring中的作用域问题</a>
                 </p>
             </div>
         </div>
@@ -535,7 +488,7 @@ http://www.springframework.org/schema/task/spring-task.xsd
     <div class="row article-row">
         
         <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge left-badge text-color">本篇</div>
+            <div class="article-badge left-badge text-color">上一篇</div>
             <div class="card">
                 <a href="/2019/01/14/Spring定时任务/">
                     <div class="card-image">
@@ -554,9 +507,9 @@ import org.springframework.stereotype.Component;
 
 @Com</div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-14
-                            </span>
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-14
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -569,7 +522,6 @@ import org.springframework.stereotype.Component;
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -586,19 +538,19 @@ import org.springframework.stereotype.Component;
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">下一篇</div>
             <div class="card">
-                <a href="/2019/01/13/关于Spring中bean的作用域问题/">
+                <a href="/2019/01/13/使用JDK和使用Spring来实现邮件的发送/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="关于Spring中的作用域问题">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="邮件的发送实现">
                         
-                        <span class="card-title">关于Spring中的作用域问题</span>
+                        <span class="card-title">邮件的发送实现</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">一、bean的四种作用域Spring定义了多种作用域，可以基于这些作用域创建bean，包括:
-单例（Singleton）：在整个应用中，只创建bean的一个实例。
-原型（Prototype）：每次注入或者通过Spring应用上下文获取的时候</div>
+                    <div class="summary">一、邮件发送相关的协议SMTP： 简单邮件传输协议（Simple Mail Transfer Protocol），该协议定义了邮件发送的机制。
+
+POP3：邮局协议（Post Office Protocol），目前用的是版本3，也称POP3</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-13
@@ -607,8 +559,8 @@ import org.springframework.stereotype.Component;
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Spring/" class="post-category" target="_blank">
-                                    Spring
+                            <a href="/categories/JAVA-Spring/" class="post-category" target="_blank">
+                                    JAVA Spring
                                 </a>
                             
                             
@@ -618,8 +570,8 @@ import org.springframework.stereotype.Component;
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Spring/" target="_blank">
-                        <span class="chip bg-color">Spring</span>
+                    <a href="/tags/邮件发送/" target="_blank">
+                        <span class="chip bg-color">邮件发送</span>
                     </a>
                     
                 </div>
