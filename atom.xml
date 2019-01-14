@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.carleviets.club/"/>
-  <updated>2019-01-14T14:01:23.174Z</updated>
+  <updated>2019-01-14T14:05:09.332Z</updated>
   <id>http://www.carleviets.club/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title></title>
+    <title>Spring定时任务的实现</title>
     <link href="http://www.carleviets.club/2019/01/14/Spring%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/"/>
     <id>http://www.carleviets.club/2019/01/14/Spring定时任务/</id>
-    <published>2019-01-14T14:02:43.988Z</published>
-    <updated>2019-01-14T14:01:23.174Z</updated>
+    <published>2019-01-14T14:04:00.000Z</published>
+    <updated>2019-01-14T14:05:09.332Z</updated>
     
     <summary type="html">
     
@@ -29,12 +29,16 @@
       
         
         
-          &lt;h1 id=&quot;Spring定时任务的实现&quot;&gt;&lt;a href=&quot;#Spring定时任务的实现&quot; class=&quot;headerlink&quot; title=&quot;Spring定时任务的实现&quot;&gt;&lt;/a&gt;Spring定时任务的实现&lt;/h1&gt;&lt;h2 id=&quot;一、通过xml的方式配置定时任务&quot;&gt;&lt;a
+          &lt;h2 id=&quot;一、通过xml的方式配置定时任务&quot;&gt;&lt;a href=&quot;#一、通过xml的方式配置定时任务&quot; class=&quot;headerlink&quot;
         
       
     
     </summary>
     
+      <category term="Spring" scheme="http://www.carleviets.club/categories/Spring/"/>
+    
+    
+      <category term="Spring定时任务" scheme="http://www.carleviets.club/tags/Spring%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/"/>
     
   </entry>
   
