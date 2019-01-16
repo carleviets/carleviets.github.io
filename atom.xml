@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.carleviets.club/"/>
-  <updated>2019-01-16T04:10:20.157Z</updated>
+  <updated>2019-01-16T04:14:38.357Z</updated>
   <id>http://www.carleviets.club/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://www.carleviets.club/2019/01/16/Spring%20mvc%E4%B8%AD%E7%9A%84%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/"/>
     <id>http://www.carleviets.club/2019/01/16/Spring mvc中的全局异常处理/</id>
     <published>2019-01-16T04:08:13.929Z</published>
-    <updated>2019-01-16T04:10:20.157Z</updated>
+    <updated>2019-01-16T04:14:38.357Z</updated>
     
     <summary type="html">
     
@@ -29,9 +29,7 @@
       
         
         
-          &lt;p&gt;在spring mvc中，对全局异常处理的支持有以下三种方式:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;1、使用Spring mvc提供的简单异常处理器 SimpleMappingExceptionResolver；
-2、实现Spring的异常处理接口
+          &lt;h1 id=&quot;Spring-mvc中的全局异常处理&quot;&gt;&lt;a href=&quot;#Spring-mvc中的全局异常处理&quot; class=&quot;headerlink&quot; title=&quot;Spring mvc中的全局异常处理&quot;&gt;&lt;/a&gt;Spring
         
       
     
@@ -40,7 +38,7 @@
       <category term="Spring" scheme="http://www.carleviets.club/categories/Spring/"/>
     
     
-      <category term="spring全局异常处理" scheme="http://www.carleviets.club/tags/spring%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/"/>
+      <category term="spring" scheme="http://www.carleviets.club/tags/spring/"/>
     
   </entry>
   
@@ -49,7 +47,7 @@
     <link href="http://www.carleviets.club/2019/01/14/Spring%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/"/>
     <id>http://www.carleviets.club/2019/01/14/Spring定时任务/</id>
     <published>2019-01-14T14:04:00.000Z</published>
-    <updated>2019-01-14T14:08:16.812Z</updated>
+    <updated>2019-01-16T04:14:52.658Z</updated>
     
     <summary type="html">
     
@@ -66,7 +64,7 @@
       <category term="Spring" scheme="http://www.carleviets.club/categories/Spring/"/>
     
     
-      <category term="Spring定时任务" scheme="http://www.carleviets.club/tags/Spring%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/"/>
+      <category term="Spring" scheme="http://www.carleviets.club/tags/Spring/"/>
     
   </entry>
   
@@ -101,7 +99,7 @@
     <link href="http://www.carleviets.club/2019/01/13/%E4%BD%BF%E7%94%A8JDK%E5%92%8C%E4%BD%BF%E7%94%A8Spring%E6%9D%A5%E5%AE%9E%E7%8E%B0%E9%82%AE%E4%BB%B6%E7%9A%84%E5%8F%91%E9%80%81/"/>
     <id>http://www.carleviets.club/2019/01/13/使用JDK和使用Spring来实现邮件的发送/</id>
     <published>2019-01-13T12:47:00.000Z</published>
-    <updated>2019-01-13T12:59:50.681Z</updated>
+    <updated>2019-01-16T04:15:59.630Z</updated>
     
     <summary type="html">
     
@@ -115,8 +113,10 @@
     
     </summary>
     
-      <category term="JAVA Spring" scheme="http://www.carleviets.club/categories/JAVA-Spring/"/>
+      <category term="java Spring" scheme="http://www.carleviets.club/categories/java-Spring/"/>
     
+    
+      <category term="spring" scheme="http://www.carleviets.club/tags/spring/"/>
     
       <category term="邮件发送" scheme="http://www.carleviets.club/tags/%E9%82%AE%E4%BB%B6%E5%8F%91%E9%80%81/"/>
     
