@@ -5,10 +5,8 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Spring mvc中的全局异常处理, 江火似流萤的个人博客">
-    <meta name="description" content="Spring mvc中的全局异常处理在spring mvc中，对全局异常处理的支持有以下三种方式:
-1、使用Spring mvc提供的简单异常处理器 SimpleMappingExceptionResolver；
-2、实现Spring的异常">
+    <meta name="keywords" content="RMI远程方法调用, 江火似流萤的个人博客">
+    <meta name="description" content="一、RMI介绍Java远程方法调用 (Remote Method Invocation，RMI)是一种机制，能够让在某个Java虚拟机上的对象调用另一个Java虚拟机中的对象上的方法。JVM可以位于相同或不同计算机上，在多个JVM中，一个J">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -16,7 +14,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Spring mvc中的全局异常处理 | 江火似流萤的个人博客</title>
+    <title>RMI远程方法调用 | 江火似流萤的个人博客</title>
     <link rel="icon" type="image/png" href="/medias/favicon.ico">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -257,13 +255,13 @@
 
 
 
-<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
+<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        Spring mvc中的全局异常处理
+                        RMI远程方法调用
                     </div>
                 </div>
             </div>
@@ -378,6 +376,10 @@
                     <span class="chip bg-color">spring</span>
                 </a>
                 
+                <a href="/tags/rmi/" target="_blank">
+                    <span class="chip bg-color">rmi</span>
+                </a>
+                
             </div>
             
             <div class="post-info">
@@ -386,8 +388,8 @@
                 <!--<span class="post-cate" style="margin-right: 0px">-->
                     <i class="fa fa-bookmark fa-fw icon-category"></i>
                     
-                    <a href="/categories/Spring/" class="post-category" target="_blank">
-                        Spring
+                    <a href="/categories/RMI/" class="post-category" target="_blank">
+                        RMI
                     </a>
                     
                 </span>
@@ -406,149 +408,216 @@
         <hr>
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Spring-mvc中的全局异常处理"><a href="#Spring-mvc中的全局异常处理" class="headerlink" title="Spring mvc中的全局异常处理"></a>Spring mvc中的全局异常处理</h1><p>在spring mvc中，对全局异常处理的支持有以下三种方式:</p>
-<pre><code>1、使用Spring mvc提供的简单异常处理器 SimpleMappingExceptionResolver；
-2、实现Spring的异常处理接口 HandlerExceptionResolver 自定义自己的异常处理器;
-3、使用@ExceptionHandler 注解实现异常处理；
-4、控制器通知和@ExceptionHandler注解结合使用
-</code></pre><h2 id="一、使用SimpleMappingExceptionResolver进行异常处理"><a href="#一、使用SimpleMappingExceptionResolver进行异常处理" class="headerlink" title="一、使用SimpleMappingExceptionResolver进行异常处理"></a>一、使用SimpleMappingExceptionResolver进行异常处理</h2><p>使用Spring中的自带的SimpleMappingExceptionResolver类进行异常处理，具有集成简单、扩展性好、对已有代码没有侵入性等优点，但该方法仅能获取到异常信息，若在出现异常时，对需要获取除异常以外的数据的情况不适用。要使用SimpleMappingExceptionResolver，需要配置bean:</p>
-<pre><code>&lt;bean class=&quot;org.springframework.web.servlet.handler.SimpleMappingExceptionResolver&quot;&gt;
-    &lt;!-- 为所有的异常定义默认的异常处理页面，exceptionMappings未定义的异常使用本默认配置 --&gt;
-    &lt;property name=&quot;defaultErrorView&quot; value=&quot;error&quot;/&gt;
-    &lt;!-- 定义异常处理页面用来获取异常信息的变量名，默认名为exception --&gt;
-    &lt;property name=&quot;exceptionAttribute&quot; value=&quot;ex&quot;/&gt;
-    &lt;!--定义需要特殊处理的异常，用类名或完全路径名作为key，异常页文件名作为值，将不同的异常映射到不同的页面上。--&gt;
-    &lt;property name=&quot;exceptionMappings&quot;&gt;
-        &lt;props&gt;
-            &lt;prop key=&quot;com.carleviets.exception.BusinessException&quot;&gt;business_error&lt;/prop&gt;
-            &lt;prop key=&quot;com.carleviets.exception.ParamsException&quot;&gt;params_error&lt;/prop&gt;
-        &lt;/props&gt;
-    &lt;/property&gt;
-&lt;/bean&gt;
-</code></pre><p>一个典型的异常显示界面如下：</p>
-<pre><code>&lt;html&gt; 
-&lt;head&gt;&lt;title&gt;Exception!&lt;/title&gt;&lt;/head&gt; 
-&lt;body&gt; 
-　　&lt;% Exception e = (Exception)request.getAttribute(&quot;ex&quot;); %&gt; 
-　　&lt;H2&gt;Exception: &lt;%= e.getMessage();%&gt;&lt;/H2&gt; 
-　　&lt;P/&gt; 
-　　&lt;% e.printStackTrace(new java.io.PrintWriter(out)); %&gt; 
-&lt;/body&gt; 
-&lt;/html&gt; 
-</code></pre><p>exception 是在 SimpleMappingExceptionResolver 被存放到 request 中的，具体可以查看源代码。</p>
-<h2 id="二、实现-HandlerExceptionResolver-接口"><a href="#二、实现-HandlerExceptionResolver-接口" class="headerlink" title="二、实现 HandlerExceptionResolver 接口"></a>二、实现 HandlerExceptionResolver 接口</h2><p>使用这种方式只需要实现 resolveException 方法，该方法返回一个 ModelAndView 对象，在方法内部对异常的类型进行判断，然后返回合适的 ModelAndView 对象，如果该方法返回 null，则 Spring 会继续寻找其他的实现了 HandlerExceptionResolver 接口的 Bean。换句话说，Spring 会搜索所有注册在其环境中的实现了 HandlerExceptionResolver 接口的 Bean，逐个执行，直到返回了一个 ModelAndView 对象。</p>
-<pre><code>package com.carleviets.exceptions.handler;
+                <h2 id="一、RMI介绍"><a href="#一、RMI介绍" class="headerlink" title="一、RMI介绍"></a>一、RMI介绍</h2><p>Java远程方法调用 (Remote Method Invocation，RMI)是一种机制，能够让在某个Java虚拟机上的对象调用另一个Java虚拟机中的对象上的方法。JVM可以位于相同或不同计算机上，在多个JVM中，一个JVM可以调用存储在其它JVM的对象的方法。</p>
+<p>RMI是Java编程语言里，一种用于实现远程过程调用的应用程序编程接口， 它是客户机上运行的程序可以调用远程服务器上的对象，远程方法调用特性使 Java 编程人员能够在网络环境中分布操作。</p>
+<p>Java RMI极大地依赖于接口，在需要创建一个远程对象的时候，程序员通过传递一个接口来隐藏底层的实现细节，客户端得到的远程对象句柄正好与本地的根代码连接，由后者负责透过网络通信。 这样一来，程序员只需关心如何通过自己的接口句柄发送消息。</p>
+<p>RMI底层封装了Socket反射机制——java语言当中分布式的基础（实现 java 之间的互相访问）。RMI 本质就是使用代理类来封装 Socket 的通信细节！ </p>
+<h2 id="二、RMI实现常用API"><a href="#二、RMI实现常用API" class="headerlink" title="二、RMI实现常用API"></a>二、RMI实现常用API</h2><p>1）Remote接口：每一个要暴露出去的java类，都需要实现 Remote 接口，并且所有的方法必须抛出 RemoteException。</p>
+<p>2）UnicastRemoteObject类:服务端程序的实现方案之一就是继承这个类，无参构造器也要抛出 RemoteException。</p>
+<p>3）LocateRegistry类:创建能在特定接口接受调用远程对象注册服务程序。</p>
+<pre><code>    public static Registry createRegistry(int port) throws RemoteException
+</code></pre><p>4) Naming类：提供了存储和获得远程对象注册服务程序中的远程对象进行引用的方法</p>
+<pre><code>    public static Remote lookup(String name) throws NotBoundException, MalformedURException, ReoteException
 
-import org.springframework.web.servlet.HandlerExceptionResolver;
-import org.springframework.web.servlet.ModelAndView;
+    public static void bind(String name,Remote obj) throws AlreadyBoundException, MalforedURException, RemoteException
+</code></pre><h2 id="三、通过Java-RMI远程方法调用"><a href="#三、通过Java-RMI远程方法调用" class="headerlink" title="三、通过Java RMI远程方法调用"></a>三、通过Java RMI远程方法调用</h2><p>下面是使用Maven的多模块模拟远程方法调用的过程，首先先建一个父工程<code>rmi_par</code>,在<code>rmi_par</code>模块下建立如下子模块：</p>
+<pre><code>rmi_api模块：远程方法调用的接口定义
+rmi_server模块:远程方法调用的具体服务实现
+rmi_client模块:调用远程方法的具体模块
+</code></pre><h3 id="1、服务的接口定义——rmi-api模块"><a href="#1、服务的接口定义——rmi-api模块" class="headerlink" title="1、服务的接口定义——rmi_api模块"></a>1、服务的接口定义——rmi_api模块</h3><p>以下是服务接口的定义:</p>
+<pre><code>package com.carleviets.service;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.util.HashMap;
-import java.util.Map;
+import java.rmi.Remote;
+import java.rmi.RemoteException;
 
-public class MyExceptionHandler implements HandlerExceptionResolver {
-    /**
-     *
-     * @param request
-     * @param response
-     * @param target   被调用的方法
-     * @param ex       用来接收异常的局部变量名
-     * @return
-     */
+/**
+ * 1、接口继承自Remote
+ * 2、对外服务方法声明RemoteException异常
+ */
+public interface IHelloService extends Remote {
+    String sayHello(String msg) throws RemoteException;
+}
+</code></pre><h3 id="2、服务接口的具体实现和发布——rmi-server模块"><a href="#2、服务接口的具体实现和发布——rmi-server模块" class="headerlink" title="2、服务接口的具体实现和发布——rmi_server模块"></a>2、服务接口的具体实现和发布——rmi_server模块</h3><p>以下是服务端服务接口的具体实现:</p>
+<pre><code>package com.carleviets.service.impl;
+
+import com.carleviets.service.IHelloService;
+
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+
+/**
+ * 1、继承 UnicastRemoteObject
+ * 2、提供无参构造，对外声明 RemoteException
+ */
+public class HelloServiceImpl extends UnicastRemoteObject implements IHelloService {
+
+    protected HelloServiceImpl() throws RemoteException {
+
+    }
+
     @Override
-    public ModelAndView resolveException(HttpServletRequest request,
-                                         HttpServletResponse response, Object target, Exception ex) {
-        //此处定义的Map实际上就是Spring mvc中的Model(Model的内部实现就是一个Map)
-        Map&lt;String,Object&gt; map=new HashMap&lt;String, Object&gt;();
-        map.put(&quot;ex&quot;, ex);
-        if(ex instanceof ParamsException){
-            return new ModelAndView(&quot;error_param&quot;, map);
-        }
-        if(ex instanceof BusinessException){
-            return new ModelAndView(&quot;error_business&quot;, map);
-        }
-        return new ModelAndView(&quot;error&quot;, map);
+    public String sayHello(String msg) throws RemoteException {
+        System.out.println(&quot;服务器端接收到消息：&quot;+msg);
+        return &quot;hello:&quot;+msg;
     }
 }
-</code></pre><p>要注意，实现HandlerExceptionResolver接口的类必须声明到 Spring 配置文件中，或者使用 @Component 标签，让 Spring 管理它。</p>
-<h2 id="三、使用-ExceptionHandler-注解实现异常处理"><a href="#三、使用-ExceptionHandler-注解实现异常处理" class="headerlink" title="三、使用 @ExceptionHandler 注解实现异常处理"></a>三、使用 @ExceptionHandler 注解实现异常处理</h2><p>该方法需要定义在某个 Controller 内部，表示能够处理同一个控制器中所有处理器方法抛出的相应异常。@ExceptionHandler 中可以添加一个或多个异常的类型，如果为空的话则认为可以触发所有的异常类型错误。</p>
-<pre><code>package com.carleviets.controller;
+</code></pre><p>现在，就可以把服务发布出去了，具体的发布代码如下：</p>
+<pre><code>package com.carleviets.service.impl;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ExceptionHandler;
+import java.net.MalformedURLException;
+import java.rmi.AlreadyBoundException;
+import java.rmi.Naming;
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
 
-import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
-
-@Controller
-public class  BaseController {
-
-    @ExceptionHandler(value={ParamsException.class,BusinessException.class, IOException.class})
-    public String exp(HttpServletRequest request, Exception ex) {
-        request.setAttribute(&quot;ex&quot;, ex);
-        if(ex instanceof ParamsException){
-            return &quot;error_param&quot;;
-        }
-        if(ex instanceof BusinessException){
-            return &quot;error_business&quot;;
-        }
-        return &quot;error&quot;;
-    }
-} 
-</code></pre><p>上面我们写了一个BaseController,所有继承了该类的控制器就可以实现相应异常的处理。但这种方式对代码具有侵入性，考虑到Java具有单继承多实现的特点，这种方式不推荐使用。</p>
-<h2 id="四、使用控制器通知"><a href="#四、使用控制器通知" class="headerlink" title="四、使用控制器通知"></a>四、使用控制器通知</h2><p>控制器通知是Spring 3.2引入的一个新特性，通俗来讲，控制器通知（controller advice）是任意带有@ControllerAdvice注解的类，这个类会包含一个或多个如下类型的方法：</p>
-<pre><code>@ExceptionHandler 注解标注的方法；
-@InitBinder 注解标注的方法；
-@ModelAttribute 注解标注的方法
-</code></pre><p>在带有@ControllerAdvice注解的类中，以上所述的这些方法会运用到整个应用程序所有控制器中带有@RequestMapping注解的方法上。下面是Spring中ControllerAdvice的源码:</p>
-<pre><code>@Target({ElementType.TYPE})
-@Retention(RetentionPolicy.RUNTIME)
-@Documented
-@Component
-public @interface ControllerAdvice {
-    @AliasFor(&quot;basePackages&quot;)
-    String[] value() default {};
-
-    @AliasFor(&quot;value&quot;)
-    String[] basePackages() default {};
-
-    Class&lt;?&gt;[] basePackageClasses() default {};
-
-    Class&lt;?&gt;[] assignableTypes() default {};
-
-    Class&lt;? extends Annotation&gt;[] annotations() default {};
-}
-</code></pre><p>@ControllerAdvice注解本身已经使用了@Component，因此@ControllerAdvice注解所标注的类将会自动被组件扫描获取到，就像带有@Component注解的类一样。控制器通知最为实用的一个场景就是将所有的@ExceptionHandler方法收集到一个类中，这样所有控制器的异常就能在一个地方进行一致的处理。如下:</p>
-<pre><code>package com.carleviets.exceptions.handler;
-
-import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-
-//定义控制器通知
-@ControllerAdvice
-public class GlobalExceptionHandler {
-
-    //定义异常处理方法
-    @ExceptionHandler(BusinessException.class)
-    public String businessExceptionHandle(){
-        return &quot;error_business&quot;;
-    }
-
-    //定义异常处理方法
-    @ExceptionHandler(ParamsException.class)
-    public String businessExceptionHandle(){
-        return &quot;params_business&quot;;
+/**
+ * 对外发布服务
+ */
+public class Publish {
+    public static void main(String[] args) throws RemoteException, AlreadyBoundException, MalformedURLException {
+        //注册端口
+        LocateRegistry.createRegistry(8888);
+        //对外发布RMI服务
+        Naming.bind(&quot;rmi://127.0.0.1:8888/hello&quot;, new HelloServiceImpl());
     }
 }
-</code></pre><h2 id="五、将具体的异常映射为HTTP状态码"><a href="#五、将具体的异常映射为HTTP状态码" class="headerlink" title="五、将具体的异常映射为HTTP状态码"></a>五、将具体的异常映射为HTTP状态码</h2><p>在默认情况下， Spring会将自身的一些异常自动转换为合适的状态码。但是我们也可以通过@ResponseStatus将具体的异常隐射为具体的HTTP状态码。</p>
-<pre><code>package com.carleviets.exceptions;
+</code></pre><h3 id="3、服务的调用——rmi-client模块"><a href="#3、服务的调用——rmi-client模块" class="headerlink" title="3、服务的调用——rmi_client模块"></a>3、服务的调用——rmi_client模块</h3><pre><code>package com.carleviets;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import com.carleviets.service.IHelloService;
+import org.junit.Test;
 
-@ResponseStatus(value = HttpStatus.NOT_FOUND, reason = &quot;文档不存在&quot;)
-public class DocumentNotFoundException extends RuntimeException {
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+
+public class TestRMI {
+
+    @Test
+    public void test() throws RemoteException, NotBoundException, MalformedURLException {
+        IHelloService helloService= (IHelloService) Naming.lookup(&quot;rmi://127.0.0.1:8888/hello&quot;);
+        String hello=helloService.sayHello(&quot;I&#39;m a hero.&quot;);
+        System.out.println(hello);
+    }
+}
+</code></pre><p>注意，这里只是通过maven的多模块对RMI远程调用进行模拟测试，在具体的现实环境中，要通过RMI进行远程方法调用，需要服务器端和客户端实现相同的接口。</p>
+<h2 id="四、通过Spring来实现远程方法调用"><a href="#四、通过Spring来实现远程方法调用" class="headerlink" title="四、通过Spring来实现远程方法调用"></a>四、通过Spring来实现远程方法调用</h2><p>使用Spring的RMI，提供的服务简单方便，不用继承特定的类，也不需要抛出异常。</p>
+<h3 id="1、-服务的接口定义——rmi-api模块："><a href="#1、-服务的接口定义——rmi-api模块：" class="headerlink" title="1、 服务的接口定义——rmi_api模块："></a>1、 服务的接口定义——rmi_api模块：</h3><pre><code>package com.carleviets.service;
+
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+
+/**
+ * 1、接口继承自Remote
+ * 2、对外服务方法声明RemoteException异常
+ */
+public interface IHelloService extends Remote {
+    String sayHello(String msg) throws RemoteException;
+}
+</code></pre><p>可以看出，在提供服务的接口这一块儿，没有任何变化。</p>
+<h3 id="2、服务接口的具体实现和发布——spring-server模块"><a href="#2、服务接口的具体实现和发布——spring-server模块" class="headerlink" title="2、服务接口的具体实现和发布——spring_server模块"></a>2、服务接口的具体实现和发布——spring_server模块</h3><pre><code>package com.carleviets.service.impl;
+
+import com.carleviets.service.IHelloService;
+import org.springframework.stereotype.Service;
+
+import java.rmi.RemoteException;
+
+/**
+ * 使用spring实现服务器端服务
+ */
+@Service
+public class HelloServiceImpl implements IHelloService {
+
+    @Override
+    public String sayHello(String msg) throws RemoteException {
+        System.out.println(&quot;服务端收到消息：&quot;+msg);
+        return &quot;hello:&quot;+msg;
+    }
+}
+</code></pre><p>同时，需要将上述的服务实现的具体类在spring的配置文件中通过相应的配置发布出去，具体配置如下:</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+       xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+       xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
+       xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd&quot;&gt;
+
+    &lt;!--定义组件扫描的范围--&gt;
+    &lt;context:component-scan base-package=&quot;com.carleviets&quot;/&gt;
+
+    &lt;!--加入rmi相关配置--&gt;
+    &lt;bean class=&quot;org.springframework.remoting.rmi.RmiServiceExporter&quot;&gt;
+        &lt;!--配置对外提供服务的名称--&gt;
+        &lt;property name=&quot;serviceName&quot; value=&quot;hello&quot;/&gt;
+        &lt;!--指定服务的具体实现bean--&gt;
+        &lt;property name=&quot;service&quot; ref=&quot;helloServiceImpl&quot;/&gt;
+        &lt;!--配置发布的服务接口--&gt;
+        &lt;property name=&quot;serviceInterface&quot; value=&quot;com.carleviets.service.IHelloService&quot;/&gt;
+        &lt;!--配置服务注册的端口号--&gt;
+        &lt;property name=&quot;registryPort&quot; value=&quot;1199&quot;/&gt;
+    &lt;/bean&gt;
+
+&lt;/beans&gt;
+</code></pre><p>这样，spring容器在启动的时候，就会自动将服务注册到对应的rmi地址上:</p>
+<pre><code>package com.carleviets.service.impl;
+
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+/**
+ * 测试spring实现RMI的服务器端
+ */
+public class HelloServiceImplTest {
+
+    public static void main(String[] args) {
+        //布置RMI服务只需要启动容器即可
+        new ClassPathXmlApplicationContext(&quot;spring.xml&quot;);
+    }
+}
+</code></pre><h3 id="3、客户端服务的调用——spring-client模块"><a href="#3、客户端服务的调用——spring-client模块" class="headerlink" title="3、客户端服务的调用——spring_client模块"></a>3、客户端服务的调用——spring_client模块</h3><p>要使用以上通过spring发布的服务，首先需要在spring.xml配置RMI代理工厂bean：</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+       xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+       xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd&quot;&gt;
+
+    &lt;!--配置Rmi代理工厂bean--&gt;
+    &lt;bean class=&quot;org.springframework.remoting.rmi.RmiProxyFactoryBean&quot;&gt;
+        &lt;!--指定提供服务的地址、端口和服务名称--&gt;
+        &lt;property name=&quot;serviceUrl&quot; value=&quot;rmi://localhost:1199/hello&quot;/&gt;
+        &lt;!-- 指定使用服务的接口 --&gt;
+        &lt;property name=&quot;serviceInterface&quot; value=&quot;com.carleviets.service.IHelloService&quot;/&gt;
+    &lt;/bean&gt;
+
+&lt;/beans&gt;
+</code></pre><p>这样，就可以使用具体的服务了，如下是调用远程服务的测试代码:</p>
+<pre><code>package com.carleviets;
+
+import com.carleviets.service.IHelloService;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import java.rmi.RemoteException;
+
+/**
+ * Spring实现RMI的客户端
+ */
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {&quot;classpath:spring.xml&quot;})
+public class TestSpringRmiClient {
+
+    @Autowired
+    private IHelloService helloService;
+
+    @Test
+    public void test() throws RemoteException {
+        String hello=helloService.sayHello(&quot;I&#39;m spring rmi.&quot;);
+        System.out.println(hello);
+    }
 
 }
 </code></pre>
@@ -572,7 +641,7 @@ public class DocumentNotFoundException extends RuntimeException {
                     <span class="reprint-tip">转载请注明: </span>
                     <a href="http://www.carleviets.club" class="b-link-green">江火似流萤的个人博客</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2019/01/16/Spring mvc中的全局异常处理/" class="b-link-green">Spring mvc中的全局异常处理</a>
+                    <a href="/2019/01/16/远程方法调用/" class="b-link-green">RMI远程方法调用</a>
                 </p>
             </div>
         </div>
@@ -594,7 +663,7 @@ public class DocumentNotFoundException extends RuntimeException {
     <div class="row article-row">
         
         <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge left-badge text-color">上一篇</div>
+            <div class="article-badge left-badge text-color">本篇</div>
             <div class="card">
                 <a href="/2019/01/16/远程方法调用/">
                     <div class="card-image">
@@ -608,9 +677,9 @@ public class DocumentNotFoundException extends RuntimeException {
                 <div class="card-content article-content">
                     <div class="summary">一、RMI介绍Java远程方法调用 (Remote Method Invocation，RMI)是一种机制，能够让在某个Java虚拟机上的对象调用另一个Java虚拟机中的对象上的方法。JVM可以位于相同或不同计算机上，在多个JVM中，一个J</div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-16
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-16
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -623,6 +692,7 @@ public class DocumentNotFoundException extends RuntimeException {
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -643,25 +713,22 @@ public class DocumentNotFoundException extends RuntimeException {
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">下一篇</div>
             <div class="card">
-                <a href="/2019/01/14/Spring定时任务/">
+                <a href="/2019/01/16/Spring mvc中的全局异常处理/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="Spring定时任务的实现">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="Spring mvc中的全局异常处理">
                         
-                        <span class="card-title">Spring定时任务的实现</span>
+                        <span class="card-title">Spring mvc中的全局异常处理</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">一、通过xml的方式配置定时任务以下是通过XML实现定时任务的具体Java代码:
-package com.carleviets;
-
-import org.springframework.stereotype.Component;
-
-@Com</div>
+                    <div class="summary">Spring mvc中的全局异常处理在spring mvc中，对全局异常处理的支持有以下三种方式:
+1、使用Spring mvc提供的简单异常处理器 SimpleMappingExceptionResolver；
+2、实现Spring的异常</div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-14
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-16
                             </span>
                         <span class="publish-author">
                             
@@ -678,8 +745,8 @@ import org.springframework.stereotype.Component;
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Spring/" target="_blank">
-                        <span class="chip bg-color">Spring</span>
+                    <a href="/tags/spring/" target="_blank">
+                        <span class="chip bg-color">spring</span>
                     </a>
                     
                 </div>

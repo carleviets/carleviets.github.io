@@ -306,26 +306,26 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 </a>
                 
                 
-                <a href="/tags/spring/" title="spring: 2">
+                <a href="/tags/spring/" title="spring: 3">
                     <span class="chip center-align waves-effect waves-light
                              chip-default " data-tagname="spring" style="background-color: #D5F5E3;">spring
-                        <span class="tag-length">2</span>
+                        <span class="tag-length">3</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/rmi/" title="rmi: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default " data-tagname="rmi" style="background-color: #E8F8F5;">rmi
+                        <span class="tag-length">1</span>
                     </span>
                 </a>
                 
                 
                 <a href="/tags/SSM整合/" title="SSM整合: 2">
                     <span class="chip center-align waves-effect waves-light
-                             chip-default " data-tagname="SSM整合" style="background-color: #E8F8F5;">SSM整合
+                             chip-default " data-tagname="SSM整合" style="background-color: #FEF9E7;">SSM整合
                         <span class="tag-length">2</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/邮件发送/" title="邮件发送: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default " data-tagname="邮件发送" style="background-color: #FEF9E7;">邮件发送
-                        <span class="tag-length">1</span>
                     </span>
                 </a>
                 
@@ -333,6 +333,14 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 <a href="/tags/Maven依赖/" title="Maven依赖: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default " data-tagname="Maven依赖" style="background-color: #F8F9F9;">Maven依赖
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/邮件发送/" title="邮件发送: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default " data-tagname="邮件发送" style="background-color: #82E0AA;">邮件发送
                         <span class="tag-length">1</span>
                     </span>
                 </a>
@@ -510,7 +518,65 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
 
 
 </body>
-</html>pure.mini.js"></script>
+</html>="RSS 订阅" data-position="top" data-delay="50">
+    <i class="fa fa-rss"></i>
+</a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title">搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字" class="search-input" autofocus>
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/js/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', '');
+</script>
+
+
+
+    <script src="/libs/others/clicklove.js"></script>
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
 
 
 </body>

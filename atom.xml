@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.carleviets.club/"/>
-  <updated>2019-01-16T04:14:38.357Z</updated>
+  <updated>2019-01-16T08:44:43.572Z</updated>
   <id>http://www.carleviets.club/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>RMI远程方法调用</title>
+    <link href="http://www.carleviets.club/2019/01/16/%E8%BF%9C%E7%A8%8B%E6%96%B9%E6%B3%95%E8%B0%83%E7%94%A8/"/>
+    <id>http://www.carleviets.club/2019/01/16/远程方法调用/</id>
+    <published>2019-01-16T08:45:00.000Z</published>
+    <updated>2019-01-16T08:44:43.572Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;一、RMI介绍&quot;&gt;&lt;a href=&quot;#一、RMI介绍&quot; class=&quot;headerlink&quot; title=&quot;一、RMI介绍&quot;&gt;&lt;/a&gt;一、RMI介绍&lt;/h2&gt;&lt;p&gt;Java远程方法调用 (Remote Method
+        
+      
+    
+    </summary>
+    
+      <category term="RMI" scheme="http://www.carleviets.club/categories/RMI/"/>
+    
+    
+      <category term="spring" scheme="http://www.carleviets.club/tags/spring/"/>
+    
+      <category term="rmi" scheme="http://www.carleviets.club/tags/rmi/"/>
+    
+  </entry>
   
   <entry>
     <title>Spring mvc中的全局异常处理</title>
