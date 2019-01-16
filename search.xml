@@ -13,16 +13,14 @@
       
       <categories>
           
-          <category> RMI </category>
+          <category> Java Spring </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> spring </tag>
-            
-            <tag> rmi </tag>
+            <tag> rmi远程方法调用 </tag>
             
         </tags>
       
@@ -47,7 +45,7 @@
       
         <tags>
             
-            <tag> spring </tag>
+            <tag> 全局异常处理 </tag>
             
         </tags>
       
@@ -72,7 +70,7 @@
       
         <tags>
             
-            <tag> Spring </tag>
+            <tag> 定时任务 </tag>
             
         </tags>
       
@@ -97,7 +95,7 @@
       
         <tags>
             
-            <tag> Spring </tag>
+            <tag> 四种作用域 </tag>
             
         </tags>
       
@@ -122,8 +120,6 @@
       
         <tags>
             
-            <tag> spring </tag>
-            
             <tag> 邮件发送 </tag>
             
         </tags>
@@ -142,7 +138,7 @@
       
       <categories>
           
-          <category> JAVA </category>
+          <category> Java </category>
           
       </categories>
       
@@ -174,8 +170,6 @@
       
         <tags>
             
-            <tag> SSM整合 </tag>
-            
             <tag> Maven依赖 </tag>
             
         </tags>
@@ -202,8 +196,6 @@
         <tags>
             
             <tag> 常用工具类 </tag>
-            
-            <tag> SSM整合 </tag>
             
         </tags>
       

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.carleviets.club/"/>
-  <updated>2019-01-16T08:44:43.572Z</updated>
+  <updated>2019-01-16T08:59:21.424Z</updated>
   <id>http://www.carleviets.club/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://www.carleviets.club/2019/01/16/%E8%BF%9C%E7%A8%8B%E6%96%B9%E6%B3%95%E8%B0%83%E7%94%A8/"/>
     <id>http://www.carleviets.club/2019/01/16/远程方法调用/</id>
     <published>2019-01-16T08:45:00.000Z</published>
-    <updated>2019-01-16T08:44:43.572Z</updated>
+    <updated>2019-01-16T08:59:21.424Z</updated>
     
     <summary type="html">
     
@@ -35,12 +35,10 @@
     
     </summary>
     
-      <category term="RMI" scheme="http://www.carleviets.club/categories/RMI/"/>
+      <category term="Java Spring" scheme="http://www.carleviets.club/categories/Java-Spring/"/>
     
     
-      <category term="spring" scheme="http://www.carleviets.club/tags/spring/"/>
-    
-      <category term="rmi" scheme="http://www.carleviets.club/tags/rmi/"/>
+      <category term="rmi远程方法调用" scheme="http://www.carleviets.club/tags/rmi%E8%BF%9C%E7%A8%8B%E6%96%B9%E6%B3%95%E8%B0%83%E7%94%A8/"/>
     
   </entry>
   
@@ -49,7 +47,7 @@
     <link href="http://www.carleviets.club/2019/01/16/Spring%20mvc%E4%B8%AD%E7%9A%84%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/"/>
     <id>http://www.carleviets.club/2019/01/16/Spring mvc中的全局异常处理/</id>
     <published>2019-01-16T04:08:13.929Z</published>
-    <updated>2019-01-16T04:14:38.357Z</updated>
+    <updated>2019-01-16T08:57:23.269Z</updated>
     
     <summary type="html">
     
@@ -66,7 +64,7 @@
       <category term="Spring" scheme="http://www.carleviets.club/categories/Spring/"/>
     
     
-      <category term="spring" scheme="http://www.carleviets.club/tags/spring/"/>
+      <category term="全局异常处理" scheme="http://www.carleviets.club/tags/%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/"/>
     
   </entry>
   
@@ -75,7 +73,7 @@
     <link href="http://www.carleviets.club/2019/01/14/Spring%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/"/>
     <id>http://www.carleviets.club/2019/01/14/Spring定时任务/</id>
     <published>2019-01-14T14:04:00.000Z</published>
-    <updated>2019-01-16T04:14:52.658Z</updated>
+    <updated>2019-01-16T08:57:34.362Z</updated>
     
     <summary type="html">
     
@@ -92,7 +90,7 @@
       <category term="Spring" scheme="http://www.carleviets.club/categories/Spring/"/>
     
     
-      <category term="Spring" scheme="http://www.carleviets.club/tags/Spring/"/>
+      <category term="定时任务" scheme="http://www.carleviets.club/tags/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/"/>
     
   </entry>
   
@@ -101,7 +99,7 @@
     <link href="http://www.carleviets.club/2019/01/13/%E5%85%B3%E4%BA%8ESpring%E4%B8%ADbean%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%97%AE%E9%A2%98/"/>
     <id>http://www.carleviets.club/2019/01/13/关于Spring中bean的作用域问题/</id>
     <published>2019-01-13T15:08:00.000Z</published>
-    <updated>2019-01-14T15:09:14.485Z</updated>
+    <updated>2019-01-16T08:58:16.469Z</updated>
     
     <summary type="html">
     
@@ -118,7 +116,7 @@
       <category term="Spring" scheme="http://www.carleviets.club/categories/Spring/"/>
     
     
-      <category term="Spring" scheme="http://www.carleviets.club/tags/Spring/"/>
+      <category term="四种作用域" scheme="http://www.carleviets.club/tags/%E5%9B%9B%E7%A7%8D%E4%BD%9C%E7%94%A8%E5%9F%9F/"/>
     
   </entry>
   
@@ -127,7 +125,7 @@
     <link href="http://www.carleviets.club/2019/01/13/%E4%BD%BF%E7%94%A8JDK%E5%92%8C%E4%BD%BF%E7%94%A8Spring%E6%9D%A5%E5%AE%9E%E7%8E%B0%E9%82%AE%E4%BB%B6%E7%9A%84%E5%8F%91%E9%80%81/"/>
     <id>http://www.carleviets.club/2019/01/13/使用JDK和使用Spring来实现邮件的发送/</id>
     <published>2019-01-13T12:47:00.000Z</published>
-    <updated>2019-01-16T04:15:59.630Z</updated>
+    <updated>2019-01-16T08:58:53.524Z</updated>
     
     <summary type="html">
     
@@ -144,8 +142,6 @@
       <category term="java Spring" scheme="http://www.carleviets.club/categories/java-Spring/"/>
     
     
-      <category term="spring" scheme="http://www.carleviets.club/tags/spring/"/>
-    
       <category term="邮件发送" scheme="http://www.carleviets.club/tags/%E9%82%AE%E4%BB%B6%E5%8F%91%E9%80%81/"/>
     
   </entry>
@@ -155,7 +151,7 @@
     <link href="http://www.carleviets.club/2019/01/13/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7%E7%B1%BB%E6%80%BB%E7%BB%93/"/>
     <id>http://www.carleviets.club/2019/01/13/实用工具类总结/</id>
     <published>2019-01-13T12:40:00.000Z</published>
-    <updated>2019-01-13T12:58:52.859Z</updated>
+    <updated>2019-01-16T08:58:42.413Z</updated>
     
     <summary type="html">
     
@@ -169,7 +165,7 @@
     
     </summary>
     
-      <category term="JAVA" scheme="http://www.carleviets.club/categories/JAVA/"/>
+      <category term="Java" scheme="http://www.carleviets.club/categories/Java/"/>
     
     
       <category term="常用工具类" scheme="http://www.carleviets.club/tags/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7%E7%B1%BB/"/>
@@ -181,7 +177,7 @@
     <link href="http://www.carleviets.club/2019/01/13/SSM%E6%95%B4%E5%90%88%E6%80%BB%E7%BB%93/"/>
     <id>http://www.carleviets.club/2019/01/13/SSM整合总结/</id>
     <published>2019-01-13T12:38:00.000Z</published>
-    <updated>2019-01-13T12:52:27.294Z</updated>
+    <updated>2019-01-16T08:57:59.371Z</updated>
     
     <summary type="html">
     
@@ -198,8 +194,6 @@
       <category term="SSM整合" scheme="http://www.carleviets.club/categories/SSM%E6%95%B4%E5%90%88/"/>
     
     
-      <category term="SSM整合" scheme="http://www.carleviets.club/tags/SSM%E6%95%B4%E5%90%88/"/>
-    
       <category term="Maven依赖" scheme="http://www.carleviets.club/tags/Maven%E4%BE%9D%E8%B5%96/"/>
     
   </entry>
@@ -209,7 +203,7 @@
     <link href="http://www.carleviets.club/2019/01/13/SSM%E6%95%B4%E5%90%88%E6%97%B6%E9%AB%98%E5%8F%AF%E7%94%A8%E4%BB%A3%E7%A0%81%E6%80%BB%E7%BB%93/"/>
     <id>http://www.carleviets.club/2019/01/13/SSM整合时高可用代码总结/</id>
     <published>2019-01-13T12:36:00.000Z</published>
-    <updated>2019-01-13T12:57:54.332Z</updated>
+    <updated>2019-01-16T08:57:48.562Z</updated>
     
     <summary type="html">
     
@@ -227,8 +221,6 @@
     
     
       <category term="常用工具类" scheme="http://www.carleviets.club/tags/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7%E7%B1%BB/"/>
-    
-      <category term="SSM整合" scheme="http://www.carleviets.club/tags/SSM%E6%95%B4%E5%90%88/"/>
     
   </entry>
   
