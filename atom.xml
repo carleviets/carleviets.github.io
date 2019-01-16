@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.carleviets.club/"/>
-  <updated>2019-01-14T14:08:16.812Z</updated>
+  <updated>2019-01-16T04:10:20.157Z</updated>
   <id>http://www.carleviets.club/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Spring mvc中的全局异常处理</title>
+    <link href="http://www.carleviets.club/2019/01/16/Spring%20mvc%E4%B8%AD%E7%9A%84%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/"/>
+    <id>http://www.carleviets.club/2019/01/16/Spring mvc中的全局异常处理/</id>
+    <published>2019-01-16T04:08:13.929Z</published>
+    <updated>2019-01-16T04:10:20.157Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;在spring mvc中，对全局异常处理的支持有以下三种方式:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;1、使用Spring mvc提供的简单异常处理器 SimpleMappingExceptionResolver；
+2、实现Spring的异常处理接口
+        
+      
+    
+    </summary>
+    
+      <category term="Spring" scheme="http://www.carleviets.club/categories/Spring/"/>
+    
+    
+      <category term="spring全局异常处理" scheme="http://www.carleviets.club/tags/spring%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/"/>
+    
+  </entry>
   
   <entry>
     <title>Spring定时任务的实现</title>
