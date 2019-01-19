@@ -707,8 +707,18 @@ public class TrackCounter {
         &lt;aop:before method=&quot;trackCount&quot; pointcut-ref=&quot;trackPlayed&quot;/&gt;
     &lt;/aop:aspect&gt;
 &lt;/aop:config&gt;
-</code></pre><p>至此，我们就完成了Spring aop的学习！</p>
-
+</code></pre><h2 id="六、总结"><a href="#六、总结" class="headerlink" title="六、总结"></a>六、总结</h2><h4 id="1、代理模式实现三要素"><a href="#1、代理模式实现三要素" class="headerlink" title="1、代理模式实现三要素"></a>1、代理模式实现三要素</h4><pre><code>（1）接口定义
+（2）目标对象 与代理对象必须实现统一接口
+（3）代理对象持有目标对象的引用 增强目标对象行为
+</code></pre><h4 id="2、代理模式实现分类以及对应区别"><a href="#2、代理模式实现分类以及对应区别" class="headerlink" title="2、代理模式实现分类以及对应区别"></a>2、代理模式实现分类以及对应区别</h4><pre><code>（1）静态代理：手动为目标对象制作代理对象，即在程序编译阶段完成代理对象的创建
+（2）动态代理：在程序运行期动态创建目标对象对应代理对象。
+    jdk 动态代理：被代理目标对象必须实现某一或某一组接口 实现方式 通过回调创建代理对象。
+    cglib 动态代理：被代理目标对象可以不必实现接口，继承的方式实现。
+    动态代理相比较静态代理，提高开发效率，可以批量化创建代理，提高代码复用率。
+</code></pre><h4 id="3、Aop-理解"><a href="#3、Aop-理解" class="headerlink" title="3、Aop 理解"></a>3、Aop 理解</h4><pre><code>(1)面向切面，相比oop, aop关注的是代码中的层或面
+(2) 解耦，提高系统扩展性
+(3) 提高代码复用
+</code></pre>
             </div>
             <hr>
 
