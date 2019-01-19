@@ -414,28 +414,24 @@
 <li>暂存区（Stage 或 Index）<br>数据暂时存放的区域。 </li>
 <li>版本库（commit History）<br>存放已经提交的数据，push 的时候，就是把这个区的数据 push 到远程git仓库了。</li>
 </ul>
-<h2 id="二、git创建版本库"><a href="#二、git创建版本库" class="headerlink" title="二、git创建版本库"></a>二、git创建版本库</h2><ul>
-<li>cd: 切换目录,比如 cd e: 切换到 e 盘</li>
-<li>mkdir: 创建一个文件夹</li>
-<li>pwd: 查看当前目录</li>
-<li>git init: 初始化一个本地库</li>
-<li>$ git config –global user.name “name”: 设置用户名</li>
-<li>$ git config –global user.email “<a href="mailto:email@example.com" target="_blank" rel="noopener">email@example.com</a>“: 设置邮箱</li>
-</ul>
-<h2 id="三、基本文件操作"><a href="#三、基本文件操作" class="headerlink" title="三、基本文件操作"></a>三、基本文件操作</h2><ul>
-<li>git add: 添加文件到缓存区</li>
-<li>git commit: 提交文件到分支,-m 添加说明</li>
-<li>git status: 查看文件是否有修改</li>
-<li>git diff: 对比文件修改内容</li>
-<li>git log: 查看提交历史</li>
-<li>git reset –hard HEAD^: 回到上一个版本</li>
-<li>git reset –hard xxx: 回到指定版本,版本号可以不写全</li>
-<li>git reflog: 查看历史提交版本</li>
-<li>git rm: 删除版本库文件</li>
-<li>rm: 删除本地文件</li>
-<li>ls: 查看文件目录</li>
-</ul>
-<h2 id="四、创建远程版本库"><a href="#四、创建远程版本库" class="headerlink" title="四、创建远程版本库"></a>四、创建远程版本库</h2><pre><code>1. 创建 SSH Key
+<h2 id="二、git创建版本库"><a href="#二、git创建版本库" class="headerlink" title="二、git创建版本库"></a>二、git创建版本库</h2><pre><code>cd: 切换目录,比如 cd e: 切换到 e 盘
+mkdir: 创建一个文件夹
+pwd: 查看当前目录
+git init: 初始化一个本地库
+$ git config --global user.name &quot;name&quot;: 设置用户名
+$ git config --global user.email &quot;email@example.com&quot;: 设置邮箱
+</code></pre><h2 id="三、基本文件操作"><a href="#三、基本文件操作" class="headerlink" title="三、基本文件操作"></a>三、基本文件操作</h2><pre><code>git add: 添加文件到缓存区
+git commit: 提交文件到分支,-m 添加说明
+git status: 查看文件是否有修改
+git diff: 对比文件修改内容
+git log: 查看提交历史
+git reset --hard HEAD^: 回到上一个版本
+git reset --hard xxx: 回到指定版本,版本号可以不写全
+git reflog: 查看历史提交版本
+git rm: 删除版本库文件
+rm: 删除本地文件
+ls: 查看文件目录
+</code></pre><h2 id="四、创建远程版本库"><a href="#四、创建远程版本库" class="headerlink" title="四、创建远程版本库"></a>四、创建远程版本库</h2><pre><code>1. 创建 SSH Key
       $ ssh-keygen -t rsa -C &quot;your email&quot;
     在用户主目录里找到.ssh 目录， 里面有 id_rsa 和 id_rsa.pub
 2. 登陆 GitHub， 打开“Account settings”， “SSH Keys”页面。 点“Add SSH Key”，填上任意 Title， 
