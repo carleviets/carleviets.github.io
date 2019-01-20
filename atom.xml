@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.carleviets.club/"/>
-  <updated>2019-01-19T13:29:37.750Z</updated>
+  <updated>2019-01-20T12:01:32.988Z</updated>
   <id>http://www.carleviets.club/</id>
   
   <author>
@@ -17,11 +17,41 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Redis总结</title>
+    <link href="http://www.carleviets.club/2019/01/20/Redis%E6%80%BB%E7%BB%93/"/>
+    <id>http://www.carleviets.club/2019/01/20/Redis总结/</id>
+    <published>2019-01-20T11:55:00.000Z</published>
+    <updated>2019-01-20T12:01:32.988Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;一、关系型数据库和非关系型数据库的对比&quot;&gt;&lt;a href=&quot;#一、关系型数据库和非关系型数据库的对比&quot; class=&quot;headerlink&quot; title=&quot;一、关系型数据库和非关系型数据库的对比&quot;&gt;&lt;/a&gt;一、关系型数据库和非关系型数据库的对比&lt;/h2&gt;&lt;h4
+        
+      
+    
+    </summary>
+    
+      <category term="Redis" scheme="http://www.carleviets.club/categories/Redis/"/>
+    
+    
+      <category term="redis" scheme="http://www.carleviets.club/tags/redis/"/>
+    
+      <category term="jedis" scheme="http://www.carleviets.club/tags/jedis/"/>
+    
+      <category term="spring-data-redis" scheme="http://www.carleviets.club/tags/spring-data-redis/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Git常用命令总结</title>
     <link href="http://www.carleviets.club/2019/01/19/Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/"/>
     <id>http://www.carleviets.club/2019/01/19/Git常用命令总结/</id>
     <published>2019-01-19T13:26:19.706Z</published>
-    <updated>2019-01-19T13:29:37.750Z</updated>
+    <updated>2019-01-20T12:09:49.830Z</updated>
     
     <summary type="html">
     

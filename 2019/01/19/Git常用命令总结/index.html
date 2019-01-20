@@ -8,9 +8,11 @@
     <meta name="keywords" content="Git常用命令总结, 江火似流萤的个人博客">
     <meta name="description" content="一、git的三个分区
 
-工作区（Working Directory）是直接编辑的地方，肉眼可见，直接操作。 
+工作区（Working Directory）是直接编辑的地方，肉眼可见，直接操作。
+
 暂存区（Stage 或 Index）数据暂时存放的区域。 
-版本库（commit History）存放已经提交的数据，push 的">
+
+版本库（commit History）存放已经提交的数据，push ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -410,9 +412,12 @@
             <div id="articleContent">
                 <h2 id="一、git的三个分区"><a href="#一、git的三个分区" class="headerlink" title="一、git的三个分区"></a>一、git的三个分区</h2><p><img src="http://wx2.sinaimg.cn/mw690/0060lm7Tly1fzc630ca3uj30qp0b60ur.jpg" alt=""></p>
 <ul>
-<li>工作区（Working Directory）<br>是直接编辑的地方，肉眼可见，直接操作。 </li>
-<li>暂存区（Stage 或 Index）<br>数据暂时存放的区域。 </li>
-<li>版本库（commit History）<br>存放已经提交的数据，push 的时候，就是把这个区的数据 push 到远程git仓库了。</li>
+<li><p>工作区（Working Directory）<br>是直接编辑的地方，肉眼可见，直接操作。</p>
+</li>
+<li><p>暂存区（Stage 或 Index）<br>数据暂时存放的区域。 </p>
+</li>
+<li><p>版本库（commit History）<br>存放已经提交的数据，push 的时候，就是把这个区的数据 push 到远程git仓库了。</p>
+</li>
 </ul>
 <h2 id="二、git创建版本库"><a href="#二、git创建版本库" class="headerlink" title="二、git创建版本库"></a>二、git创建版本库</h2><pre><code>cd: 切换目录,比如 cd e: 切换到 e 盘
 mkdir: 创建一个文件夹
@@ -434,16 +439,26 @@ ls: 查看文件目录
 </code></pre><h2 id="四、创建远程版本库"><a href="#四、创建远程版本库" class="headerlink" title="四、创建远程版本库"></a>四、创建远程版本库</h2><pre><code>1. 创建 SSH Key
       $ ssh-keygen -t rsa -C &quot;your email&quot;
     在用户主目录里找到.ssh 目录， 里面有 id_rsa 和 id_rsa.pub
+
 2. 登陆 GitHub， 打开“Account settings”， “SSH Keys”页面。 点“Add SSH Key”，填上任意 Title， 
    在 Key 文本框里粘贴 id_rsa.pub 文件的内容。 点“Add Key”， 你就应该看到已经添加的 Key
+
 3. 验证是否成功
     $ ssh -T git@github.com
     如果出现:Hi xxx! You&#39;ve successfully authenticated, but GitHub does not provide shell access,则表示成功!
 </code></pre><h2 id="五、添加远程库"><a href="#五、添加远程库" class="headerlink" title="五、添加远程库"></a>五、添加远程库</h2><pre><code>1. 登陆 GitHub， 在右上角找到“Create a new repo”按钮， 创建一个新的仓库。
-2. 在Repository name填入&quot;仓库名称&quot;，其他保持默认设置，点击 “Create repository” 按钮，就成功地创建了一个新的 Git 仓库。
+
+2. 在Repository name填入&quot;仓库名称&quot;，其他保持默认设置，点击 “Create repository” 按钮，就成功地创建了一个新的
+Git 仓库。
+
 3. $ git remote add origin git@github:&lt;your github address&gt;， 添加远程库，名字叫做 origin。
-4. $ git push -u origin master，把本地库推送到远程库上。由于远程库是空的，我们第一次推送 master 分支时，加上了-u 参数，Git 不但会把本地的 master 分支内容。推送的远程新的 master 分支，还会把本地的 master 分支和远程的 master 分支关联起来，在以后的推送或者拉取时就可以简化命令。
+
+4. $ git push -u origin master，把本地库推送到远程库上。由于远程库是空的，我们第一次推送 master 分支时，加上
+了-u 参数，Git 不但会把本地的 master 分支内容。推送的远程新的 master 分支，还会把本地的 master 分支和远程的
+master 分支关联起来，在以后的推送或者拉取时就可以简化命令。
+
 5. 以后提交只用写，$ git push origin master。
+
 6. 克隆远程库，$ git clone git@github.com:&lt;your github programe address&gt;.git。
 </code></pre><h2 id="六、分支管理"><a href="#六、分支管理" class="headerlink" title="六、分支管理"></a>六、分支管理</h2><pre><code>1、 创建dev分支，切换到dev分支
     $ git checkout -b dev
@@ -451,15 +466,21 @@ ls: 查看文件目录
         $ git branch dev
         $ git checkout dev
     )
+
 2、 查看当前分支
     $ git branch
+
 3、 修改 readme.txt, add、 commit
+
 4、 切换回 master
     $ git checkout master
+
 5、 合并分支
     $ git merge dev
+
 6、 删除分支
     $ git branch -d dev
+
 7、 解决冲突
     找到冲突文件,去掉 &lt;&lt;&lt;&lt;&lt; =====
     $ git add 冲突文件名字
@@ -507,45 +528,55 @@ ls: 查看文件目录
     <div class="row article-row">
         
         <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge left-badge text-color">本篇</div>
+            <div class="article-badge left-badge text-color">上一篇</div>
             <div class="card">
-                <a href="/2019/01/19/Git常用命令总结/">
+                <a href="/2019/01/20/Redis总结/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="Git常用命令总结">
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="Redis总结">
                         
-                        <span class="card-title">Git常用命令总结</span>
+                        <span class="card-title">Redis总结</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">一、git的三个分区
+                    <div class="summary">一、关系型数据库和非关系型数据库的对比1、关系型数据库
+表与表之间存在约束关系(即所谓的范式)
+表设计
+SQL编写 
+当表数据量很大，进行查询时，效率比较低（多表关联） 
+存在IO开销问题
 
-工作区（Working Directory）是直接编辑的地方，肉眼可见，直接操作。 
-暂存区（Stage 或 Index）数据暂时存放的区域。 
-版本库（commit History）存放已经提交的数据，push 的</div>
+2、非关系型数据库非关系型数据库，基于key-v</div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-19
-                            </span>
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-20
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/git/" class="post-category" target="_blank">
-                                    git
+                            <a href="/categories/Redis/" class="post-category" target="_blank">
+                                    Redis
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/git/" target="_blank">
-                        <span class="chip bg-color">git</span>
+                    <a href="/tags/redis/" target="_blank">
+                        <span class="chip bg-color">redis</span>
+                    </a>
+                    
+                    <a href="/tags/jedis/" target="_blank">
+                        <span class="chip bg-color">jedis</span>
+                    </a>
+                    
+                    <a href="/tags/spring-data-redis/" target="_blank">
+                        <span class="chip bg-color">spring-data-redis</span>
                     </a>
                     
                 </div>
