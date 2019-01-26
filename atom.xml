@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.carleviets.club/"/>
-  <updated>2019-01-20T12:01:32.988Z</updated>
+  <updated>2019-01-26T05:30:42.095Z</updated>
   <id>http://www.carleviets.club/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Dubbo实现分布式服务</title>
+    <link href="http://www.carleviets.club/2019/01/26/Dubbo%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E5%BC%8F%E6%9C%8D%E5%8A%A1/"/>
+    <id>http://www.carleviets.club/2019/01/26/Dubbo实现分布式服务/</id>
+    <published>2019-01-26T05:16:42.214Z</published>
+    <updated>2019-01-26T05:30:42.095Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;一、单体应用与SOA应用&quot;&gt;&lt;a href=&quot;#一、单体应用与SOA应用&quot; class=&quot;headerlink&quot; title=&quot;一、单体应用与SOA应用&quot;&gt;&lt;/a&gt;一、单体应用与SOA应用&lt;/h2&gt;&lt;h4 id=&quot;1、单体应用&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="dubbo" scheme="http://www.carleviets.club/categories/dubbo/"/>
+    
+    
+      <category term="dubbo" scheme="http://www.carleviets.club/tags/dubbo/"/>
+    
+  </entry>
   
   <entry>
     <title>Redis总结</title>
