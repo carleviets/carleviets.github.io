@@ -1,0 +1,918 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="高级消息队列(五)——Spring集成RabbitMQ, 江火似流萤的个人博客">
+    <meta name="description" content="一、Spring集成RabbitMQ1、pom坐标依赖&amp;lt;!-- spring-rabbit依赖 --&amp;gt;
+&amp;lt;dependency&amp;gt;
+  &amp;lt;groupId&amp;gt;org.springframework.amqp&amp;l">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>高级消息队列(五)——Spring集成RabbitMQ | 江火似流萤的个人博客</title>
+    <link rel="icon" type="image/png" href="/medias/favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+</head>
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="container">
+            <div class="nav-wrapper">
+                <div class="brand-logo">
+                    <a href="/" class="waves-effect waves-light">
+                        
+                        <img src="/4027734.jpg" class="logo-img hide-on-small-only">
+                        
+                        <span class="logo-span">江火似流萤的个人博客</span>
+                    </a>
+                </div>
+                
+
+<a href="#" data-activates="mobile-nav" class="button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于</span>
+        </a>
+    </li>
+    
+    <li>
+        <a id="toggleSearch" class="waves-effect waves-light">
+            <i id="searchIcon" class="mdi-action-search"></i>
+        </a>
+    </li>
+
+</ul>
+
+<div class="side-nav" id="mobile-nav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/4027734.jpg" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">江火似流萤的个人博客</div>
+        <div class="logo-desc">
+            
+            胜，不妄喜;败，不惶妥;胸有激雷而面如平湖者，可拜上将军!
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/carleviets" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+
+    <div class="social-link"><a href="https://github.com/carleviets" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+    <i class="fa fa-github"></i>
+</a>
+<a href="mailto:carleviets0420@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+<a href="#!" class="tooltipped" data-tooltip="QQ联系我: 892324283" data-position="top" data-delay="50">
+    <i class="fa fa-qq"></i>
+</a>
+
+<a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+    <i class="fa fa-rss"></i>
+</a>
+</div>
+</div>
+
+            </div>
+        </div>
+
+        
+        <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/carleviets" class="github-corner tooltipped hide-on-med-and-down" target="_blank" data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewbox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/>
+    </svg>
+</a>
+        
+    </nav>
+</header>
+
+
+
+
+
+<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        高级消息队列(五)——Spring集成RabbitMQ
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1,
+    #articleContent h2,
+    #articleContent h3,
+    #articleContent h4,
+    #articleContent h5,
+    #articleContent h6 {
+        padding-top: 76px;
+        margin-top: -76px;
+    }
+
+    #articleContent h1 {
+        line-height: 3.5rem;
+    }
+
+    #articleContent h2 {
+        line-height: 3.2rem;
+    }
+
+    #articleContent h3 {
+        line-height: 2.8rem;
+    }
+
+    #articleContent h4 {
+        line-height: 2.5rem;
+    }
+
+    #articleContent h5 {
+        line-height: 2.2rem;
+    }
+
+    #articleContent h6 {
+        line-height: 1.9rem;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+</style>
+<div class="row">
+    <div class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            
+            <div class="article-tag">
+                
+                <a href="/tags/RabbitMQ/" target="_blank">
+                    <span class="chip bg-color">RabbitMQ</span>
+                </a>
+                
+                <a href="/tags/Spring/" target="_blank">
+                    <span class="chip bg-color">Spring</span>
+                </a>
+                
+            </div>
+            
+            <div class="post-info">
+                
+                <span class="post-cate">
+                <!--<span class="post-cate" style="margin-right: 0px">-->
+                    <i class="fa fa-bookmark fa-fw icon-category"></i>
+                    
+                    <a href="/categories/AMQP/" class="post-category" target="_blank">
+                        AMQP
+                    </a>
+                    
+                </span>
+                
+
+                <span class="post-date">
+                    <i class="fa fa-clock-o fa-fw"></i>2019-01-27
+                </span>
+				
+				
+                    <span id="busuanzi_container_page_pv" class="post-read">
+                    <i class="fa fa-eye fa-fw"></i>阅读 <span id="busuanzi_value_page_pv"></span>
+				
+            </span></div>
+        </div>
+        <hr>
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="一、Spring集成RabbitMQ"><a href="#一、Spring集成RabbitMQ" class="headerlink" title="一、Spring集成RabbitMQ"></a>一、Spring集成RabbitMQ</h2><h4 id="1、pom坐标依赖"><a href="#1、pom坐标依赖" class="headerlink" title="1、pom坐标依赖"></a>1、pom坐标依赖</h4><pre><code>&lt;!-- spring-rabbit依赖 --&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;org.springframework.amqp&lt;/groupId&gt;
+  &lt;artifactId&gt;spring-rabbit&lt;/artifactId&gt;
+  &lt;version&gt;1.7.5.RELEASE&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre><p>Spring AMQP 是一个消息的解决方案，它提供一个它提供了一个“模板”作为发送和接收消息的高级抽象。因此，在Spring中集成RabbitMQ时，只需要引入spring-rabbit依赖即可，而<strong>不再需要引入前面的<code>amqp-client</code>的RabbitMQ客户端依赖</strong>。</p>
+<h4 id="2、编写一个Consumer类"><a href="#2、编写一个Consumer类" class="headerlink" title="2、编写一个Consumer类"></a>2、编写一个Consumer类</h4><pre><code>package com.carleviets.service;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class ConsumerService {
+
+    public void test(Object obj){
+        System.out.println(&quot;消费者接收到消息:&quot;+obj);
+    }
+
+}
+</code></pre><h4 id="3、spring-xml具体配置"><a href="#3、spring-xml具体配置" class="headerlink" title="3、spring.xml具体配置"></a>3、spring.xml具体配置</h4><pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+       xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+       xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
+       xmlns:rabbit=&quot;http://www.springframework.org/schema/rabbit&quot;
+       xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/rabbit
+        http://www.springframework.org/schema/rabbit/spring-rabbit.xsd&quot;&gt;
+
+    &lt;context:component-scan base-package=&quot;com.carleviets&quot;/&gt;
+
+    &lt;!--配置rabbitMQ工厂类--&gt;
+    &lt;rabbit:connection-factory id=&quot;connectionFactory&quot; host=&quot;localhost&quot;
+       port=&quot;5672&quot; virtual-host=&quot;/test&quot; username=&quot;carleviets&quot; password=&quot;123456&quot;/&gt;
+
+    &lt;!-- 创建RabbitAdmin,用来管理exchange、queue、bindings --&gt;
+    &lt;rabbit:admin id=&quot;rabbitAdmin&quot; connection-factory=&quot;connectionFactory&quot;/&gt;
+
+    &lt;!--配置交换机，交换机可以配置多个--&gt;
+    &lt;rabbit:topic-exchange name=&quot;springExchange&quot;&gt;
+        &lt;rabbit:bindings&gt;
+            &lt;!--指定队列的匹配模式和队列名称，可以绑定多个队列--&gt;
+            &lt;rabbit:binding pattern=&quot;spring.#&quot; queue=&quot;spring_test&quot;/&gt;
+        &lt;/rabbit:bindings&gt;
+    &lt;/rabbit:topic-exchange&gt;
+
+
+    &lt;!--配置队列，可以配置多个--&gt;
+    &lt;rabbit:queue name=&quot;spring_test&quot;/&gt;
+
+    &lt;!--配置监听容器--&gt;
+    &lt;rabbit:listener-container connection-factory=&quot;connectionFactory&quot;&gt;
+        &lt;!--指定被监听Consumer消息消费类和方法，以及监听的队列名称--&gt;
+        &lt;rabbit:listener ref=&quot;consumerService&quot; method=&quot;test&quot; queue-names=&quot;spring_test&quot;/&gt;
+    &lt;/rabbit:listener-container&gt;
+
+    &lt;!--配置AMQPTemplate--&gt;
+    &lt;rabbit:template id=&quot;rabbitTemplate&quot; connection-factory=&quot;connectionFactory&quot; exchange=&quot;springExchange&quot; routing-key=&quot;spring.test&quot;/&gt;
+
+&lt;/beans&gt;
+</code></pre><h4 id="4、启动测试"><a href="#4、启动测试" class="headerlink" title="4、启动测试"></a>4、启动测试</h4><p>测试代码如下：</p>
+<pre><code>package com.carleviets;
+
+import org.springframework.amqp.core.AmqpTemplate;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class TestSpringRabbitMQ {
+    public static void main(String[] args) {
+        ApplicationContext applicationContext=
+                new ClassPathXmlApplicationContext(&quot;spring-rabbitmq.xml&quot;);
+        AmqpTemplate rabbitTemplate= (AmqpTemplate) applicationContext.getBean(&quot;rabbitTemplate&quot;);
+
+        //通过rabbitTemplate模板类向队列中发送消息
+        rabbitTemplate.convertAndSend(&quot;Hello, Spring RabbitMQ&quot;);
+    }
+}
+</code></pre><h2 id="二、CRM项目中使用RabbitMQ"><a href="#二、CRM项目中使用RabbitMQ" class="headerlink" title="二、CRM项目中使用RabbitMQ"></a>二、CRM项目中使用RabbitMQ</h2><p>例如，CRM项目中需要实现记录用户行为的功能，考虑到日志记录不必立即执行，这可以通过RabbitMQ消息队列结合Spring AOP、自定义注解来实现。</p>
+<p>自定义注解的代码如下:</p>
+<pre><code>package com.carleviets.crm.annotations;
+
+import java.lang.annotation.*;
+
+@Target({ElementType.METHOD})
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+public @interface RequireLog {
+    String moduleName() default &quot;&quot;;
+}
+</code></pre><p>日志实体类的代码如下:</p>
+<pre><code>package com.carleviets.crm.po;
+
+import java.io.Serializable;
+import java.util.Date;
+
+public class Log implements Serializable {
+    private static final long serialVersionUID = 1194600605382291359L;
+
+    private Integer id;              //id,主键
+    private String description;      //模块名称描述信息
+    private String method;           //调用的方法名
+    private String type;             //具体访问的类型
+    private String requestIp;        //请求ip
+    private String exceptionCode;    //异常代码
+    private String exceptionDetail;  //异常的具体信息
+    private Date createDate;         //创建时间
+    private Integer executeTime;     //执行时间
+    private String params;           //访问的形参值
+    private String createMan;        //创建人
+    private String result;           //方法执行结果
+
+    //=============== Getters and Setters ===============
+
+}
+</code></pre><p><strong>注意：日志类必须实现序列化接口，否则在消息队列的消费者方不能接收到该对象。</strong></p>
+<p>AOP切面的定义如下:</p>
+<pre><code>package com.carleviets.crm.aop;
+
+import com.carleviets.crm.annotations.RequireLog;
+import com.carleviets.crm.po.Log;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.reflect.MethodSignature;
+import org.springframework.amqp.core.AmqpTemplate;
+import org.springframework.stereotype.Component;
+
+import javax.annotation.Resource;
+import java.lang.reflect.Method;
+import java.util.Date;
+
+@Component
+@Aspect
+public class LogAspect {
+
+    @Resource
+    private AmqpTemplate rabbitTemplate;
+
+    @Pointcut(&quot;@annotation(com.carleviets.crm.annotations.RequireLog)&quot;)
+    public void log(){}
+
+    @Around(&quot;log()&quot;)
+    public Object around(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+        //获取方法签名
+        MethodSignature methodSignature= (MethodSignature) proceedingJoinPoint.getSignature();
+        //获取所调用的方法
+        Method method=methodSignature.getMethod();
+        //通过Method对象获取到该方法上的注解
+        RequireLog annotation=method.getAnnotation(RequireLog.class);
+        //通过注解获取到注解上属性的值
+        String moduleName=annotation.moduleName();
+
+        Long startTime=System.currentTimeMillis();
+        Object result=proceedingJoinPoint.proceed();
+        Long endTime=System.currentTimeMillis();
+
+        Log log=new Log();
+        String[] moduleNameDetails=moduleName.split(&quot;-&quot;);
+        log.setDescription(moduleNameDetails[0]);
+        log.setMethod(method.getName());
+        log.setType(moduleNameDetails[1]);
+        log.setCreateDate(new Date());
+        log.setExecuteTime((int)(endTime-startTime));
+
+        //将log日志对象发送到消息队列中
+        //注意发送到队列中的对象必须能够序列化
+        rabbitTemplate.convertAndSend(log);
+
+        //AOP环绕通知中，调用有返回值的方法必须返回该方法执行后的结果
+        return result;
+    }
+}
+</code></pre><p>spring.xml中添加的配置如下:</p>
+<pre><code>&lt;!--配置RabbitMQ连接工厂类--&gt;
+&lt;rabbit:connection-factory id=&quot;connectionFactory&quot; host=&quot;localhost&quot;
+       port=&quot;5672&quot; virtual-host=&quot;/crm&quot; username=&quot;carleviets&quot; password=&quot;123456&quot;/&gt;
+
+&lt;!-- 创建RabbitAdmin,用来管理exchange、queue、bindings --&gt;
+&lt;rabbit:admin id=&quot;rabbitAdmin&quot; connection-factory=&quot;connectionFactory&quot;/&gt;
+
+&lt;!--配置RabbitMQ交换机--&gt;
+&lt;rabbit:topic-exchange name=&quot;exchange_crm&quot;&gt;
+    &lt;rabbit:bindings&gt;
+        &lt;rabbit:binding pattern=&quot;crm.*&quot; queue=&quot;crm_log&quot;/&gt;
+    &lt;/rabbit:bindings&gt;
+&lt;/rabbit:topic-exchange&gt;
+
+&lt;!--配置RabbitMQ队列--&gt;
+&lt;rabbit:queue name=&quot;crm_log&quot;/&gt;
+
+&lt;!--配置监听容器--&gt;
+&lt;rabbit:listener-container connection-factory=&quot;connectionFactory&quot;&gt;
+    &lt;rabbit:listener ref=&quot;logService&quot; method=&quot;saveLog&quot; queue-names=&quot;crm_log&quot;/&gt;
+&lt;/rabbit:listener-container&gt;
+
+&lt;!--配置AMQP模板--&gt;
+&lt;rabbit:template id=&quot;rabbitTemplate&quot; connection-factory=&quot;connectionFactory&quot; exchange=&quot;exchange_crm&quot; routing-key=&quot;crm.log&quot;/&gt;
+</code></pre><p>消息消费方的具体代码如下:</p>
+<pre><code>package com.carleviets.crm.service;
+
+import com.carleviets.crm.base.BaseService;
+import com.carleviets.crm.constants.CrmConstants;
+import com.carleviets.crm.dao.LogMapper;
+import com.carleviets.crm.po.Log;
+import com.carleviets.crm.utils.AssertUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class LogService extends BaseService&lt;Log&gt; {
+    @Autowired
+    private LogMapper logMapper;
+
+    public void saveLog(Log log){
+        System.out.println(log);
+        AssertUtil.isTrue(logMapper.save(log)&lt;1, CrmConstants.OPS_FAILED_MSG);
+    }
+}
+</code></pre><p>可以看出，传送到队列中的Log对象，被消费方取出后即可调用LogMapper进行保存到数据库中去了。</p>
+
+            </div>
+            <hr>
+
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            <div class="reprint">
+                <p>
+                    <span class="reprint-tip">转载请注明: </span>
+                    <a href="http://www.carleviets.club" class="b-link-green">江火似流萤的个人博客</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2019/01/27/高级消息队列（五）——Spring集成RabbitMQ/" class="b-link-green">高级消息队列(五)——Spring集成RabbitMQ</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">本篇</div>
+            <div class="card">
+                <a href="/2019/01/27/高级消息队列（五）——Spring集成RabbitMQ/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="高级消息队列(五)——Spring集成RabbitMQ">
+                        
+                        <span class="card-title">高级消息队列(五)——Spring集成RabbitMQ</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">一、Spring集成RabbitMQ1、pom坐标依赖&lt;!-- spring-rabbit依赖 --&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;org.springframework.amqp&l</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-27
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/AMQP/" class="post-category" target="_blank">
+                                    AMQP
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/RabbitMQ/" target="_blank">
+                        <span class="chip bg-color">RabbitMQ</span>
+                    </a>
+                    
+                    <a href="/tags/Spring/" target="_blank">
+                        <span class="chip bg-color">Spring</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">下一篇</div>
+            <div class="card">
+                <a href="/2019/01/27/高级消息队列（四）——RabbitMQ事务管理/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="高级消息队列(四)——RabbitMQ事务管理">
+                        
+                        <span class="card-title">高级消息队列(四)——RabbitMQ事务管理</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">一、RabbitMQ的事务机制在使用 RabbitMQ 的时候，我们可以通过消息持久化操作来解决因为服务器的异常奔溃导致的消息丢失，除此之外我们还会遇到一个问题，当消息的发布者在将消息发送出去之后，消息到底有没有正确到达 broker 代理</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-27
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/AMQP/" class="post-category" target="_blank">
+                                    AMQP
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/RabbitMQ/" target="_blank">
+                        <span class="chip bg-color">RabbitMQ</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+    </div>
+    <div class="col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title">目录</div>
+            <div id="toc-content">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+			<!--
+            本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+			-->
+
+            
+			
+                <br>
+                <span id="busuanzi_container_site_pv">
+                    本站总访问量 <span id="busuanzi_value_site_pv" style="color: #fff;"></span> 次,&nbsp;
+                </span>
+				<span id="busuanzi_container_site_uv">
+                    访客数 <span id="busuanzi_value_site_uv" style="color: #fff;"></span> 人.
+                </span>
+			
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis"><a href="https://github.com/carleviets" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+    <i class="fa fa-github"></i>
+</a>
+<a href="mailto:carleviets0420@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+<a href="#!" class="tooltipped" data-tooltip="QQ联系我: 892324283" data-position="top" data-delay="50">
+    <i class="fa fa-qq"></i>
+</a>
+
+<a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+    <i class="fa fa-rss"></i>
+</a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title">搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字" class="search-input" autofocus>
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/js/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', '');
+</script>
+
+
+
+    <script src="/libs/others/clicklove.js"></script>
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

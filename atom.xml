@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.carleviets.club/"/>
-  <updated>2019-01-26T05:30:42.095Z</updated>
+  <updated>2019-01-27T14:45:10.912Z</updated>
   <id>http://www.carleviets.club/</id>
   
   <author>
@@ -15,6 +15,138 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>高级消息队列(五)——Spring集成RabbitMQ</title>
+    <link href="http://www.carleviets.club/2019/01/27/%E9%AB%98%E7%BA%A7%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%EF%BC%88%E4%BA%94%EF%BC%89%E2%80%94%E2%80%94Spring%E9%9B%86%E6%88%90RabbitMQ/"/>
+    <id>http://www.carleviets.club/2019/01/27/高级消息队列（五）——Spring集成RabbitMQ/</id>
+    <published>2019-01-27T14:38:00.000Z</published>
+    <updated>2019-01-27T14:45:10.912Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;一、Spring集成RabbitMQ&quot;&gt;&lt;a href=&quot;#一、Spring集成RabbitMQ&quot; class=&quot;headerlink&quot; title=&quot;一、Spring集成RabbitMQ&quot;&gt;&lt;/a&gt;一、Spring集成RabbitMQ&lt;/h2&gt;&lt;h4
+        
+      
+    
+    </summary>
+    
+      <category term="AMQP" scheme="http://www.carleviets.club/categories/AMQP/"/>
+    
+    
+      <category term="RabbitMQ" scheme="http://www.carleviets.club/tags/RabbitMQ/"/>
+    
+      <category term="Spring" scheme="http://www.carleviets.club/tags/Spring/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>高级消息队列(四)——RabbitMQ事务管理</title>
+    <link href="http://www.carleviets.club/2019/01/27/%E9%AB%98%E7%BA%A7%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%EF%BC%88%E5%9B%9B%EF%BC%89%E2%80%94%E2%80%94RabbitMQ%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86/"/>
+    <id>http://www.carleviets.club/2019/01/27/高级消息队列（四）——RabbitMQ事务管理/</id>
+    <published>2019-01-27T13:58:00.000Z</published>
+    <updated>2019-01-27T13:59:00.964Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;一、RabbitMQ的事务机制&quot;&gt;&lt;a href=&quot;#一、RabbitMQ的事务机制&quot; class=&quot;headerlink&quot; title=&quot;一、RabbitMQ的事务机制&quot;&gt;&lt;/a&gt;一、RabbitMQ的事务机制&lt;/h2&gt;&lt;p&gt;在使用 RabbitMQ
+        
+      
+    
+    </summary>
+    
+      <category term="AMQP" scheme="http://www.carleviets.club/categories/AMQP/"/>
+    
+    
+      <category term="RabbitMQ" scheme="http://www.carleviets.club/tags/RabbitMQ/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>高级消息队列(三)——RabbitMQ的几种模式</title>
+    <link href="http://www.carleviets.club/2019/01/27/%E9%AB%98%E7%BA%A7%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%EF%BC%88%E4%B8%89%EF%BC%89%E2%80%94%E2%80%94RabbitMQ%E7%9A%84%E5%85%AD%E7%A7%8D%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://www.carleviets.club/2019/01/27/高级消息队列（三）——RabbitMQ的六种模式/</id>
+    <published>2019-01-27T13:21:30.903Z</published>
+    <updated>2019-01-27T13:26:55.924Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;一、工作队列-消息轮询分发-Round-robin&quot;&gt;&lt;a href=&quot;#一、工作队列-消息轮询分发-Round-robin&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="AMQP" scheme="http://www.carleviets.club/categories/AMQP/"/>
+    
+    
+      <category term="RabbitMQ" scheme="http://www.carleviets.club/tags/RabbitMQ/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>高级消息队列(二)——RabbitMq 快速入门与基本概念介绍</title>
+    <link href="http://www.carleviets.club/2019/01/27/%E9%AB%98%E7%BA%A7%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94RabbitMq%20%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%E4%B8%8E%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E4%BB%8B%E7%BB%8D/"/>
+    <id>http://www.carleviets.club/2019/01/27/高级消息队列（二）——RabbitMq 快速入门与基本概念介绍/</id>
+    <published>2019-01-27T09:23:00.000Z</published>
+    <updated>2019-01-27T13:28:15.129Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;一、-RabbitMq-HelloWorld入门程序&quot;&gt;&lt;a href=&quot;#一、-RabbitMq-HelloWorld入门程序&quot; class=&quot;headerlink&quot; title=&quot;一、 RabbitMq HelloWorld入门程序&quot;&gt;&lt;/a&gt;一、
+        
+      
+    
+    </summary>
+    
+      <category term="AMQP" scheme="http://www.carleviets.club/categories/AMQP/"/>
+    
+    
+      <category term="RabbitMQ" scheme="http://www.carleviets.club/tags/RabbitMQ/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>高级消息队列(一)——消息队列的介绍与RabbitMQ的安装</title>
+    <link href="http://www.carleviets.club/2019/01/27/%E9%AB%98%E7%BA%A7%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E4%BB%8B%E7%BB%8D%E4%B8%8ERabbit%E7%9A%84%E5%AE%89%E8%A3%85/"/>
+    <id>http://www.carleviets.club/2019/01/27/高级消息队列（一）——消息队列介绍与Rabbit的安装/</id>
+    <published>2019-01-27T06:54:00.000Z</published>
+    <updated>2019-01-27T09:29:15.447Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;一、MQ简介&quot;&gt;&lt;a href=&quot;#一、MQ简介&quot; class=&quot;headerlink&quot; title=&quot;一、MQ简介&quot;&gt;&lt;/a&gt;一、MQ简介&lt;/h2&gt;&lt;p&gt;在计算机科学中，消息队列（Message
+        
+      
+    
+    </summary>
+    
+      <category term="AMQP" scheme="http://www.carleviets.club/categories/AMQP/"/>
+    
+    
+      <category term="RabbitMQ" scheme="http://www.carleviets.club/tags/RabbitMQ/"/>
+    
+  </entry>
   
   <entry>
     <title>Dubbo实现分布式服务</title>

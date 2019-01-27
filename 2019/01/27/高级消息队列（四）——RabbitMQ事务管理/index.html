@@ -1,0 +1,922 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="高级消息队列(四)——RabbitMQ事务管理, 江火似流萤的个人博客">
+    <meta name="description" content="一、RabbitMQ的事务机制在使用 RabbitMQ 的时候，我们可以通过消息持久化操作来解决因为服务器的异常奔溃导致的消息丢失，除此之外我们还会遇到一个问题，当消息的发布者在将消息发送出去之后，消息到底有没有正确到达 broker 代理">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>高级消息队列(四)——RabbitMQ事务管理 | 江火似流萤的个人博客</title>
+    <link rel="icon" type="image/png" href="/medias/favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+</head>
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="container">
+            <div class="nav-wrapper">
+                <div class="brand-logo">
+                    <a href="/" class="waves-effect waves-light">
+                        
+                        <img src="/4027734.jpg" class="logo-img hide-on-small-only">
+                        
+                        <span class="logo-span">江火似流萤的个人博客</span>
+                    </a>
+                </div>
+                
+
+<a href="#" data-activates="mobile-nav" class="button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于</span>
+        </a>
+    </li>
+    
+    <li>
+        <a id="toggleSearch" class="waves-effect waves-light">
+            <i id="searchIcon" class="mdi-action-search"></i>
+        </a>
+    </li>
+
+</ul>
+
+<div class="side-nav" id="mobile-nav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/4027734.jpg" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">江火似流萤的个人博客</div>
+        <div class="logo-desc">
+            
+            胜，不妄喜;败，不惶妥;胸有激雷而面如平湖者，可拜上将军!
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/carleviets" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+
+    <div class="social-link"><a href="https://github.com/carleviets" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+    <i class="fa fa-github"></i>
+</a>
+<a href="mailto:carleviets0420@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+<a href="#!" class="tooltipped" data-tooltip="QQ联系我: 892324283" data-position="top" data-delay="50">
+    <i class="fa fa-qq"></i>
+</a>
+
+<a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+    <i class="fa fa-rss"></i>
+</a>
+</div>
+</div>
+
+            </div>
+        </div>
+
+        
+        <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/carleviets" class="github-corner tooltipped hide-on-med-and-down" target="_blank" data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewbox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/>
+    </svg>
+</a>
+        
+    </nav>
+</header>
+
+
+
+
+
+<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        高级消息队列(四)——RabbitMQ事务管理
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1,
+    #articleContent h2,
+    #articleContent h3,
+    #articleContent h4,
+    #articleContent h5,
+    #articleContent h6 {
+        padding-top: 76px;
+        margin-top: -76px;
+    }
+
+    #articleContent h1 {
+        line-height: 3.5rem;
+    }
+
+    #articleContent h2 {
+        line-height: 3.2rem;
+    }
+
+    #articleContent h3 {
+        line-height: 2.8rem;
+    }
+
+    #articleContent h4 {
+        line-height: 2.5rem;
+    }
+
+    #articleContent h5 {
+        line-height: 2.2rem;
+    }
+
+    #articleContent h6 {
+        line-height: 1.9rem;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+</style>
+<div class="row">
+    <div class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            
+            <div class="article-tag">
+                
+                <a href="/tags/RabbitMQ/" target="_blank">
+                    <span class="chip bg-color">RabbitMQ</span>
+                </a>
+                
+            </div>
+            
+            <div class="post-info">
+                
+                <span class="post-cate">
+                <!--<span class="post-cate" style="margin-right: 0px">-->
+                    <i class="fa fa-bookmark fa-fw icon-category"></i>
+                    
+                    <a href="/categories/AMQP/" class="post-category" target="_blank">
+                        AMQP
+                    </a>
+                    
+                </span>
+                
+
+                <span class="post-date">
+                    <i class="fa fa-clock-o fa-fw"></i>2019-01-27
+                </span>
+				
+				
+                    <span id="busuanzi_container_page_pv" class="post-read">
+                    <i class="fa fa-eye fa-fw"></i>阅读 <span id="busuanzi_value_page_pv"></span>
+				
+            </span></div>
+        </div>
+        <hr>
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="一、RabbitMQ的事务机制"><a href="#一、RabbitMQ的事务机制" class="headerlink" title="一、RabbitMQ的事务机制"></a>一、RabbitMQ的事务机制</h2><p>在使用 RabbitMQ 的时候，我们可以通过消息持久化操作来解决因为服务器的异常奔溃导致的消息丢失，除此之外我们还会遇到一个问题，当消息的发布者在将消息发送出去之后，消息到底有没有正确到达 broker 代理服务器呢？如果不进行特殊配置的话，默认情况下发布操作是不会返回任何信息给生产者的，也就是默认情况下我们的生产者是不知道消息有没有正确到达 broker 的，如果在消息到达 broker 之前已经丢失的话，持久化操作也解决不了这个问题，因为消息根本就没到达代理服务器。</p>
+<p>RabbitMQ 为我们提供了两种方式：</p>
+<ol>
+<li><p>通过 AMQP 事务机制实现，这也是 AMQP 协议层面提供的解决方案；</p>
+</li>
+<li><p>通过将 channel 设置成 confirm 模式来实现；</p>
+</li>
+</ol>
+<h2 id="二、AMQP层面上的事物控制机制"><a href="#二、AMQP层面上的事物控制机制" class="headerlink" title="二、AMQP层面上的事物控制机制"></a>二、AMQP层面上的事物控制机制</h2><p>RabbitMQ 中与事务机制有关的方法有三个： txSelect(), txCommit()以及txRollback(), txSelect 用于将当前 channel 设置成事务模式，txCommit 用于提交事务， txRollback 用于回滚事。，在通过 txSelect 开启事务之后，我们便可以发布消息给 broker 代理服务器了，如果 txCommit 提交成功了，则消息一定到达了 broker 了，如果在 txCommit 执行之前 broker 异常崩溃或者由于其他原因抛出异常，这个时候我们便可以捕获异常通过 txRollback 回滚事务。</p>
+<p>使用AMQP层面上的事务机制时，Producer的代码如下:</p>
+<pre><code>package com.carleviets.tx;
+
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.Connection;
+import com.rabbitmq.client.ConnectionFactory;
+
+import java.io.IOException;
+import java.util.concurrent.TimeoutException;
+
+public class AMQPTxProducer {
+    public static final String QUEUE_NAME = &quot;hello&quot;;
+
+    public static void main(String[] args) throws IOException, TimeoutException {
+        //实例化工厂
+        ConnectionFactory connectionFactory = new ConnectionFactory();
+        connectionFactory.setHost(&quot;localhost&quot;);
+        connectionFactory.setPort(5672);
+        connectionFactory.setVirtualHost(&quot;/test&quot;);
+        connectionFactory.setUsername(&quot;carleviets&quot;);
+        connectionFactory.setPassword(&quot;123456&quot;);
+
+        //通过连接工厂获取连接
+        Connection connection = connectionFactory.newConnection();
+
+        //在连接上创建通道
+        Channel channel = connection.createChannel();
+        //开启事务
+        channel.txSelect();
+        try {
+            //在通道上声明队列
+            channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+            String msg = &quot;Hello RabbitMQ&quot;;
+            channel.basicPublish(&quot;&quot;, QUEUE_NAME, null, msg.getBytes(&quot;utf-8&quot;));
+            int a = 1 / 0;
+            channel.txCommit();
+        } catch (IOException e) {
+            e.printStackTrace();
+            channel.txRollback();
+        }
+
+        System.out.println(&quot;消息发送成功!&quot;);
+        //关闭资源
+        channel.close();
+        connection.close();
+    }
+}
+</code></pre><p>事务确实能够解决 producer 与 broker 之间消息确认的问题，只有消息成功被 broker 接受，事务提交才能成功，否则我们便可以在捕获异常进行事务回滚操作同时进行消息重发，但是使用事务机制的话会降低 RabbitMQ 的性能。</p>
+<h2 id="三、Confirm-确认模式"><a href="#三、Confirm-确认模式" class="headerlink" title="三、Confirm 确认模式"></a>三、Confirm 确认模式</h2><h4 id="1、Confirm-确认模式原理"><a href="#1、Confirm-确认模式原理" class="headerlink" title="1、Confirm 确认模式原理"></a>1、Confirm 确认模式原理</h4><p>生产者将信道设置成 confirm 模式，一旦信道进入 confirm 模式，所有在该信道上面发布的消息都会被指派一个唯一的 ID(从 1 开始)，一旦消息被投递到所有匹配的队列之后， broker 就会发送一个确认给生产者（包含消息的唯一 ID）,这就使得生产者知道消息已经正确到达目的队列了，如果消息和队列是可持久化的，那么确认消息会将消息写入磁盘之后发出， broker 回传给生产者的确认消息中 deliver-tag 域包含了确认消息的序列号，此外 broker 也可以设置basic.ack 的 multiple 域，表示到这个序列号之前的所有消息都已经得到了处理。</p>
+<p>confirm 模式最大的好处在于他是异步的，一旦发布一条消息，生产者应用程序就可以在等信道返回确认的同时继续发送下一条消息，当消息最终得到确认之后，生产者应用便可以通过回调方法来处理该确认消息，如果 RabbitMQ 因为自身内部错误导致消息丢失，就会发送一条 nack 消息，生产者应用程序同样可以在回调方法中处理该 nack 消息。</p>
+<p>在 channel 被设置成 confirm 模式之后，所有被 publish 的后续消息都将被 confirm（即 ack） 或者被 nack 一次。但是没有对消息被confirm 的快慢做任何保证，并且同一条消息不会既被 confirm 又被 nack 。</p>
+<p>实现生产者 confirm 机制有三种方式:</p>
+<ol>
+<li><p>普通 confirm 模式：每发送一条消息后，调用 waitForConfirms()方法，等待服务器端 confirm。实际上是一种串行 confirm 。</p>
+</li>
+<li><p>批量 confirm 模式：每发送一批消息后，调用 waitForConfirms()方法，等待服务器端 confirm。</p>
+</li>
+<li><p>异步 confirm模式：提供一个回调方法，服务端 confirm 了一条或者多条消息后 Client端会回调这个方法。</p>
+</li>
+</ol>
+<h4 id="2、串行Confirm"><a href="#2、串行Confirm" class="headerlink" title="2、串行Confirm"></a>2、串行Confirm</h4><p>使用串行Confirm来实现事务控制的代码样例如下:</p>
+<pre><code>package com.carleviets.tx;
+
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.Connection;
+import com.rabbitmq.client.ConnectionFactory;
+
+import java.io.IOException;
+import java.util.concurrent.TimeoutException;
+
+public class SyncConfirmProducer {
+    public static final String QUEUE_NAME = &quot;hello&quot;;
+
+    public static void main(String[] args) throws IOException, TimeoutException, InterruptedException {
+        //创建连接工厂
+        ConnectionFactory connectionFactory = new ConnectionFactory();
+        connectionFactory.setHost(&quot;localhost&quot;);
+        connectionFactory.setPort(5672);
+        connectionFactory.setVirtualHost(&quot;/test&quot;);
+        connectionFactory.setUsername(&quot;carleviets&quot;);
+        connectionFactory.setPassword(&quot;123456&quot;);
+
+        //通过连接工厂获取连接对象
+        Connection connection=connectionFactory.newConnection();
+
+        //通过连接对象获取连接通道
+        Channel channel=connection.createChannel();
+
+        //开启confirm模式
+        channel.confirmSelect();
+        //在通道上声明队列
+        channel.queueDeclare(QUEUE_NAME, false, false, false,null);
+        String msg=&quot;hello&quot;;
+        channel.basicPublish(&quot;&quot;, QUEUE_NAME, null, msg.getBytes(&quot;utf-8&quot;));
+        if(channel.waitForConfirms()) {
+            System.out.println(&quot;消息正确到达中间件....&quot;);
+        }else{
+            //在这儿采取补救措施
+            System.out.println(&quot;消息发送失败...&quot;);
+        }
+
+        //关闭资源
+        channel.close();
+        connection.close();
+    }
+
+}
+</code></pre><h4 id="3、异步Confirm"><a href="#3、异步Confirm" class="headerlink" title="3、异步Confirm"></a>3、异步Confirm</h4><p>异步 confirm 模式的实现比较复杂， Channel 对象提供的ConfirmListener()回调方法只包含 deliveryTag（当前 Chanel 发出的消息序号），我们需要自己为每一个 Channel 维护一个 unconfirm 的消息序号集合，每publish 一条数据，集合中元素加 1，每回调一次 handleAck 方法， unconfirm集合删掉相应的一条（multiple=false）或多条（multiple=true）记录。从程序运行效率上看，这个 unconfirm 集合最好采用有序集合 SortedSet 存储结构。实际上， SDK 中的 waitForConfirms()方法也是通过 SortedSet 维护消息序号的。异步Confirm模式的代码实现样例如下:</p>
+<pre><code>package com.carleviets.tx;
+
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.ConfirmListener;
+import com.rabbitmq.client.Connection;
+import com.rabbitmq.client.ConnectionFactory;
+
+import java.io.IOException;
+import java.util.Collections;
+import java.util.SortedSet;
+import java.util.TreeSet;
+import java.util.concurrent.TimeoutException;
+
+public class AsyncConfirmProducer {
+    public static final String QUEUE_NAME=&quot;hello&quot;;
+
+    public static void main(String[] args) throws IOException, TimeoutException {
+        //创建连接工厂
+        ConnectionFactory connectionFactory=new ConnectionFactory();
+        connectionFactory.setHost(&quot;localhost&quot;);
+        connectionFactory.setPort(5672);
+        connectionFactory.setVirtualHost(&quot;/test&quot;);
+        connectionFactory.setUsername(&quot;carleviets&quot;);
+        connectionFactory.setPassword(&quot;123456&quot;);
+
+        //通过连接工厂获取到连接对象
+        Connection connection=connectionFactory.newConnection();
+
+        //维护信息发送回执id
+        final SortedSet&lt;Long&gt; confirmSet= Collections.synchronizedSortedSet(new TreeSet&lt;Long&gt;());
+
+        //通过连接对象打开通道
+        Channel channel=connection.createChannel();
+        //在通道上声明队列
+        channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+
+        //开启Confirm模式
+        channel.confirmSelect();
+        String msg=&quot;Hello RabbitMQ&quot;;
+
+        //添加channel监听
+        channel.addConfirmListener(new ConfirmListener() {
+            //发送成功的情况
+            @Override
+            public void handleAck(long deliveryTag, boolean multiple) throws IOException {
+                if(multiple){
+                    System.out.println(&quot;handleAck--&gt;success--&gt;multiple&quot;+deliveryTag);
+                    //清除前deliveryTag项标识id
+                    confirmSet.headSet(deliveryTag+1).clear();
+                }else{
+                    System.out.println(&quot;handleAck--&gt;success--&gt;single&quot;+deliveryTag);
+                    confirmSet.remove(deliveryTag);
+                }
+            }
+
+            //发送失败的情况
+            @Override
+            public void handleNack(long deliveryTag, boolean multiple) throws IOException {
+                if(multiple){
+                    System.out.println(&quot;handleAck--&gt;failed--&gt;multiple&quot;+deliveryTag);
+                    //TODO 正常情况下要把失败的id拿出来进行发送
+                }else{
+                    System.out.println(&quot;headAck--&gt;failed--&gt;multiple&quot;+deliveryTag);
+                }
+            }
+        });
+
+        while (true){
+            Long seqNo=channel.getNextPublishSeqNo();
+            channel.basicPublish(&quot;&quot;, QUEUE_NAME, null, msg.getBytes(&quot;utf-8&quot;));
+            confirmSet.add(seqNo);
+        }
+    }
+}
+</code></pre><h2 id="四、Consumer代码实现"><a href="#四、Consumer代码实现" class="headerlink" title="四、Consumer代码实现"></a>四、Consumer代码实现</h2><p>最后，所有上述消息生产者对应的消费者端的Java代码实现如下:</p>
+<pre><code>package com.carleviets.tx;
+
+import com.rabbitmq.client.*;
+
+import java.io.IOException;
+import java.util.concurrent.TimeoutException;
+
+public class Receiver {
+    public static final String QUEUE_NAME=&quot;hello&quot;;
+
+    public static void main(String[] args) throws IOException, TimeoutException {
+        //创建连接工厂
+        ConnectionFactory connectionFactory=new ConnectionFactory();
+        connectionFactory.setHost(&quot;localhost&quot;);
+        connectionFactory.setPort(5672);
+        connectionFactory.setVirtualHost(&quot;/test&quot;);
+        connectionFactory.setUsername(&quot;carleviets&quot;);
+        connectionFactory.setPassword(&quot;123456&quot;);
+
+        //通过连接工厂获取到连接
+        Connection connection=connectionFactory.newConnection();
+
+        //通过连接获取通道
+        Channel channel=connection.createChannel();
+
+        //在通道上声明队列
+        channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+
+        //创建消费者对象
+        Consumer consumer=new DefaultConsumer(channel){
+            @Override
+            public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException {
+                String msg=new String(body, &quot;utf-8&quot;);
+                System.out.println(&quot;接收方收到消息--&gt;&quot;+msg);
+            }
+        };
+
+        //将队列加入监听
+        channel.basicConsume(QUEUE_NAME, true, consumer);
+    }
+}
+</code></pre>
+            </div>
+            <hr>
+
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            <div class="reprint">
+                <p>
+                    <span class="reprint-tip">转载请注明: </span>
+                    <a href="http://www.carleviets.club" class="b-link-green">江火似流萤的个人博客</a>
+                    <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                    <a href="/2019/01/27/高级消息队列（四）——RabbitMQ事务管理/" class="b-link-green">高级消息队列(四)——RabbitMQ事务管理</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">上一篇</div>
+            <div class="card">
+                <a href="/2019/01/27/高级消息队列（五）——Spring集成RabbitMQ/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="高级消息队列(五)——Spring集成RabbitMQ">
+                        
+                        <span class="card-title">高级消息队列(五)——Spring集成RabbitMQ</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">一、Spring集成RabbitMQ1、pom坐标依赖&lt;!-- spring-rabbit依赖 --&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;org.springframework.amqp&l</div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-27
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/AMQP/" class="post-category" target="_blank">
+                                    AMQP
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/RabbitMQ/" target="_blank">
+                        <span class="chip bg-color">RabbitMQ</span>
+                    </a>
+                    
+                    <a href="/tags/Spring/" target="_blank">
+                        <span class="chip bg-color">Spring</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">下一篇</div>
+            <div class="card">
+                <a href="/2019/01/27/高级消息队列（三）——RabbitMQ的六种模式/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="高级消息队列(三)——RabbitMQ的几种模式">
+                        
+                        <span class="card-title">高级消息队列(三)——RabbitMQ的几种模式</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">一、工作队列-消息轮询分发(Round-robin)对于前面的RabbitMQ入门程序，消息的消费者只有一个，当消息量非常大时，单个消费者处理消息就会变得很慢，同时给节点页带来很大压力，导致消息堆积越来越多。 对于这种情况， Rabbitm</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-27
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/AMQP/" class="post-category" target="_blank">
+                                    AMQP
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/RabbitMQ/" target="_blank">
+                        <span class="chip bg-color">RabbitMQ</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+    </div>
+    <div class="col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title">目录</div>
+            <div id="toc-content">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+			<!--
+            本站由&copy;<a href="https://blinkfox.github.io/" target="_blank">Blinkfox</a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+			-->
+
+            
+			
+                <br>
+                <span id="busuanzi_container_site_pv">
+                    本站总访问量 <span id="busuanzi_value_site_pv" style="color: #fff;"></span> 次,&nbsp;
+                </span>
+				<span id="busuanzi_container_site_uv">
+                    访客数 <span id="busuanzi_value_site_uv" style="color: #fff;"></span> 人.
+                </span>
+			
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis"><a href="https://github.com/carleviets" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+    <i class="fa fa-github"></i>
+</a>
+<a href="mailto:carleviets0420@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+    <i class="fa fa-envelope-open"></i>
+</a>
+<a href="#!" class="tooltipped" data-tooltip="QQ联系我: 892324283" data-position="top" data-delay="50">
+    <i class="fa fa-qq"></i>
+</a>
+
+<a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+    <i class="fa fa-rss"></i>
+</a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title">搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字" class="search-input" autofocus>
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/js/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', '');
+</script>
+
+
+
+    <script src="/libs/others/clicklove.js"></script>
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>
