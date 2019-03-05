@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.carleviets.club/"/>
-  <updated>2019-02-08T02:38:30.979Z</updated>
+  <updated>2019-03-05T14:17:15.191Z</updated>
   <id>http://www.carleviets.club/</id>
   
   <author>
@@ -15,6 +15,58 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hibernate对象的生命周期（二）</title>
+    <link href="http://www.carleviets.club/2019/03/05/Hibernate%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
+    <id>http://www.carleviets.club/2019/03/05/Hibernate对象的生命周期（二）/</id>
+    <published>2019-03-05T14:11:09.179Z</published>
+    <updated>2019-03-05T14:17:15.191Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;一、Hibernate对象状态&quot;&gt;&lt;a href=&quot;#一、Hibernate对象状态&quot; class=&quot;headerlink&quot; title=&quot;一、Hibernate对象状态&quot;&gt;&lt;/a&gt;一、Hibernate对象状态&lt;/h2&gt;&lt;p&gt;&lt;img
+        
+      
+    
+    </summary>
+    
+      <category term="Hibernate" scheme="http://www.carleviets.club/categories/Hibernate/"/>
+    
+    
+      <category term="Hibernate" scheme="http://www.carleviets.club/tags/Hibernate/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hibernate入门（一）</title>
+    <link href="http://www.carleviets.club/2019/03/04/Hibernate%E5%85%A5%E9%97%A8(%E4%B8%80)/"/>
+    <id>http://www.carleviets.club/2019/03/04/Hibernate入门(一)/</id>
+    <published>2019-03-04T13:28:25.179Z</published>
+    <updated>2019-03-05T14:20:38.952Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;一、hibernate基本使用&quot;&gt;&lt;a href=&quot;#一、hibernate基本使用&quot; class=&quot;headerlink&quot; title=&quot;一、hibernate基本使用&quot;&gt;&lt;/a&gt;一、hibernate基本使用&lt;/h2&gt;&lt;h4
+        
+      
+    
+    </summary>
+    
+      <category term="Hibernate" scheme="http://www.carleviets.club/categories/Hibernate/"/>
+    
+    
+      <category term="Hibernate" scheme="http://www.carleviets.club/tags/Hibernate/"/>
+    
+  </entry>
   
   <entry>
     <title>Nginx与负载均衡</title>
@@ -487,32 +539,6 @@
     
     
       <category term="Maven依赖" scheme="http://www.carleviets.club/tags/Maven%E4%BE%9D%E8%B5%96/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SSM整合时高可用代码总结</title>
-    <link href="http://www.carleviets.club/2019/01/13/SSM%E6%95%B4%E5%90%88%E6%97%B6%E9%AB%98%E5%8F%AF%E7%94%A8%E4%BB%A3%E7%A0%81%E6%80%BB%E7%BB%93/"/>
-    <id>http://www.carleviets.club/2019/01/13/SSM整合时高可用代码总结/</id>
-    <published>2019-01-13T12:36:00.000Z</published>
-    <updated>2019-01-16T08:57:48.562Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h3 id=&quot;1、BaseDAO&quot;&gt;&lt;a href=&quot;#1、BaseDAO&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="SSM整合" scheme="http://www.carleviets.club/categories/SSM%E6%95%B4%E5%90%88/"/>
-    
-    
-      <category term="常用工具类" scheme="http://www.carleviets.club/tags/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7%E7%B1%BB/"/>
     
   </entry>
   
