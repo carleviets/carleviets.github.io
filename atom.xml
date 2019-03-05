@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.carleviets.club/"/>
-  <updated>2019-03-05T14:17:15.191Z</updated>
+  <updated>2019-03-05T14:51:33.210Z</updated>
   <id>http://www.carleviets.club/</id>
   
   <author>
@@ -17,11 +17,63 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Hibernate对象的生命周期（二）</title>
-    <link href="http://www.carleviets.club/2019/03/05/Hibernate%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
-    <id>http://www.carleviets.club/2019/03/05/Hibernate对象的生命周期（二）/</id>
+    <title>Hibernate（四）——SchemaExport的使用</title>
+    <link href="http://www.carleviets.club/2019/03/05/Hibernate%EF%BC%88%E5%9B%9B%EF%BC%89%E2%80%94%E2%80%94SchemaExport%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+    <id>http://www.carleviets.club/2019/03/05/Hibernate（四）——SchemaExport的使用/</id>
+    <published>2019-03-05T14:46:16.075Z</published>
+    <updated>2019-03-05T14:51:33.210Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;Hibernate发布的几个版本对于使用SchemaExport导出数据库，变化还是有点大的。本文使用的是最新发布版本5.3.7，Hibernate
+        
+      
+    
+    </summary>
+    
+      <category term="Hibernate" scheme="http://www.carleviets.club/categories/Hibernate/"/>
+    
+    
+      <category term="Hibernate" scheme="http://www.carleviets.club/tags/Hibernate/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hibernate（二）——日志配置详解</title>
+    <link href="http://www.carleviets.club/2019/03/05/Hibernate%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%E6%97%A5%E5%BF%97%E9%85%8D%E7%BD%AE%E8%AF%A6%E8%A7%A3/"/>
+    <id>http://www.carleviets.club/2019/03/05/Hibernate（二）——日志配置详解/</id>
+    <published>2019-03-05T14:37:23.260Z</published>
+    <updated>2019-03-05T14:51:05.138Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;一、Hibernate日志配置&quot;&gt;&lt;a href=&quot;#一、Hibernate日志配置&quot; class=&quot;headerlink&quot; title=&quot;一、Hibernate日志配置&quot;&gt;&lt;/a&gt;一、Hibernate日志配置&lt;/h2&gt;&lt;h4
+        
+      
+    
+    </summary>
+    
+      <category term="Hibernate" scheme="http://www.carleviets.club/categories/Hibernate/"/>
+    
+    
+      <category term="Hibernate" scheme="http://www.carleviets.club/tags/Hibernate/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hibernate（三）——对象的生命周期</title>
+    <link href="http://www.carleviets.club/2019/03/05/Hibernate%EF%BC%88%E4%B8%89%EF%BC%89%E2%80%94%E2%80%94%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/"/>
+    <id>http://www.carleviets.club/2019/03/05/Hibernate（三）——对象的生命周期/</id>
     <published>2019-03-05T14:11:09.179Z</published>
-    <updated>2019-03-05T14:17:15.191Z</updated>
+    <updated>2019-03-05T14:51:20.448Z</updated>
     
     <summary type="html">
     
@@ -43,11 +95,11 @@
   </entry>
   
   <entry>
-    <title>Hibernate入门（一）</title>
-    <link href="http://www.carleviets.club/2019/03/04/Hibernate%E5%85%A5%E9%97%A8(%E4%B8%80)/"/>
-    <id>http://www.carleviets.club/2019/03/04/Hibernate入门(一)/</id>
+    <title>Hibernate（一）——入门</title>
+    <link href="http://www.carleviets.club/2019/03/04/Hibernate(%E4%B8%80)%E2%80%94%E2%80%94%E5%85%A5%E9%97%A8/"/>
+    <id>http://www.carleviets.club/2019/03/04/Hibernate(一)——入门/</id>
     <published>2019-03-04T13:28:25.179Z</published>
-    <updated>2019-03-05T14:20:38.952Z</updated>
+    <updated>2019-03-05T14:50:50.513Z</updated>
     
     <summary type="html">
     
@@ -487,58 +539,6 @@
     
     
       <category term="邮件发送" scheme="http://www.carleviets.club/tags/%E9%82%AE%E4%BB%B6%E5%8F%91%E9%80%81/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>实用工具类总结</title>
-    <link href="http://www.carleviets.club/2019/01/13/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7%E7%B1%BB%E6%80%BB%E7%BB%93/"/>
-    <id>http://www.carleviets.club/2019/01/13/实用工具类总结/</id>
-    <published>2019-01-13T12:40:00.000Z</published>
-    <updated>2019-01-16T08:58:42.413Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h3 id=&quot;1-1、AssertUtil&quot;&gt;&lt;a href=&quot;#1-1、AssertUtil&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="Java" scheme="http://www.carleviets.club/categories/Java/"/>
-    
-    
-      <category term="常用工具类" scheme="http://www.carleviets.club/tags/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7%E7%B1%BB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SSM整合依赖及配置总结</title>
-    <link href="http://www.carleviets.club/2019/01/13/SSM%E6%95%B4%E5%90%88%E6%80%BB%E7%BB%93/"/>
-    <id>http://www.carleviets.club/2019/01/13/SSM整合总结/</id>
-    <published>2019-01-13T12:38:00.000Z</published>
-    <updated>2019-01-16T08:57:59.371Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;一、所需引入的maven依赖&quot;&gt;&lt;a href=&quot;#一、所需引入的maven依赖&quot; class=&quot;headerlink&quot; title=&quot;一、所需引入的maven依赖&quot;&gt;&lt;/a&gt;一、所需引入的maven依赖&lt;/h2&gt;&lt;h3 id=&quot;1-1测试依赖&quot;&gt;&lt;a
-        
-      
-    
-    </summary>
-    
-      <category term="SSM整合" scheme="http://www.carleviets.club/categories/SSM%E6%95%B4%E5%90%88/"/>
-    
-    
-      <category term="Maven依赖" scheme="http://www.carleviets.club/tags/Maven%E4%BE%9D%E8%B5%96/"/>
     
   </entry>
   

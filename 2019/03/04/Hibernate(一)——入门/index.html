@@ -5,11 +5,10 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Hibernate对象的生命周期（二）, 江火似流萤的个人博客">
-    <meta name="description" content="一、Hibernate对象状态
-如上图所示，使用new关键字构件对象，该对象的状态是瞬时状态。
-1. 瞬时状态转为持久化状态
-使用Session对象的save()或saveOrUpdate()方法保存对象后，该对象的状态由瞬时状态转换为持久">
+    <meta name="keywords" content="Hibernate（一）——入门, 江火似流萤的个人博客">
+    <meta name="description" content="一、hibernate基本使用1.1、maven依赖&amp;lt;!-- hibernate核心依赖 --&amp;gt;
+&amp;lt;dependency&amp;gt;
+  &amp;lt;groupId&amp;gt;org.hibernate&amp;lt;/groupId&amp;gt;">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +16,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Hibernate对象的生命周期（二） | 江火似流萤的个人博客</title>
+    <title>Hibernate（一）——入门 | 江火似流萤的个人博客</title>
     <link rel="icon" type="image/png" href="/medias/favicon.ico">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -258,13 +257,13 @@
 
 
 
-<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
+<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        Hibernate对象的生命周期（二）
+                        Hibernate（一）——入门
                     </div>
                 </div>
             </div>
@@ -395,7 +394,7 @@
                 
 
                 <span class="post-date">
-                    <i class="fa fa-clock-o fa-fw"></i>2019-03-05
+                    <i class="fa fa-clock-o fa-fw"></i>2019-03-04
                 </span>
 				
 				
@@ -407,246 +406,199 @@
         <hr>
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="一、Hibernate对象状态"><a href="#一、Hibernate对象状态" class="headerlink" title="一、Hibernate对象状态"></a>一、Hibernate对象状态</h2><p><img src="http://wx1.sinaimg.cn/mw690/0060lm7Tly1g0s80x6uvcj30k90a5q4k.jpg" alt=""></p>
-<p>如上图所示，使用new关键字构件对象，该对象的状态是瞬时状态。</p>
-<p><strong>1. 瞬时状态转为持久化状态</strong></p>
-<p>使用Session对象的save()或saveOrUpdate()方法保存对象后，该对象的状态由瞬时状态转换为持久化状态。使用Session对象的get()或load()方法获取对象，该对象的状态也是持久化状态。</p>
-<p><strong>2. 持久化状态转为移除状态</strong></p>
-<p>执行Session对象的delete()方法后，对象由原来的持久状态变为移除状态，但仍然由持久化上下文托管，直到工作单元完成。换句话说，移除状态的对象不应该被重用。移除状态的对象具有OID，Session中有或者无，数据库记录无。</p>
-<p><strong>3. 持久化状态转为游离状态</strong></p>
-<p>执行了Session对象的evict()、clear()或close()方法，对象由原来的持久化状态转为游离状态。</p>
-<p><strong>4. 游离状态转为持久化状态</strong></p>
-<p>重新获取Session对象，执行Session对象的update()或saveOrUpdate()方法，对象由游离状态转为持久化状态，该对象再次与Session对象相关联。</p>
-<p><strong>5. 游离状态转为移除状态</strong></p>
-<p>执行Session对象的delete()方法，对象由游离状态转为移除状态。处于瞬时状态、游离状态和移除状态的对象不再被其他对象引用时，会被Java垃圾回收机制处理。</p>
-<h2 id="二、HibernateUtil实用工具类"><a href="#二、HibernateUtil实用工具类" class="headerlink" title="二、HibernateUtil实用工具类"></a>二、HibernateUtil实用工具类</h2><pre><code>package com.carleviets.utils;
+                <h2 id="一、hibernate基本使用"><a href="#一、hibernate基本使用" class="headerlink" title="一、hibernate基本使用"></a>一、hibernate基本使用</h2><h4 id="1-1、maven依赖"><a href="#1-1、maven依赖" class="headerlink" title="1.1、maven依赖"></a>1.1、maven依赖</h4><pre><code>&lt;!-- hibernate核心依赖 --&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;org.hibernate&lt;/groupId&gt;
+  &lt;artifactId&gt;hibernate-core&lt;/artifactId&gt;
+  &lt;version&gt;5.3.7.Final&lt;/version&gt;
+&lt;/dependency&gt;
 
+&lt;!-- mysql 驱动依赖 --&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;mysql&lt;/groupId&gt;
+  &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+  &lt;version&gt;8.0.13&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre><h4 id="1-2、核心配置文件hibernate-cfg-xml"><a href="#1-2、核心配置文件hibernate-cfg-xml" class="headerlink" title="1.2、核心配置文件hibernate.cfg.xml"></a>1.2、核心配置文件hibernate.cfg.xml</h4><p>在resources资源目录下，创建hibernate.cfg.xml配置文件:</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE hibernate-configuration PUBLIC
+        &quot;-//Hibernate/Hibernate Configuration DTD 3.0//EN&quot;
+        &quot;http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd&quot;&gt;
+&lt;hibernate-configuration&gt;
+    &lt;session-factory&gt;
+        &lt;!--配置数据库连接--&gt;
+        &lt;property name=&quot;connection.driver_class&quot;&gt;com.mysql.cj.jdbc.Driver&lt;/property&gt;
+        &lt;property name=&quot;connection.url&quot;&gt;jdbc:mysql://localhost:3306/hibernate?useSSL=false&amp;amp;serverTimezone=GMT%2B8&lt;/property&gt;
+        &lt;property name=&quot;connection.username&quot;&gt;root&lt;/property&gt;
+        &lt;property name=&quot;connection.password&quot;&gt;12345&lt;/property&gt;
+        &lt;!--指定所使用的数据库方言--&gt;
+        &lt;property name=&quot;dialect&quot;&gt;org.hibernate.dialect.MySQL8Dialect&lt;/property&gt;
+        &lt;!--数据库更新方式--&gt;
+        &lt;!--
+            update：最常用的，执行语句前先检查数据库是否存在表，不存在时创建再执行语句，存在时直接执行语句
+            create、create-drop:每次执行前都重现建表再执行语句
+            validate：检查是否存在表，如果不存在直接抛出异常
+        --&gt;
+        &lt;property name=&quot;hibernate.hbm2ddl.auto&quot;&gt;update&lt;/property&gt;
+        &lt;!--控制台打印sql--&gt;
+        &lt;property name=&quot;show_sql&quot;&gt;true&lt;/property&gt;
+        &lt;!--格式化sql--&gt;
+        &lt;property name=&quot;format_sql&quot;&gt;true&lt;/property&gt;
+        &lt;!--是否显示注释，用以指出什么操作产生的SQL语句--&gt;
+        &lt;property name=&quot;use_sql_comments&quot;&gt;true&lt;/property&gt;
+        &lt;!--引入映射文件--&gt;
+        &lt;mapping resource=&quot;com/carleviets/pojo/User.hbm.xml&quot;/&gt;
+
+    &lt;/session-factory&gt;
+&lt;/hibernate-configuration&gt;
+</code></pre><h4 id="1-3、实体类"><a href="#1-3、实体类" class="headerlink" title="1.3、实体类"></a>1.3、实体类</h4><pre><code>package com.carleviets.pojo;
+
+import java.io.Serializable;
+import java.sql.Blob;
+import java.sql.Clob;
+
+public class User implements Serializable{
+
+    private static final long serialVersionUID = 490983181612038387L;
+
+    private Integer id;
+    private String userName;
+    private String password;
+    private Clob info;
+    private Blob image;
+
+      //===============getters and setters===============
+
+}
+</code></pre><p>在User类所在的包下，编写映射文件User.hbm.xml:</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE hibernate-mapping PUBLIC
+        &quot;-//Hibernate/Hibernate Mapping DTD 3.0//EN&quot;
+        &quot;http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd&quot;&gt;
+
+&lt;!--package如果不写，class必须使用类的完全限定名，这里写了package指定包名，class可以只写类名--&gt;
+&lt;hibernate-mapping package=&quot;com.carleviets.pojo&quot;&gt;
+
+    &lt;!--name属性对应类的名称，table属性指定数据库中的表
+        该类必须提供公共的无参构造方法-通过反射产生对象
+        属性用private修饰,并且生成对应的get/set方法
+        类不能用final来修饰-hibernate需要产生代理类(cglib)，否则出错
+        table可选，表示POJO类对应数据库中的表名；如果不写默认是类名
+    --&gt;
+    &lt;class name=&quot;User&quot; table=&quot;t_user&quot;&gt;
+        &lt;!--hibernate的主键生成策略--&gt;
+        &lt;id name=&quot;id&quot;&gt;
+            &lt;!--
+                主键生成策略
+                increment:用于为long,short或者int类型生成唯一标识,只有在没有其他进程往
+                          同一张表中插入数据时才能使用.在集群下不要使用
+                identity:对DB2,MySQL, MS SQL Server, Sybase
+                         和HypersonicSQL的内置标识字段提供支持。
+                         返回的标识符是long, short或者int类型的。
+                sequence:在支持序列的数据库中使用(oracle)，
+                         返回的标识符是long, short或者int类型的。
+                        &lt;generator class=&quot;sequence&quot;&gt;
+                            &lt;param name=&quot;sequence&quot;&gt;user_sequence&lt;/param&gt;
+                        &lt;/generator&gt;
+                uuid:UUID被编码为一个32位16进行数字的字符串.
+                native:根据底层数据库的能力选择identity,sequence 或者hilo中的一个.
+                assigned:自己指定主键.
+            --&gt;
+            &lt;generator class=&quot;native&quot;/&gt;
+        &lt;/id&gt;
+
+        &lt;!--
+            name:指明POJO类属性名称(区分大小写)
+            column:表示对应数据库表的列名，如果不写则数据库中列名和属性名相同两种写法效果一致
+        --&gt;
+        &lt;property name=&quot;userName&quot; column=&quot;username&quot; type=&quot;string&quot;&gt;&lt;/property&gt;
+        &lt;property name=&quot;password&quot; type=&quot;string&quot;&gt;
+            &lt;column name=&quot;password&quot;&gt;&lt;/column&gt;
+        &lt;/property&gt;
+
+        &lt;!--大对象类型必须指定type属性--&gt;
+        &lt;property name=&quot;info&quot; type=&quot;java.sql.Clob&quot;/&gt;
+        &lt;property name=&quot;image&quot; type=&quot;java.sql.Blob&quot;/&gt;
+    &lt;/class&gt;
+
+&lt;/hibernate-mapping&gt;
+</code></pre><h4 id="1-4、测试类"><a href="#1-4、测试类" class="headerlink" title="1.4、测试类"></a>1.4、测试类</h4><pre><code>package com.carleviets;
+
+import com.carleviets.pojo.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.mapping.MetadataSource;
+import org.junit.Test;
 
-public class HibernateUtil {
+public class HibernateTest {
 
-    //将开启的session绑定到线程本地对象中(类似于getCurrentSession())
-    private static final ThreadLocal&lt;Session&gt; THREAD_LOCAL =new ThreadLocal&lt;&gt;();
+    @Test
+    public void test(){
+        SessionFactory sessionFactory=null;
+        Session session=null;
+        Transaction tx=null;
 
-    private static StandardServiceRegistry serviceRegistry=null;
-    private static SessionFactory sessionFactory=null;
-    private static Session session=null;
-
-    /**
-     * 在静态初始化块中初始化SessionFactory
-     */
-    static {
         try {
-            serviceRegistry=new StandardServiceRegistryBuilder()
+            //=============== 3.x版本的声明 ===============
+
+            //创建Configuration对象,new Configuration()会加载hibernate.properties文件，
+            //调用configure()方法会调用hibernate.cfg.xml
+            //Configuration cfg=new Configuration().configure();
+            //创建SessionFactory对象
+            //sessionFactory=cfg.buildSessionFactory();
+
+            //=============== 4.x版本的声明 ===============
+
+            //创建并加载hibernate.cfg.xml配置文件
+            //Configuration cfg=new Configuration().configure();
+            //创建StandardServiceRegistry服务对象
+            //StandardServiceRegistry serviceRegistry=new StandardServiceRegistryBuilder()
+            //       .applySettings(cfg.getProperties()).build();
+            //创建SessionFactory
+            //sessionFactory=cfg.buildSessionFactory(serviceRegistry);
+
+            //=============== 5.x版本的声明 ===============
+
+            //创建StandardServiceRegistry服务对象并加载hibernate.cfg.xml配置文件
+            StandardServiceRegistry serviceRegistry=new StandardServiceRegistryBuilder()
                     .configure().build();
+            //创建SessionFactory
             sessionFactory=new MetadataSources(serviceRegistry)
                     .buildMetadata().buildSessionFactory();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
-    /**
-     * 获取Session的静态方法
-     * @return
-     */
-    public static Session getSession(){
-        session=THREAD_LOCAL.get();
-        if(session==null){
-            if(sessionFactory==null){
-                rebuildSessionFactory();
+            //开启Session
+            session=sessionFactory.openSession();
+            //开启事务
+            tx=session.beginTransaction();
+
+            //数据操作
+            User user=new User();
+            user.setUserName(&quot;张三&quot;);
+            user.setPassword(&quot;12345&quot;);
+
+            //保存数据
+            session.save(user);
+
+            //事务提交
+            tx.commit();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+            //回滚事务
+            tx.rollback();
+        }finally {
+            //关闭session
+            if(session!=null &amp;&amp; session.isOpen()){
+                session.close();
             }
-
-            session=(sessionFactory!=null)?sessionFactory.openSession():null;
-            THREAD_LOCAL.set(session);
-        }
-        return session;
-    }
-
-    private static void rebuildSessionFactory() {
-        try {
-            serviceRegistry=new StandardServiceRegistryBuilder()
-                    .configure().build();
-            sessionFactory=new MetadataSources(serviceRegistry)
-                    .buildMetadata().buildSessionFactory();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * 关闭session
-     */
-    public static void closeSession(){
-        session=THREAD_LOCAL.get();
-        THREAD_LOCAL.set(null);
-
-        if(session!=null &amp;&amp; session.isOpen()){
-            session.close();
         }
     }
 }
-</code></pre><h2 id="三、Hibernate对象状态的转化"><a href="#三、Hibernate对象状态的转化" class="headerlink" title="三、Hibernate对象状态的转化"></a>三、Hibernate对象状态的转化</h2><p><strong>3.1、 new -&gt; save -&gt; close -&gt; update</strong></p>
-<pre><code>@Test
-public void testSave() {
-    Session session = null;
-    Transaction tx = null;
-    User user = null;
-
-    try {
-        session = HibernateUtil.getSession();
-        tx = session.beginTransaction();
-
-        // 构造对象 -&gt; 瞬时状态
-        user = new User();
-        user.setUsername(&quot;刘德华&quot;);
-        user.setPassword(&quot;123&quot;);
-
-        // 调用save() -&gt; 持久化状态
-        session.save(user);
-
-        /*
-         * 在持久状态下,脏数据检查:当提交事务时或清理缓存时,发现session中的数据和
-         * 数据库中的数据不一致时,将会把session中的数据更新到数据库中
-         */
-        user.setUsername(&quot;张学友&quot;);
-
-        // 在保存以后再修改对象将会产生多条sql语句,效率较低,建议在save前修改
-        session.flush();
-
-        tx.commit();
-    } catch (Exception e) {
-        e.printStackTrace();
-        tx.rollback();
-    } finally {
-        HibernateUtil.closeSession();
-    } 
-
-    // session被关闭 -&gt; 游离状态
-    System.out.println(&quot;姓名:&quot; + user.getUsername());
-    user.setUsername(&quot;梁朝伟&quot;);
-    try {
-        session = HibernateUtil.getSession();
-        tx = session.beginTransaction();
-        // 调用update() -&gt; 持久状态，user被session管理
-        // 如果此时先get()|load()获取到user -&gt; 持久状态
-        // 再调用delete() -&gt; 移除状态
-        session.update(user);
-        tx.commit();
-    } catch (Exception e) {
-        e.printStackTrace();
-        tx.rollback();
-    } finally {
-        HibernateUtil.closeSession();
-    } 
-    // 游离状态
-}
-</code></pre><p><strong>3.2、 get/load -&gt; clear/evict</strong></p>
-<pre><code>@Test
-public void testGet() {
-    Session session = null;
-    Transaction tx = null;
-    User user = null;
-
-    try {
-        session = HibernateUtil.getSession();
-        tx = session.beginTransaction();
-
-        // get() -&gt; 持久状态，user被session管理
-        // get()会立即查询该对象：范围从session，SessionFactory，数据库
-        // get()如果找不到对象不会抛异常，返回null
-        user = (User) session.get(User.class, 1);
-        System.out.println(&quot;姓名:&quot; + user.getUsername());
-        tx.commit();
-
-        // clear()清除session缓存中所有对象，evict()清除指定对象
-        session.clear();
-        // session.evict(user);
-        // clear()|evict() -&gt; 游离状态
-
-        user.setUsername(&quot;张国荣&quot;);
-        System.out.println(user.getUsername());
-    } catch (Exception e) {
-        e.printStackTrace();
-        tx.rollback();
-    } finally {
-        HibernateUtil.closeSession();
-    }
-}
-</code></pre><p><strong>get/load的区别</strong>：get会立即去查询对象，load在使用才去查询（懒加载），get找不到对象时返回null，load找不到对象时抛出ObjectNotFoundException异常。</p>
-<p><strong>3.3、 update</strong></p>
-<pre><code>@Test
-public void testUpdate() {
-    Session session = null;
-    Transaction tx = null;
-    User user = null;
-
-    try {
-        session = HibernateUtil.getSession();
-        tx = session.beginTransaction();
-
-        // 手动构造的瞬时状态对象也可以修改，但是需要指定所有属性，不建议使用
-        //user = new User();
-        //user.setId(3);
-        //user.setUsername(&quot;李四&quot;);
-
-        // get() -&gt; 持久化状态
-        user = (User) session.get(User.class, 2);
-
-        // 通过从数据库中加载该对象然后再修改可以进行判断进而避免异常，提高程序的健壮性
-        if (null != user) {
-            user.setUsername(&quot;老王&quot;);
-            // update() -&gt; 持久状态，user再次被session管理
-            session.update(user);
-        } 
-
-        tx.commit();
-    } catch (Exception e) {
-        e.printStackTrace();
-        tx.rollback();
-    } finally {
-        HibernateUtil.closeSession();
-    }
-}
-</code></pre><p><strong>注意</strong>：先获取对象进行判断再更新，可以避免异常，提高程序的健壮性。</p>
-<p><strong>3.4、 delete</strong></p>
-<pre><code>@Test
-public void testDelete() {
-    Session session = null;
-    Transaction tx = null;
-    User user = null;
-
-    try {
-        session = HibernateUtil.getSession();
-        tx = session.beginTransaction();
-
-        // 手动构造的瞬时状态对象，指定主键也是可以删除该对象的，但是不建议这么用
-        //user = new User();
-        //user.setId(5);
-
-        // get() -&gt; 持久化状态，user被session管理
-        user = (User) session.get(User.class, 10);
-
-        // 通过从数据库中加载该对象然后删除可以进行判断进而避免异常,提高程序的健壮性
-        if (null != user) {
-            // delete() -&gt; 移除状态
-            session.delete(user);
-        } 
-
-        tx.commit();
-    } catch (Exception e) {
-        e.printStackTrace();
-        tx.rollback();
-    } finally {
-        HibernateUtil.closeSession();
-    }
-}
-</code></pre><p><strong>注意</strong>：先获取对象进行判断再删除，可以避免异常，提高程序的健壮性。</p>
-
+</code></pre>
             </div>
             <hr>
 
@@ -667,7 +619,7 @@ public void testDelete() {
                     <span class="reprint-tip">转载请注明: </span>
                     <a href="http://www.carleviets.club" class="b-link-green">江火似流萤的个人博客</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2019/03/05/Hibernate对象的生命周期（二）/" class="b-link-green">Hibernate对象的生命周期（二）</a>
+                    <a href="/2019/03/04/Hibernate(一)——入门/" class="b-link-green">Hibernate（一）——入门</a>
                 </p>
             </div>
         </div>
@@ -689,15 +641,15 @@ public void testDelete() {
     <div class="row article-row">
         
         <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge left-badge text-color">本篇</div>
+            <div class="article-badge left-badge text-color">上一篇</div>
             <div class="card">
-                <a href="/2019/03/05/Hibernate对象的生命周期（二）/">
+                <a href="/2019/03/05/Hibernate（三）——对象的生命周期/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="Hibernate对象的生命周期（二）">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="Hibernate（三）——对象的生命周期">
                         
-                        <span class="card-title">Hibernate对象的生命周期（二）</span>
+                        <span class="card-title">Hibernate（三）——对象的生命周期</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -706,9 +658,9 @@ public void testDelete() {
 1. 瞬时状态转为持久化状态
 使用Session对象的save()或saveOrUpdate()方法保存对象后，该对象的状态由瞬时状态转换为持久</div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-03-05
-                            </span>
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-03-05
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -721,7 +673,6 @@ public void testDelete() {
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -738,29 +689,27 @@ public void testDelete() {
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">下一篇</div>
             <div class="card">
-                <a href="/2019/03/04/Hibernate入门(一)/">
+                <a href="/2019/01/31/Nginx与负载均衡/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hibernate入门（一）">
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="Nginx与负载均衡">
                         
-                        <span class="card-title">Hibernate入门（一）</span>
+                        <span class="card-title">Nginx与负载均衡</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">一、hibernate基本使用1.1、maven依赖&lt;!-- hibernate核心依赖 --&gt;
-&lt;dependency&gt;
-  &lt;groupId&gt;org.hibernate&lt;/groupId&gt;</div>
+                    <div class="summary">一、关于Nginx在海量并发的环境下，用户每一次请求服务器，都需要大量的创建线程，每一次的线程都必须分配资源（CPU、内存、带宽、磁盘IO等），当资源不足的时候就会使得服务器宕机而无法提供服务。这就需要涉及到负载均衡。所谓负载均衡，就是将请</div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-03-04
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-01-31
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Hibernate/" class="post-category" target="_blank">
-                                    Hibernate
+                            <a href="/categories/Nginx/" class="post-category" target="_blank">
+                                    Nginx
                                 </a>
                             
                             
@@ -770,8 +719,8 @@ public void testDelete() {
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Hibernate/" target="_blank">
-                        <span class="chip bg-color">Hibernate</span>
+                    <a href="/tags/Nginx/" target="_blank">
+                        <span class="chip bg-color">Nginx</span>
                     </a>
                     
                 </div>
